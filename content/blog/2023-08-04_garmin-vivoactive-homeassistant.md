@@ -44,7 +44,7 @@ Now for the fun part. Download [APICall](https://apps.garmin.com/en-US/apps/ac9a
 
 If you are using Garmin Express, then you can access the app settings by selecting the 3 dots next to the app. You will have 36 possible API calls that you can enter.
 
-{{ img(id="https://assets.vrite.io/64974cb888e8beebeb2c925b/-lSqNObL3TGNk0VQc8xOq.png" alt="ApiCall settings page" caption="Yes that formating is atrocious but it works at least!") }}
+{{ img(id="https://assets.vrite.io/64974cb888e8beebeb2c925b/-lSqNObL3TGNk0VQc8xOq.png" alt="ApiCall settings page" caption="Yes that formatting is atrocious but it works at least!") }}
 
 > webhooks
 ```ts

@@ -96,7 +96,7 @@ Before you are finished make sure you have run the `Enable Custom CSS and JS` co
 
 That should be it! Hopefully you will have a beautiful custom font VS Code install.
 
-If you are looking for a good theme, I can highly recommend the [Catppuccin](https://marketplace.visualstudio.com/items?itemName=Catppuccin.catppuccin-vsc) theme, as that is what I use myself. Be sure to check out [Monaspace’s webstite](https://monaspace.githubnext.com/) as it is a work of art. Happy Coding! 👩‍💻
+If you are looking for a good theme, I can highly recommend the [Catppuccin](https://marketplace.visualstudio.com/items?itemName=Catppuccin.catppuccin-vsc) theme, as that is what I use myself. Be sure to check out [Monaspace’s website](https://monaspace.githubnext.com/) as it is a work of art. Happy Coding! 👩‍💻
 
 * *Updated 2024-08-22: changed mtk4 to mtk3 on the feedback of [mutammim](https://github.com/mutammim)*
-* *Updated 2024-10-31: changed around the formating of the post and moved to [dunkirk.sh](https://dunkirk.sh)*
+* *Updated 2024-10-31: changed around the formatting of the post and moved to [dunkirk.sh](https://dunkirk.sh)*

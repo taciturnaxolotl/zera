@@ -934,7 +934,7 @@ Replaying either of the requests does nothing except give a new `tid` value but 
 
 ## Wrap up
 
-{{ img(id="https://cloud-ryjlxhb9r-hack-club-bot.vercel.app/1bluetooth-scan.png" alt="screenshot of bluetooth scan" caption="The bluetooth scan of (what i belive is) the lift") }}
+{{ img(id="https://cloud-ryjlxhb9r-hack-club-bot.vercel.app/1bluetooth-scan.png" alt="screenshot of bluetooth scan" caption="The bluetooth scan of (what i believe is) the lift") }}
 
 I tried running a Bluetooth scan to see if I could find the locks, but nothing popped out as being a likely culprit. I did however find an interesting set of 3 Bluetooth devices named "clearsky smart fleet" which upon research seems to be scissor lifts / construction equipment made by a company called [JLG](https://smartfleet.jlg.com/) which is quite interesting. That would make sense, however, as I saw several scissor lifts outside the hotel on my way in.  
 
