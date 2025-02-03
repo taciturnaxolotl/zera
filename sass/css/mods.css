@@ -148,6 +148,10 @@ blockquote:has(+ pre) p {
 	color: var(--accent-text);
 }
 
+blockquote:has(+ pre) p::selection {
+    background: var(--pink-puree);
+}
+
 .yt-embed {
 	width: 100%;
 	display: flex;
