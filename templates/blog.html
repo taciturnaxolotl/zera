@@ -2,31 +2,31 @@
 <h1 class="title">{{ section.title }}</h1>
 
 <p role="heading">
-  --- <span style="letter-spacing: 0.1em">Main Blog</span> ---
+    --- <span style="letter-spacing: 0.1em">Main Blog</span> ---
 </p>
 
 <ul>
-  <!-- If you are using pagination, section.pages will be empty.
+    <!-- If you are using pagination, section.pages will be empty.
        You need to use the paginator object -->
-  {% for page in section.pages %} {% if "archival" not in page.taxonomies.tags
-  %}
-  <li>
-      {{ page.date | split(pat="T") | first }} &mdash;
-    <a href="{{ page.permalink | safe }}">{{ page.title }}</a>
-  </li>
-  {% endif %} {% endfor %}
+    {% for page in section.pages %} {% if "archival" not in page.taxonomies.tags
+    %}
+    <li>
+        {{ page.date | split(pat="T") | first }} &mdash;
+        <a href="{{ page.permalink | safe }}">{{ page.title }}</a>
+    </li>
+    {% endif %} {% endfor %}
 </ul>
 
 <p role="heading">
-  --- <span style="letter-spacing: 0.213em">Archival</span> ---
+    --- <span style="letter-spacing: 0.213em">Archival</span> ---
 </p>
 
 <ul>
-  {% for page in section.pages %} {% if "archival" in page.taxonomies.tags %}
-  <li>
-    {{ page.date }} &mdash;
-    <a href="{{ page.permalink | safe }}">{{ page.title }}</a> (archival)
-  </li>
-  {% endif %} {% endfor %}
+    {% for page in section.pages %} {% if "archival" in page.taxonomies.tags %}
+    <li>
+        {{ page.date }} &mdash;
+        <a href="{{ page.permalink | safe }}">{{ page.title }}</a> (archival)
+    </li>
+    {% endif %} {% endfor %}
 </ul>
 {% endblock content %}

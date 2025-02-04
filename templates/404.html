@@ -1,31 +1,31 @@
 {% extends "base.html" %} {% block content %}
 
 <div
-  style="
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center; /* Center vertically */
-    height: 100%; /* Adjust height as needed */
-  "
+    style="
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center; /* Center vertically */
+        height: 100%; /* Adjust height as needed */
+    "
 >
-  <p><strong>I think you stumbled on something non existent :)</strong></p>
-  <p><i id="redirect">Redirecting you back home in 5</i></p>
+    <p><strong>I think you stumbled on something non existent :)</strong></p>
+    <p><i id="redirect">Redirecting you back home in 5</i></p>
 </div>
 
 <script>
-  const link = document.getElementById("redirect");
+    const link = document.getElementById("redirect");
 
-  // count down to redirect
-  let count = 5;
-  const interval = setInterval(() => {
-    count--;
-    link.innerText = `Redirecting you back home in ${count}`;
-    if (count === 0) {
-      clearInterval(interval);
-      window.location.href = "/";
-    }
-  }, 1000);
+    // count down to redirect
+    let count = 5;
+    const interval = setInterval(() => {
+        count--;
+        link.innerText = `Redirecting you back home in ${count}`;
+        if (count === 0) {
+            clearInterval(interval);
+            window.location.href = "/";
+        }
+    }, 1000);
 </script>
 
 {% endblock content %}

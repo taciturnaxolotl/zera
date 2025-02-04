@@ -1,28 +1,28 @@
 {% if config.extra.header_nav %} {% if not current_url %} {% set current_url =
 "" %} {% endif %}
 <nav id="nav-bar">
-  {% for nav_item in config.extra.header_nav %}
-  <a
-    href="{{ nav_item.url }}"
-    class="{% if nav_item.url == current_url %}active{% endif %}"
-  >
-    {{ nav_item.name }}
-  </a>
-  {% endfor %}
-  <div>
-    <input type="checkbox" id="theme-toggle" style="display: none" />
-    <label for="theme-toggle" id="theme-toggle-label"
-      ><svg id="theme-icon" class="icons">
-        <use
-          href="{{ get_url(path='/icons.svg#lightMode', trailing_slash=false) | safe }}"
-        ></use></svg
-    ></label>
-    <audio id="theme-sound">
-      <source
-        src="{{ get_url(path='click.ogg', trailing_slash=false) | safe }}"
-        type="audio/ogg"
-      />
-    </audio>
-  </div>
+    {% for nav_item in config.extra.header_nav %}
+    <a
+        href="{{ nav_item.url }}"
+        class="{% if nav_item.url == current_url %}active{% endif %}"
+    >
+        {{ nav_item.name }}
+    </a>
+    {% endfor %}
+    <div>
+        <input type="checkbox" id="theme-toggle" style="display: none" />
+        <label for="theme-toggle" id="theme-toggle-label"
+            ><svg id="theme-icon" class="icons">
+                <use
+                    href="{{ get_url(path='/icons.svg#lightMode', trailing_slash=false) | safe }}"
+                ></use></svg
+        ></label>
+        <audio id="theme-sound">
+            <source
+                src="{{ get_url(path='click.ogg', trailing_slash=false) | safe }}"
+                type="audio/ogg"
+            />
+        </audio>
+    </div>
 </nav>
 {% endif %}

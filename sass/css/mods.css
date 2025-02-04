@@ -149,7 +149,7 @@ blockquote:has(+ pre) p {
 }
 
 blockquote:has(+ pre) p::selection {
-    background: var(--pink-puree);
+	background: var(--pink-puree);
 }
 
 .yt-embed {
