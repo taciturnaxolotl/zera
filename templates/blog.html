@@ -11,7 +11,7 @@
   {% for page in section.pages %} {% if "archival" not in page.taxonomies.tags
   %}
   <li>
-    {{ page.date }} &mdash;
+      {{ page.date | split(pat="T") | first }} &mdash;
     <a href="{{ page.permalink | safe }}">{{ page.title }}</a>
   </li>
   {% endif %} {% endfor %}

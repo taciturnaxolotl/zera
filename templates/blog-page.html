@@ -1,7 +1,7 @@
 {% extends "base.html" %} {% block content %}
 <div><a href="..">..</a>/<span class="accent-data">{{ page.slug }}</span></div>
 <time datetime="{{ page.date }}"
-  >Published on: <span class="accent-data">{{ page.date }}</span></time
+  >Published on: <span class="accent-data">{{ page.date | split(pat="T") | first }}</span></time
 >
 {% if config.extra.author and config.extra.display_author == true %}
 <address rel="author">
