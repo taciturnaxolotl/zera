@@ -1,6 +1,6 @@
 +++
 title = "Fixing a degraded zpool on proxmox"
-date = 2025-02-02
+date = 2025-02-03
 slug = "degraded-zpool-proxmox"
 description = "replacing a failed drive in a proxmox zpool"
 
