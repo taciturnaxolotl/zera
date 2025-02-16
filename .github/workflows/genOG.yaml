@@ -27,6 +27,18 @@ jobs:
         with:
           bun-version: latest
 
+      - name: Restore node_modules cache
+        uses: actions/cache@v3
+        id: node-modules-cache
+        with:
+          path: tools/node_modules
+          key: node-modules-${{ runner.os }}-${{ hashFiles('tools/bun.lockb') }}
+          restore-keys: |
+            node-modules-${{ runner.os }}-
+
+      - name: Install dependencies (tools)
+        run: bun install --cwd tools
+
       - name: Install Zola
         uses: taiki-e/install-action@v2
         with:
