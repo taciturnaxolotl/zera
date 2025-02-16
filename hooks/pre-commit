@@ -9,12 +9,14 @@ fi
 while read -r file; do
   case "$file" in
     *.jpg|*.jpeg|*.png|*.gif|*.tiff|*.bmp)
-      echo "Removing EXIF data from: $file" >&2
-      exiftool -all= --icc_profile:all -tagsfromfile @ -orientation -overwrite_original "$file"
+      # Store output of exiftool command
+      cleared_data=$(exiftool -all= --icc_profile:all -tagsfromfile @ -orientation -overwrite_original "$file")
       if [ $? -ne 0 ]; then
         echo "Error: exiftool failed to process $file" >&2
         exit 1
       fi
+      echo "Cleared EXIF data for $file:" >&2
+      echo "$cleared_data" >&2
       git add "$file"
       ;;
     *)
@@ -23,4 +25,3 @@ while read -r file; do
 done < <(git diff --cached --name-only --diff-filter=ACMR)
 
 exit 0
-
