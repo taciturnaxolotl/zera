@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+# Check if exiftool is installed
+if ! command -v exiftool &> /dev/null; then
+  echo "Error: exiftool is not installed.  Please install it." >&2
+  exit 1
+fi
+
+while read -r file; do
+  case "$file" in
+    *.jpg|*.jpeg|*.png|*.gif|*.tiff|*.bmp)
+      echo "Removing EXIF data from: $file" >&2
+      exiftool -all= --icc_profile:all -tagsfromfile @ -orientation -overwrite_original "$file"
+      if [ $? -ne 0 ]; then
+        echo "Error: exiftool failed to process $file" >&2
+        exit 1
+      fi
+      git add "$file"
+      ;;
+    *)
+      ;;
+  esac
+done < <(git diff --cached --name-only --diff-filter=ACMR)
+
+exit 0
+
