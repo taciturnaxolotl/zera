@@ -37,6 +37,8 @@ jobs:
             node-modules-${{ runner.os }}-
 
       - name: Install dependencies (tools)
+        env:
+          PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: "true"
         run: bun install --cwd tools
 
       - name: Install Zola
@@ -48,7 +50,11 @@ jobs:
         run: zola build
 
       - name: Generate OG Images
-        run: bun run tools/genOG.ts
+        uses: mujo-code/puppeteer-headful@16.6.0
+        env:
+          CI: "true"
+        with:
+          args: bun run tools/genOG.ts
 
       - name: Check for changes
         id: git-check

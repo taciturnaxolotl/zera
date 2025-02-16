@@ -3,7 +3,10 @@ import { readdir, mkdir } from "node:fs/promises";
 
 const template = await Bun.file("tools/og.html").text();
 
-const browser = await puppeteer.launch();
+const browser = await puppeteer.launch({
+  args: ["--no-sandbox"],
+  executablePath: process.env.PUPPETEER_EXEC_PATH, // set by docker container
+});
 
 async function og(
 	postname: string,
