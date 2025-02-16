@@ -1,5 +1,5 @@
 +++
-title = "Removing exif data from images via a pre-commit hook"
+title = "Cleaning exif data with git pre-commit"
 date = 2025-02-15T19:57:01
 slug = "remove-exif-git-hook"
 description = "took longer then it probably should have 😊"
