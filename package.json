@@ -1,0 +1,18 @@
+{
+  "name": "zera",
+  "module": "index.ts",
+  "type": "module",
+  "scripts": {
+    "gen": "node tools/genOG.js"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "puppeteer": "^23.6.0"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7"
+  }
+}

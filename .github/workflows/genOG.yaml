@@ -31,12 +31,13 @@ jobs:
         uses: actions/cache@v3
         id: node-modules-cache
         with:
-          path: tools/node_modules
-          key: node-modules-${{ runner.os }}-${{ hashFiles('tools/bun.lockb') }}
+          path: node_modules
+          key: node-modules-${{ runner.os }}-${{ hashFiles('bun.lockb', 'package.json') }}
           restore-keys: |
             node-modules-${{ runner.os }}-
 
       - name: Install dependencies (tools)
+        if: steps.node-modules-cache.outputs.cache-hit != 'true'
         env:
           PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: "true"
         run: bun install --cwd tools
@@ -54,7 +55,7 @@ jobs:
         env:
           CI: "true"
         with:
-          args: bun run tools/genOG.ts
+          args: npm run gen
 
       - name: Check for changes
         id: git-check
@@ -68,4 +69,3 @@ jobs:
           git add public/og/*
           git commit -m "chore: generated og images"
           git push origin HEAD:main
-
