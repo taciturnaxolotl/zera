@@ -1,0 +1,63 @@
+name: Zola Build and OG Image Generation
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Restore Bun cache
+        uses: actions/cache@v3
+        id: bun-cache
+        with:
+          path: ~/.bun
+          key: bun-${{ runner.os }}-${{ hashFiles('**/bun.lockb') }}
+          restore-keys: |
+            bun-${{ runner.os }}-
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+
+      - name: Restore Zola cache
+        uses: actions/cache@v3
+        id: zola-cache
+        with:
+          path: /usr/local/bin/zola
+          key: zola-${{ runner.os }}-0.18.0
+          restore-keys: |
+            zola-${{ runner.os }}-
+
+      - name: Install Zola
+        if: steps.zola-cache.outputs.cache-hit != 'true'
+        run: |
+          curl -sSL https://releases.getzola.org/v0.18.0/zola-v0.18.0-x86_64-unknown-linux-gnu.tar.gz | tar -xz
+          sudo mv zola /usr/local/bin/
+
+      - name: Build Zola site
+        run: zola build
+
+      - name: Generate OG Images
+        run: bun run tools/genOG.ts
+
+      - name: Check for changes
+        id: git-check
+        run: echo "::set-output name=modified::$([ -z "$(git status --porcelain)" ] && echo "false" || echo "true")"
+
+      - name: Commit changes
+        if: steps.git-check.outputs.modified == 'true'
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          git add public/og/*
+          git commit -m "chore: generated og images"
+          git push origin HEAD:main
+
