@@ -84,8 +84,9 @@ base64=true) %}
   src="{{ get_url(path='js/script.js?' ~ jsHash, trailing_slash=false) | safe }}"
   defer
 ></script>
-<script
-  defer
-  data-domain="dunkirk.sh"
-  src="https://nexus.kieranklukas.com/js/script.outbound-links.file-downloads.js"
-></script>
+<script>
+    function cb(response) {
+        document.getElementById("visits").innerText = response.value;
+    }
+</script>
+<script async src="https://abacus.jasoncameron.dev/hit/dunkirk.sh/counter?callback=cb"></script>
