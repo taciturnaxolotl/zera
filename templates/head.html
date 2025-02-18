@@ -85,8 +85,11 @@ base64=true) %}
   defer
 ></script>
 <script>
-    function cb(response) {
-        document.getElementById("visits").innerText = response.value;
+    function cb(res) {
+        const fmt = new Intl.NumberFormat('en', { notation: 'compact' });
+        const el = document.getElementById("visits")
+        el.innerText = fmt.format(res.value);
+        el.title = res.value + " visits";
     }
 </script>
 <script async src="https://abacus.jasoncameron.dev/hit/dunkirk.sh/counter?callback=cb"></script>

@@ -19,7 +19,7 @@ const kieran = {
 }
 ```
 
-this page has gottten <code id="visits">0</code> hits (tracked via [abacus](https://jasoncameron.dev/abacus/)) and this entire site be rendered in `~92ms`
+this site has page hits (<code id="visits">0</code> and counting) via [abacus](https://jasoncameron.dev/abacus/) but they are completely anonymous and just http requests! 
 
 ## Want to talk to me?
 
