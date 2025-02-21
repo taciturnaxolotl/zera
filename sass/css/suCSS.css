@@ -40,7 +40,7 @@
 		--accent-dark: var(--dark-crushed-grape);
 		--accent-text: var(--purple-gray);
 		--link: var(--light-crushed-grape);
-		--border: #dbd5bc;
+		--border: var(--pink-puree)
 	}
 }
 
@@ -57,7 +57,7 @@
 	--accent-dark: var(--dark-crushed-grape);
 	--accent-text: var(--purple-gray);
 	--link: var(--light-crushed-grape);
-	--border: #dbd5bc;
+	--border: var(--pink-puree);
 }
 
 @media (prefers-color-scheme: light) {

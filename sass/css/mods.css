@@ -12,7 +12,6 @@
 #footer-container {
 	display: flex;
 	flex-direction: column;
-	flex-wrap: wrap;
 	justify-content: center;
 	align-items: center;
 	text-align: center;
@@ -161,6 +160,14 @@ blockquote:has(+ pre) p::selection {
 .yt-embed iframe {
 	width: 100%;
 	aspect-ratio: 16 / 9;
+}
+
+#elr table {
+    border-style: none;
+}
+
+#elr td {
+    border-style: dashed;
 }
 
 :root {
