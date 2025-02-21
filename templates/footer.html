@@ -2,7 +2,7 @@
 <div id="footer-container">
     <p style="margin-bottom: 0.5rem">
         &copy; {{ now() | date(format="%Y") }} Kieran Klukas ||
-        <code id="visits">0</code> visits since 2025.02.18 || {% set hash =
+        <code id="visits">0</code> page visits || {% set hash =
         get_env(name="CF_PAGES_COMMIT_SHA", default=load_data(path=".git/refs/heads/main", required=false))%}{% if hash is not string %}{% set hash = "unknown" %}{% endif %}<a href=https://github.com/taciturnaxolotl/zera/tree/{{ hash }}>zera@{{ hash |
         truncate(length=7, end="")}}</a>
     </p>

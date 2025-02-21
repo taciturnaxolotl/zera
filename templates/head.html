@@ -94,4 +94,4 @@ base64=true) %}
         });
     }
 </script>
-<script async src="https://abacus.jasoncameron.dev/hit/dunkirk.sh/counter?callback=cb"></script>
+<script async src="https://abacus.jasoncameron.dev/hit/dunkirk.sh/counter{%- if url | split(pat='/') | slice(start=3) | join != '' -%}-{{url | split(pat='/') | slice(start=3) | join(sep=' ') | slugify}}{%- endif -%}?callback=cb"></script>
