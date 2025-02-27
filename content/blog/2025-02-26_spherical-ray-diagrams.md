@@ -17,6 +17,9 @@ I was recently working through the Geometric Optics section of my physics textbo
 
 ## the tool (🥁 roll please)
 
+> this tool does support keyboard navigation btw ^-^  
+> `arrow keys` to move and `+` and `-` to zoom
+
 {{ lensDiagram() }}
 
 ## the math
