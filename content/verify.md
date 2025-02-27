@@ -15,6 +15,7 @@ If you want to contact me, via email to `me@dunkirk.sh` or `me@kieranklukas.com`
 * Github: [@taciturnaxolotl](https://github.com/taciturnaxolotl) (formerly @kcoderhtml)
 * [Hackclub Slack](https://hackclub.com/slack/): [@krn](https://hackclub.slack.com/team/U062UG485EE) (display name changes quite often though) with userID `U062UG485EE`
 * Bluesky: [@dunkirk.sh](https://bsky.app/profile/dunkirk.sh)
+* Mastodon: [@taciturnaxolotl@social.dino.icu](https://social.dino.icu/@taciturnaxolotl)
 * Youtube: [@wanderer.archives](https://www.youtube.com/@wanderer.archives)
 * Matrix: [@kieran:dumpsterfire.icu](https://matrix.to/#/@kieran.matrix.dumpsterfire.icu) or [@sclacker:matrix.org](https://matrix.to/#/@sclacker:matrix.org) (i'm active on here once in a bluemoon so this isn't a great way to contact me urgently)
 * Signal: `verox.89`
