@@ -1,0 +1,618 @@
+<div
+    id="rayTracer"
+    style="display: flex; flex-direction: column; min-height: 30rem"
+>
+    <div class="controls" style="display: flex; flex-direction: column">
+        <div style="display: flex; gap: 20px; align-items: center">
+            <div>
+                <label>Mirror Type:</label>
+                <select id="mirrorType">
+                    <option value="concave">Concave Mirror</option>
+                    <option value="convex">Convex Mirror</option>
+                </select>
+            </div>
+            <div>
+                <label>Radius of Curvature:</label>
+                <input type="number" id="radius" value="20" min="1" />
+            </div>
+            <div>
+                <label>Object Distance:</label>
+                <input type="number" id="objectDist" value="30" min="1" />
+            </div>
+        </div>
+        <div>
+            <label>Zoom:</label>
+            <input
+                type="range"
+                id="zoom"
+                min="0.01"
+                max="8"
+                step="0.01"
+                value="1"
+                style="width: 100%"
+            />
+        </div>
+    </div>
+    <canvas id="canvas" style="flex: 1; cursor: move"></canvas>
+</div>
+
+<style>
+    #rayTracer {
+        padding: 20px;
+    }
+    .controls {
+        margin-bottom: 20px;
+    }
+    .controls div {
+        margin: 0.2rem 0;
+    }
+    #canvas {
+        border: 1px solid #ccc;
+        width: 100%;
+    }
+</style>
+
+<script>
+    const canvas = document.getElementById("canvas");
+    const ctx = canvas.getContext("2d");
+    const mirrorType = document.getElementById("mirrorType");
+    const radiusInput = document.getElementById("radius");
+    const objectDistInput = document.getElementById("objectDist");
+    const zoomInput = document.getElementById("zoom");
+
+    let offsetX = 0;
+    let offsetY = 0;
+    let isDragging = false;
+    let lastX = 0;
+    let lastY = 0;
+
+    canvas.addEventListener("mousedown", (e) => {
+        isDragging = true;
+        lastX = e.clientX;
+        lastY = e.clientY;
+    });
+
+    canvas.addEventListener("mousemove", (e) => {
+        if (isDragging) {
+            offsetX += e.clientX - lastX;
+            offsetY += e.clientY - lastY;
+            lastX = e.clientX;
+            lastY = e.clientY;
+            update();
+        }
+    });
+
+    canvas.addEventListener("mouseup", () => {
+        isDragging = false;
+    });
+
+    canvas.addEventListener("mouseleave", () => {
+        isDragging = false;
+    });
+
+    canvas.addEventListener("wheel", (e) => {
+        e.preventDefault();
+        const zoomSpeed = 0.001;
+        const newZoom = parseFloat(zoomInput.value) - e.deltaY * zoomSpeed;
+        zoomInput.value = Math.min(Math.max(newZoom, 0.01), 8);
+        update();
+    });
+
+    function calculateReflectedRay(
+        startX,
+        startY,
+        incidentX,
+        incidentY,
+        centerX,
+        centerY,
+        radius,
+    ) {
+        // Calculate normal vector at intersection point
+        const nx = (incidentX - centerX) / radius;
+        const ny = (incidentY - centerY) / radius;
+
+        // Calculate incident vector
+        const ix = incidentX - startX;
+        const iy = incidentY - startY;
+        const iLen = Math.sqrt(ix * ix + iy * iy);
+        const dirX = ix / iLen;
+        const dirY = iy / iLen;
+
+        // Calculate reflection using r = i - 2(i·n)n
+        const dot = dirX * nx + dirY * ny;
+        const reflectX = dirX - 2 * dot * nx;
+        const reflectY = dirY - 2 * dot * ny;
+
+        // Extend reflected ray to edge of canvas
+        const t = Math.max(
+            Math.abs((0 - incidentX) / reflectX),
+            Math.abs((canvas.width - incidentX) / reflectX),
+            Math.abs((0 - incidentY) / reflectY),
+            Math.abs((canvas.height - incidentY) / reflectY),
+        );
+
+        return {
+            x: incidentX + reflectX * t,
+            y: incidentY + reflectY * t,
+        };
+    }
+
+    function drawMirror(isConcave, R) {
+        const scale = (canvas.width / (R * 6)) * parseFloat(zoomInput.value);
+        const centerX = canvas.width / 2 + R * scale * isConcave + offsetX;
+        const centerY = canvas.height / 2 + offsetY;
+
+        ctx.beginPath();
+        ctx.strokeStyle = "black";
+        if (isConcave) {
+            ctx.arc(
+                centerX - R * scale,
+                centerY,
+                R * scale,
+                -Math.PI / 3,
+                Math.PI / 3,
+            );
+        } else {
+            ctx.arc(
+                centerX + R * scale,
+                centerY,
+                R * scale,
+                (2 * Math.PI) / 3,
+                (4 * Math.PI) / 3,
+            );
+        }
+        ctx.stroke();
+    }
+
+    function drawArrow(x, y, height) {
+        const arrowHeadSize = height * 0.1; // Scale arrow head with height
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+
+        // Draw the main shaft
+        ctx.moveTo(x, y);
+        ctx.lineTo(x, y - height * 0.9);
+
+        // Draw the arrow head
+        ctx.moveTo(x, y - height);
+        ctx.lineTo(x - arrowHeadSize, y - height + arrowHeadSize);
+        ctx.moveTo(x, y - height);
+        ctx.lineTo(x + arrowHeadSize, y - height + arrowHeadSize);
+        ctx.moveTo(x - arrowHeadSize, y - height + arrowHeadSize);
+        ctx.lineTo(x + arrowHeadSize, y - height + arrowHeadSize);
+
+        ctx.stroke();
+    }
+
+    function extendRayToCanvasEdge(x1, y1, x2, y2) {
+        const rayDirX = x2 - x1;
+        const rayDirY = y2 - y1;
+        const t = Math.max(
+            Math.abs((0 - x2) / rayDirX),
+            Math.abs((canvas.width - x2) / rayDirX),
+            Math.abs((0 - y2) / rayDirY),
+            Math.abs((canvas.height - y2) / rayDirY),
+        );
+        ctx.lineTo(x2 + rayDirX * t, y2 + rayDirY * t);
+    }
+
+    function findCircleIntersection(radius, x1, h, x3, y3, centerX, centerY) {
+        // Check if the input values are valid
+        if (radius <= 0) {
+            throw new Error("Invalid input values.");
+        }
+
+        // Calculate the slope of the line from (x1, h) to (x3, y3)
+        const m = (y3 - (centerY - h)) / (x3 - x1);
+
+        // Define the line equation: y = h + m * (x - x1)
+        // Substitute into circle equation: (x-centerX)^2 + (y-centerY)^2 = radius^2
+        // y = h + m * (x - x1)
+        // (x-centerX)^2 + (h + m*(x-x1) - centerY)^2 = radius^2
+
+        // Coefficients for the quadratic equation
+        const a = 1 + m * m;
+        const b = -2 * centerX + 2 * m * (centerY - h - centerY - m * x1);
+        const c =
+            centerX * centerX +
+            (centerY - h - centerY - m * x1) *
+                (centerY - h - centerY - m * x1) -
+            radius * radius;
+
+        // Calculate the discriminant
+        const discriminant = b * b - 4 * a * c;
+
+        if (discriminant < 0) {
+            throw new Error("No intersection found.");
+        }
+
+        // Calculate the two possible x values
+        const xIntersect1 = (-b + Math.sqrt(discriminant)) / (2 * a);
+        const xIntersect2 = (-b - Math.sqrt(discriminant)) / (2 * a);
+
+        // Calculate the corresponding y values
+        const yIntersect1 = centerY - h + m * (xIntersect1 - x1);
+        const yIntersect2 = centerY - h + m * (xIntersect2 - x1);
+
+        // Return the intersection points
+        return [
+            { x: xIntersect1, y: yIntersect1 },
+            { x: xIntersect2, y: yIntersect2 },
+        ];
+    }
+
+    function drawRays(isConcave, R, objDist) {
+        const scale = (canvas.width / (R * 6)) * parseFloat(zoomInput.value);
+        const F = R / 2;
+        const h = (R * scale) / 3;
+        const centerX = canvas.width / 2 + R * scale + offsetX;
+        const centerY = canvas.height / 2 + offsetY;
+        const objX =
+            centerX +
+            objDist * scale * (isConcave ? -1 : -1) -
+            R * scale * !isConcave;
+        const objY = centerY;
+
+        drawArrow(objX, objY, h);
+
+        ctx.beginPath();
+        ctx.moveTo(0, centerY);
+        ctx.lineTo(canvas.width, centerY);
+        ctx.stroke();
+
+        ctx.fillStyle = "red";
+        ctx.beginPath();
+        ctx.arc(centerX - F * scale, centerY, 3, 0, 2 * Math.PI);
+        ctx.fill();
+
+        ctx.fillStyle = "blue";
+        ctx.beginPath();
+        ctx.arc(centerX - R * scale * isConcave, centerY, 3, 0, 2 * Math.PI);
+        ctx.fill();
+
+        const circleCenterX = isConcave
+            ? centerX - R * scale
+            : centerX - R * scale;
+
+        if (isConcave) {
+            // ray that travels from the top of the object towards the mirror and then calculating the bounce angle it goes in that direction
+            ctx.strokeStyle = "green";
+            ctx.beginPath();
+            ctx.lineTo(objX, objY - h);
+            let intersectionX =
+                Math.sqrt((R * scale) ** 2 - h ** 2) + circleCenterX;
+            ctx.lineTo(intersectionX, objY - h);
+            extendRayToCanvasEdge(
+                intersectionX,
+                objY - h,
+                centerX - F * scale,
+                centerY,
+            );
+            ctx.stroke();
+
+            // draw an extension of the ray through the mirror in a slightly opacified color
+            ctx.strokeStyle = "rgba(0, 128, 0, 0.5)";
+            ctx.beginPath();
+            ctx.lineTo(intersectionX, objY - h);
+            extendRayToCanvasEdge(
+                centerX - F * scale,
+                centerY,
+                intersectionX,
+                objY - h,
+            );
+            ctx.stroke();
+
+            // draw a point at the intersection of the ray and the mirror
+            ctx.fillStyle = "black";
+            ctx.beginPath();
+            ctx.arc(intersectionX, objY - h, 3, 0, 2 * Math.PI);
+            ctx.fill();
+
+            // draw a ray that travels from the top of the object towards the focal point of the mirror and through the focal point till it reaches the mirror
+            ctx.strokeStyle = "purple";
+            ctx.beginPath();
+            ctx.lineTo(objX, objY - h);
+            ctx.lineTo(centerX - F * scale, centerY);
+            const extendedRay2 = findCircleIntersection(
+                R * scale,
+                objX,
+                h,
+                centerX - F * scale,
+                centerY,
+                circleCenterX,
+                centerY,
+            );
+            ctx.lineTo(extendedRay2[0].x, extendedRay2[0].y);
+            ctx.lineTo(0, extendedRay2[0].y);
+            ctx.stroke();
+
+            // draw an extension of the ray through the mirror in a slightly opacified color
+            ctx.strokeStyle = "rgba(128, 0, 128, 0.5)";
+            ctx.beginPath();
+            ctx.lineTo(extendedRay2[0].x, extendedRay2[0].y);
+            ctx.lineTo(canvas.width, extendedRay2[0].y);
+            ctx.stroke();
+
+            // draw a point at the intersection of the ray and the mirror
+            ctx.fillStyle = "black";
+            ctx.beginPath();
+            ctx.arc(extendedRay2[0].x, extendedRay2[0].y, 3, 0, 2 * Math.PI);
+            ctx.fill();
+
+            // draw a ray that travels from the top of the object through the radius of curvature of the mirror
+            ctx.strokeStyle = "orange";
+            ctx.beginPath();
+            ctx.lineTo(objX, objY - h);
+            ctx.lineTo(circleCenterX, centerY);
+            const extendedRay3 = findCircleIntersection(
+                R * scale,
+                objX,
+                h,
+                circleCenterX,
+                centerY,
+                circleCenterX,
+                centerY,
+            );
+            ctx.lineTo(extendedRay3[0].x, extendedRay3[0].y);
+            extendRayToCanvasEdge(
+                extendedRay3[0].x,
+                extendedRay3[0].y,
+                centerX - R * scale,
+                centerY,
+            );
+            ctx.stroke();
+
+            // draw an extension of the ray through the mirror in a slightly opacified color
+            ctx.strokeStyle = "rgba(255, 165, 0, 0.5)";
+            ctx.beginPath();
+            ctx.lineTo(extendedRay3[0].x, extendedRay3[0].y);
+            extendRayToCanvasEdge(
+                centerX - R * scale,
+                centerY,
+                extendedRay3[0].x,
+                extendedRay3[0].y,
+            );
+            ctx.stroke();
+
+            // draw a point at the intersection of the ray and the mirror
+            ctx.fillStyle = "black";
+            ctx.beginPath();
+            ctx.arc(extendedRay3[0].x, extendedRay3[0].y, 3, 0, 2 * Math.PI);
+            ctx.fill();
+        } else {
+            // draw a ray that travels from the top of the object horizontally towards the mirror
+            ctx.strokeStyle = "green";
+            ctx.beginPath();
+            ctx.lineTo(objX, objY - h);
+            ctx.lineTo(
+                centerX - Math.sqrt((R * scale) ** 2 - h ** 2),
+                objY - h,
+            );
+            extendRayToCanvasEdge(
+                centerX - F * scale,
+                centerY,
+                centerX - Math.sqrt((R * scale) ** 2 - h ** 2),
+                objY - h,
+            );
+            ctx.stroke();
+
+            // draw an extension of the ray through the mirror in a slightly opacified color
+            ctx.strokeStyle = "rgba(0, 128, 0, 0.5)";
+            ctx.beginPath();
+            ctx.lineTo(
+                centerX - Math.sqrt((R * scale) ** 2 - h ** 2),
+                objY - h,
+            );
+            ctx.lineTo(centerX - F * scale, centerY);
+            ctx.stroke();
+
+            // draw a point at the intersection of the ray and the mirror
+            ctx.fillStyle = "black";
+            ctx.beginPath();
+            ctx.arc(
+                centerX - Math.sqrt((R * scale) ** 2 - h ** 2),
+                objY - h,
+                3,
+                0,
+                2 * Math.PI,
+            );
+            ctx.fill();
+
+            // draw a ray that travels from the top of the object towards the focal point of the mirror and through the focal point till it reaches the mirror
+            ctx.strokeStyle = "purple";
+            ctx.beginPath();
+            ctx.lineTo(objX, objY - h);
+            const extendedRay2 = findCircleIntersection(
+                R * scale,
+                objX,
+                h,
+                centerX - F * scale,
+                centerY,
+                circleCenterX,
+                centerY,
+            );
+            const extendedRay2Y = centerY - (extendedRay2[0].y - centerY);
+            ctx.lineTo(
+                centerX -
+                    Math.sqrt(
+                        (R * scale) ** 2 - (centerY - extendedRay2Y) ** 2,
+                    ),
+                centerY - (extendedRay2[0].y - centerY),
+            );
+            ctx.lineTo(0, centerY - (extendedRay2[0].y - centerY));
+            ctx.stroke();
+
+            // draw an extension of the ray through the mirror in a slightly opacified color
+            ctx.strokeStyle = "rgba(128, 0, 128, 0.5)";
+            ctx.beginPath();
+            ctx.lineTo(
+                centerX -
+                    Math.sqrt(
+                        (R * scale) ** 2 - (centerY - extendedRay2Y) ** 2,
+                    ),
+                centerY - (extendedRay2[0].y - centerY),
+            );
+            ctx.lineTo(canvas.width, centerY - (extendedRay2[0].y - centerY));
+            ctx.stroke();
+
+            ctx.fillStyle = "black";
+            ctx.beginPath();
+            ctx.arc(
+                centerX -
+                    Math.sqrt(
+                        (R * scale) ** 2 - (centerY - extendedRay2Y) ** 2,
+                    ),
+                centerY - (extendedRay2[0].y - centerY),
+                3,
+                0,
+                2 * Math.PI,
+            );
+            ctx.fill();
+
+            // draw a ray that travels from the top of the object through the radius of curvature of the mirror
+            ctx.strokeStyle = "orange";
+            ctx.beginPath();
+            ctx.lineTo(objX, objY - h);
+            // ctx.lineTo(centerX, centerY);
+            const extendedRay3ScaleFactor =
+                (R * scale) / Math.abs(objX - centerX);
+            ctx.lineTo(
+                centerX -
+                    Math.sqrt(
+                        (R * scale) ** 2 - (h * extendedRay3ScaleFactor) ** 2,
+                    ),
+                centerY - h * extendedRay3ScaleFactor,
+            );
+            extendRayToCanvasEdge(
+                centerX -
+                    Math.sqrt(
+                        (R * scale) ** 2 - (h * extendedRay3ScaleFactor) ** 2,
+                    ),
+                centerY - h * extendedRay3ScaleFactor,
+                objX,
+                objY - h,
+            );
+            ctx.stroke();
+
+            // draw an extension of the ray through the mirror in a slightly opacified color
+            ctx.strokeStyle = "rgba(255, 165, 0, 0.5)";
+            ctx.beginPath();
+            ctx.lineTo(
+                centerX -
+                    Math.sqrt(
+                        (R * scale) ** 2 - (h * extendedRay3ScaleFactor) ** 2,
+                    ),
+                centerY - h * extendedRay3ScaleFactor,
+            );
+            extendRayToCanvasEdge(
+                centerX -
+                    Math.sqrt(
+                        (R * scale) ** 2 - (h * extendedRay3ScaleFactor) ** 2,
+                    ),
+                centerY - h * extendedRay3ScaleFactor,
+                centerX,
+                centerY,
+            );
+            ctx.stroke();
+
+            // draw a point at the intersection of the ray and the mirror
+
+            ctx.fillStyle = "black";
+            ctx.beginPath();
+            ctx.arc(
+                centerX -
+                    Math.sqrt(
+                        (R * scale) ** 2 - (h * extendedRay3ScaleFactor) ** 2,
+                    ),
+                centerY - h * extendedRay3ScaleFactor,
+                3,
+                0,
+                2 * Math.PI,
+            );
+            ctx.fill();
+
+            // draw an extension of the ray through the mirror in a slightly opacified color
+            ctx.strokeStyle = "rgba(255, 165, 0, 0.5)";
+            ctx.beginPath();
+            ctx.lineTo(
+                centerX -
+                    Math.sqrt(
+                        (R * scale) ** 2 - (centerY - extendedRay3Y) ** 2,
+                    ),
+                centerY - (extendedRay3[0].y - centerY),
+            );
+            extendRayToCanvasEdge(
+                centerX - R * scale,
+                centerY,
+                centerX -
+                    Math.sqrt(
+                        (R * scale) ** 2 - (centerY - extendedRay3Y) ** 2,
+                    ),
+                centerY - (extendedRay3[0].y - centerY),
+            );
+            ctx.stroke();
+        }
+    }
+
+    function update() {
+        canvas.width = canvas.offsetWidth;
+        canvas.height = canvas.offsetHeight * 0.8;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = "#f0f0f0";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        const isConcave = mirrorType.value === "concave";
+        const R = parseFloat(radiusInput.value);
+        const objDist = parseFloat(objectDistInput.value);
+
+        drawMirror(isConcave, R);
+        drawRays(isConcave, R, objDist);
+    }
+
+    mirrorType.addEventListener("change", update);
+    radiusInput.addEventListener("input", update);
+    objectDistInput.addEventListener("input", update);
+    zoomInput.addEventListener("input", update);
+    window.addEventListener("resize", update);
+
+    update();
+
+    let isCanvasHovered = false;
+
+    canvas.addEventListener("mouseenter", () => {
+        isCanvasHovered = true;
+    });
+
+    canvas.addEventListener("mouseleave", () => {
+        isCanvasHovered = false;
+    });
+
+    document.addEventListener("keydown", (e) => {
+        if (!isCanvasHovered) return;
+        if (e.key === "+" || e.key === "=") {
+            zoomInput.value = Math.min(parseFloat(zoomInput.value) + 0.1, 8);
+            update();
+        }
+        if (e.key === "-" || e.key === "_") {
+            zoomInput.value = Math.max(parseFloat(zoomInput.value) - 0.1, 0.1);
+            update();
+        }
+
+        // translate the canvas
+        if (e.key === "ArrowUp") {
+            offsetY -= 25;
+            update();
+        }
+        if (e.key === "ArrowDown") {
+            offsetY += 25;
+            update();
+        }
+        if (e.key === "ArrowLeft") {
+            offsetX -= 25;
+            update();
+        }
+        if (e.key === "ArrowRight") {
+            offsetX += 25;
+            update();
+        }
+    });
+</script>
