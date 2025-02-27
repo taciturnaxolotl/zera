@@ -11,6 +11,10 @@ tags = ["tutorial", "archival"]
 has_toc = true
 +++
 
+I have been using Proxmox for a while now but I've also wanted to make use of some large HDDs that have been lying around. I really didn't want to get another machine just for TrueNAS so I decided to install it on Proxmox. This is how I did it.
+
+<!-- more -->
+
 {{ img(id="https://cloud-f19fn8u8j-hack-club-bot.vercel.app/0image.png" alt="screenshot of the vault vm in proxmox" caption="my active vault storing 1.8TB of old projects") }}
 
 ## Introduction

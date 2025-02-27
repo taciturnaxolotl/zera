@@ -14,6 +14,8 @@ has_toc = true
 
 Ello! I'm back again! I'll be staying at a Hotel again in two days so I decided to try to decompile the app ahead of time so I can test stuff while I'm there. I decided to target the android app first because it seemed easier to decompile (i've partly decompiled an apk before about 3 and half years ago to embed a payload in it and I don't remember it being horrible) and I knew getting the apk itself would be far easier than from the Apple App Store.
 
+<!-- more -->
+
 {{ img(id="https://cloud-glc3mgu9t-hack-club-bot.vercel.app/0image.png" alt="screenshot of the nix packages entry" caption="prepackaged for nix; always a good sign") }}
 
 I was able to download the apk from the [apkcombo.com](https://apkcombo.com/downloader/#package=com.hilton.android.hhonors) website by simply inputing the play store URL so we were off to a good start. Apktool was already in [nix packages](https://search.nixos.org/packages?channel=unstable&from=0&size=50&sort=relevance&type=packages&query=apktool) so we didn't have to do anything fancy there. One `pkgs.unstable.apktool` and a `sudo nixos-rebuild switch` latter and we were ready to go. Then I waited another 2 days lol. Finally in the hotel room (again crunched on time; why do I never seem to learn?) I was able to decompile the apk and start looking around.

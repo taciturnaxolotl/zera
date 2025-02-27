@@ -13,6 +13,8 @@ has_toc = true
 
 I was applying for a Cybersecurity college camp for this summer and realized this is honestly a pretty good summary of my life in tech so far (till i'm 16) and that I should probably make it a blog post soooo here it is!
 
+<!-- more -->
+
 ## The yap 
 
 Hi! My name is Kieran, and I've been interested in / involved with cybersecurity and programming since I first started using a laptop at 10! I started out with a raspberry pi 3b+ which taught me how to use debian as well as the basics of creating and maintaining databases and web services. I moved on to an ubuntu laptop about a year latter and started using my raspberry pi as a home server to run small websites on our local lan. Soon I wanted to share them with others and expose them to the internet, so I learned how to use dns and port forwarding and then how to secure the server to prevent attacks with tools like fail2ban!

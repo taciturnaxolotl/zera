@@ -11,9 +11,11 @@ tags = ["tutorial", "teardown", "archival"]
 has_toc = true
 +++
 
-{{ img(id="https://cloud-owp7vmln1-hack-club-bot.vercel.app/0img_1846_1_.jpg" alt="MacBook proprietary blade SSD" caption="it really was a rather sleek design; shame that apple got rid of it in favor of soldered on storage") }}
-
 Hi! I've had a MacBook Pro 2017 for about a year now, and I got it used; it's been great so far until one day after updating it just refused to turn on I'm not entirely sure why this happened, but I replaced the battery and that didn't solve the issue so yeah ^_^  
+
+<!-- more -->
+
+{{ img(id="https://cloud-owp7vmln1-hack-club-bot.vercel.app/0img_1846_1_.jpg" alt="MacBook proprietary blade SSD" caption="it really was a rather sleek design; shame that apple got rid of it in favor of soldered on storage") }}
 
 I eventually decided to just try and remove the SSD from the MacBook and see if there was a way to recover any files from it (spoiler: there kinda is, but it's annoying) but I couldn't find any guide online and iFixit had nothing. So I decided to just try and yolo it and see if I could figure it out on my own, and surprisingly I actually managed to do it! Turns out,  the process isn't that hard! I'll take you through the steps I took so that if you want to do this, it's much less of a hassle.
 

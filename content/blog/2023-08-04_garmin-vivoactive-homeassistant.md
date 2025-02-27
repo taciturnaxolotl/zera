@@ -11,9 +11,11 @@ tags = ["essays", "archival"]
 has_toc = true
 +++
 
-{{ img(id="https://cloud-au4cbwyfl-hack-club-bot.vercel.app/0img_3051.jpg" alt="a garmin watch with the apicall app open to a spotify page" caption="I can control spotify from my watch via api hooks how bout you?") }}
-
 This morning I saw a [Reddit post](https://libreddit.kieranklukas.com/r/flipperzero/comments/ybjsvt/flipper_control_via_smartwatch/) where someone connected their flipper zero to a Fossil HR through [Gadgetbridge](https://gadgetbridge.org/). I immediately started [ducking,](https://libreddit.kieranklukas.com/r/duckduckgo/wiki/index#wiki_what_is_searching_on_duckduckgo_called.3F) trying to find out if I could do the same with my Garmin Vivoactive 4 but ended up realizing that there was no apparent way to connect the two. I did however find a widget compatible with my watch named [APICall](https://apps.garmin.com/en-US/apps/ac9a81ab-a52d-41b3-8c14-940a9de37544) on the Connect IQ store.
+
+<!-- more -->
+
+{{ img(id="https://cloud-au4cbwyfl-hack-club-bot.vercel.app/0img_3051.jpg" alt="a garmin watch with the apicall app open to a spotify page" caption="I can control spotify from my watch via api hooks how bout you?") }}
 
 This widget interested me because it allowed me to call any webhook I wanted utilizing the onboard Wi-Fi as well as through the Connect IQ app. This was a very important feature for me because I can’t get the app to run on LineageOS as it keeps asking for the location permission even though it was already granted.
 

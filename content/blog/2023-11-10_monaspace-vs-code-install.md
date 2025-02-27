@@ -11,9 +11,12 @@ tags = ["tutorial", "archival"]
 has_toc = true
 +++
 
+To install the Monaspace font on macOS (or windows or linux) with VS Code and enable multifont syntax highlighting with the [CSS JS Loader extension](https://marketplace.visualstudio.com/items?itemName=be5invis.vscode-custom-css), you can follow these steps:
+
+<!-- more -->
+
 {{ img(id="https://assets.vrite.io/64974cb888e8beebeb2c925b/KuOAwCEm9ypWEemv60Qs7.png" alt="monaspace font in action" caption="This font is so pretty and has so many features its amazing. It's main downside is to work it takes to set it up.") }}
 
-To install the Monaspace font on macOS (or windows or linux) with VS Code and enable multifont syntax highlighting with the [CSS JS Loader extension](https://marketplace.visualstudio.com/items?itemName=be5invis.vscode-custom-css), you can follow these steps:
 
 ## 1. Download and install the Monaspace font:
 

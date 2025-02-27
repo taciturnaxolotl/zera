@@ -15,6 +15,8 @@ This post is for me to just test out all the features and styling of the blog, a
 make sure that if I change the CSS or anything I don't break any of it! This is also a
 sort of light style guide for blog posts in general.
 
+<!-- more -->
+
 ## Section Headers
 
 Sections headers (prefixed with `##` in markdown) are the main content separators for posts, and
