@@ -12,11 +12,11 @@ If you want to contact me, via email to `me@dunkirk.sh` or `me@kieranklukas.com`
 
 # accounts
 
-* Github: <a href="https://github.com/taciturnaxolotl" rel="me">@taciturnaxolotl</a> (formerly @kcoderhtml)
-* <a href="https://hackclub.com/slack/">Hackclub Slack</a>: <a href="https://hackclub.slack.com/team/U062UG485EE" rel="me">@krn</a> (display name changes quite often though) with userID `U062UG485EE`
-* Bluesky: <a href="https://bsky.app/profile/dunkirk.sh" rel="me">@dunkirk.sh</a>
-* Mastodon: <a href="https://social.dino.icu/@taciturnaxolotl" rel="me">@taciturnaxolotl@social.dino.icu</a>
-* Youtube: <a href="https://www.youtube.com/@wanderer.archives" rel="me">@wanderer.archives</a>
-* Matrix: <a href="https://matrix.to/#/@kieran.matrix.dumpsterfire.icu" rel="me">@kieran:dumpsterfire.icu</a> or <a href="https://matrix.to/#/@sclacker:matrix.org" rel="me">@sclacker:matrix.org</a> (i'm active on here once in a bluemoon so this isn't a great way to contact me urgently)
+* Github: [@taciturnaxolotl](https://github.com/taciturnaxolotl) (formerly @kcoderhtml)
+* [Hackclub Slack](https://hackclub.com/slack/): [@krn](https://hackclub.slack.com/team/U062UG485EE) (display name changes quite often though) with userID `U062UG485EE`
+* Bluesky: [@dunkirk.sh](https://bsky.app/profile/dunkirk.sh)
+* Mastodon: [@taciturnaxolotl@social.dino.icu](https://social.dino.icu/@taciturnaxolotl)
+* Youtube: [@wanderer.archives](https://www.youtube.com/@wanderer.archives){rel="me"}
+* Matrix: ~[@kieran:dumpsterfire.icu](https://matrix.to/#/@kieran.matrix.dumpsterfire.icu)~ or [@sclacker:matrix.org](https://matrix.to/#/@sclacker:matrix.org) (i'm active on here once in a blue moon so this isn't a great way to contact me urgently)
 * Signal: `verox.89`
 * Phone #: *Do you really think i'm going to publicly share that?*
