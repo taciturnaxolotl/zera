@@ -117,8 +117,7 @@
 /* firefox scrollbars */
 * {
 	scrollbar-color: var(--accent) var(--bg-light);
-	scrollbar-width: thin;
-	scrollbar-height: thin;
+	scrollbar-width: auto;
 }
 
 html {
