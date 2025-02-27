@@ -13,11 +13,23 @@
             </div>
             <div>
                 <label>Radius of Curvature:</label>
-                <input type="number" id="radius" value="20" min="1" />
+                <input
+                    type="number"
+                    id="radius"
+                    value="20"
+                    min="0.2"
+                    step="0.2"
+                />
             </div>
             <div>
                 <label>Object Distance:</label>
-                <input type="number" id="objectDist" value="30" min="1" />
+                <input
+                    type="number"
+                    id="objectDist"
+                    value="30"
+                    min="0.2"
+                    step="0.2"
+                />
             </div>
         </div>
         <div style="display: flex; gap: 20px; align-items: center; width: 100%">
@@ -72,8 +84,6 @@
     const objectDistInput = document.getElementById("objectDist");
     const objectHeightInput = document.getElementById("objectHeight");
     const zoomInput = document.getElementById("zoom");
-
-    objectHeightInput.value = Math.round(radiusInput.value / 3);
 
     let offsetX = 0;
     let offsetY = 0;
@@ -583,13 +593,24 @@
         drawRays(isConcave, R, objDist);
     }
 
+    function resetHeight() {
+        objectHeightInput.value = Math.max(
+            parseFloat(((radiusInput.value * 2) / 3).toFixed(2)),
+            0.1,
+        );
+    }
+
     mirrorType.addEventListener("change", update);
-    radiusInput.addEventListener("input", update);
+    radiusInput.addEventListener("input", () => {
+        resetHeight();
+        update();
+    });
     objectDistInput.addEventListener("input", update);
     objectHeightInput.addEventListener("input", update);
     zoomInput.addEventListener("input", update);
     window.addEventListener("resize", update);
 
+    resetHeight();
     update();
 
     let isCanvasHovered = false;
