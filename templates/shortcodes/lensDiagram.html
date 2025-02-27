@@ -164,16 +164,16 @@
                 centerX - R * scale,
                 centerY,
                 R * scale,
-                -Math.PI / 3,
-                Math.PI / 3,
+                -Math.PI / 2.75,
+                Math.PI / 2.75,
             );
         } else {
             ctx.arc(
                 centerX + R * scale,
                 centerY,
                 R * scale,
-                (2 * Math.PI) / 3,
-                (4 * Math.PI) / 3,
+                -Math.PI / 2.75 + Math.PI,
+                Math.PI / 2.75 + Math.PI,
             );
         }
         ctx.stroke();
@@ -571,7 +571,7 @@
 
     function update() {
         canvas.width = canvas.offsetWidth;
-        canvas.height = canvas.offsetHeight * 0.8;
+        canvas.height = canvas.offsetHeight;
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.fillStyle = "#f0f0f0";
         ctx.fillRect(0, 0, canvas.width, canvas.height);
