@@ -95,7 +95,26 @@ base64=true) %}
     }
 </script>
 <script async src="https://abacus.jasoncameron.dev/hit/dunkirk.sh/counter{%- if url | split(pat='/') | slice(start=3) | join != '' -%}-{{url | split(pat='/') | slice(start=3) | join(sep=' ') | slugify}}{%- endif -%}?callback=cb"></script>
+
 <link rel="me" href="https://social.dino.icu/@taciturnaxoltol" />
 <link rel="me" href="https://github.com/taciturnaxolotl" />
 <link rel="me" href="https://bsky.app/profile/dunkirk.sh" />
 <meta name="fediverse:creator" content="@taciturnaxoltol@social.dino.icu" />
+
+<div class="h-card" style="display:none">
+  <a class="u-url" rel="me home" href="https://dunkirk.sh">
+    <span class="p-name">Kieran Klukas</span>
+  </a>
+  <p class="p-given-name">Kieran</p>
+  <p class="p-family-name">Klukas</p>
+  <p class="dt-bday">2008-04-27</p>
+  <p class="p-sex">male</p>
+  <p class="p-note">
+      {% set time = now() | date(format="%s") | int - 1209254400 %}{{ time / 31536000 | round(method="floor") }}, typescript nerd, videographer, frc programmer, semi retired fpv pilot
+  </p>
+  <a class="u-email" href="mailto:contact@dunkirk.sh">contact@dunkirk.sh</a>
+  <div class="p-adr h-adr">
+    <span class="p-country-name">United States of America</span>
+  </div>
+  <img class="u-photo" src="/pfps/starry.webp" alt="an image of kieran holding a white kitten" />
+</div>

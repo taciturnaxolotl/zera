@@ -2,7 +2,7 @@
 +++
 
 <div style="display: flex; justify-content: center;">
-  <img src="/pfps/starry.webp" alt="an image of kieran holding a white kitten" width="512" height="512"/>
+    <img src="/pfps/starry.webp" alt="an image of kieran holding a white kitten" width="512" height="512" class="u-photo"/>
 </div>
 
 ## About me

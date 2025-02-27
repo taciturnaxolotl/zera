@@ -1,1 +1,1 @@
-{% set result = 1 %}{% for _ in range(end=length) %}{% set_global result = result * 10 %}{% endfor %}{% set time = now() | date(format="%s") | int - 1209254400 %}{{ time / 31536000 * result | round() / result }}
+{% set time = now() | date(format="%s") | int - 1209254400 %}{{ (time / 31536000) | round(method="floor", precision=length) }}
