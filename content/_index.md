@@ -2,7 +2,7 @@
 +++
 
 <div style="display: flex; justify-content: center;">
-    <img src="/pfps/starry.webp" alt="an image of kieran holding a white kitten" width="512" height="512" class="u-photo"/>
+    <img src="/pfps/instsqc-rat-pfp.webp" alt="kieran with an orange cast in a polaroid over a pinkish background" width="512" height="512" class="u-photo"/>
 </div>
 
 ## About me

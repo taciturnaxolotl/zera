@@ -12,6 +12,7 @@ If you want to contact me, via email to `me@dunkirk.sh` or `me@kieranklukas.com`
 
 # accounts
 
+* Keyoxide: [aspe:keyoxide.org:QMHCMT55EODYTEBQ5C7QOAFN6A](https://keyoxide.org/aspe:keyoxide.org:QMHCMT55EODYTEBQ5C7QOAFN6A)
 * Github: [@taciturnaxolotl](https://github.com/taciturnaxolotl) (formerly @kcoderhtml)
 * [Hackclub Slack](https://hackclub.com/slack/): [@krn](https://hackclub.slack.com/team/U062UG485EE) (display name changes quite often though) with userID `U062UG485EE`
 * Bluesky: [@dunkirk.sh](https://bsky.app/profile/dunkirk.sh)

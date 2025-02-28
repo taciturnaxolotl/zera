@@ -4,9 +4,19 @@ title = "pfp hall of fame"
 
 All my profile pictures over the years
 
+# 2025
+
+February 27th to Present
+
+![kieran with an orange cast in a polaroid over a pinkish background](/pfps/instsqc-rat-pfp.webp)
+
+February 24th to 27th
+
+![kieran as a rat hand drawn in black over a purple gradient background](/pfps/kieranrat.webp)
+
 # 2024
 
-End of November to Present
+End of November to 2025 February
 
 ![kieran with a white and gray spotted kitten with a grainy background and star dust](/pfps/starry.webp)
 

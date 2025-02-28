@@ -126,7 +126,7 @@ blockquote {
 blockquote:has(+ pre) {
 	display: inline-block;
 	border: none;
-	font-family: "code" !important;
+	font-family: "code", monospace !important;
 	font-size: 0.8rem;
 	font-weight: 600;
 	margin: 0;
