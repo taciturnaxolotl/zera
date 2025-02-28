@@ -106,7 +106,7 @@
 	float: left;
 }
 
-div code,
+div > code,
 li code,
 p code {
 	padding: 0.1em 0.3em 0.1em 0.3em;
