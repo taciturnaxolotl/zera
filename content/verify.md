@@ -8,7 +8,7 @@ Inspired by [@Molly White](https://www.mollywhite.net/verify/) and [@Rob Knight]
 
 I personally own and control this domain ([dunkirk.sh](https://dunkirk.sh)) as well as [kieranklukas.com](https://kieranklukas.com) and maintain email addresses on both domains.
 
-If you want to contact me, via email to `me@dunkirk.sh` or `me@kieranklukas.com` are both good places to find me. I also send email from `kieran@hackclub.com` and `kieran@purplebubble.org`.
+If you want to contact me, via email to `me@dunkirk.sh` or `me@kieranklukas.com` are both good places to find me. I also send email from `kieran@hackclub.com` and ~`kieran@purplebubble.org`~.
 
 # accounts
 
