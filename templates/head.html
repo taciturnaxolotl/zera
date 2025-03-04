@@ -68,9 +68,9 @@ default(value=true) %} {% if twitter_card != false %}
   href="{{ get_url(path=config.extra.favicon, trailing_slash=false) }}"
 />
 {% endif %} {% endblock metatags %} {% if config.generate_feeds %} {% block
-feed%} <link rel="alternate" type="application/atom+xml" title="RSS" href="{{
+feed%} <link rel="alternate" type="application/atom+xml" title="Kieran Klukas' Atom feed" href="{{
 get_url(path="atom.xml", trailing_slash=false) }}"> <link rel="alternate"
-type="application/rss+xml" title="RSS" href="{{ get_url(path="rss.xml",
+type="application/rss+xml" title="Kieran Klukas' RSS feed" href="{{ get_url(path="rss.xml",
 trailing_slash=false) }}"> {% endblock feed %} {% endif%} {% block css %} {% set
 cssHash = get_hash(path="css/main.css", sha_type=256, base64=true) %}
 <link
