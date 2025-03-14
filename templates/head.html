@@ -78,10 +78,17 @@ cssHash = get_hash(path="css/main.css", sha_type=256, base64=true) %}
   type="text/css"
   href="{{ get_url(path='css/main.css?' ~ cssHash, trailing_slash=false) | safe }}"
 />
-{% endblock css %} {% set jsHash = get_hash(path="js/script.js", sha_type=256,
+{% endblock css %} {% set jsHash = get_hash(path="js/theme-toggle.js", sha_type=256,
 base64=true) %}
 <script
-  src="{{ get_url(path='js/script.js?' ~ jsHash, trailing_slash=false) | safe }}"
+  src="{{ get_url(path='js/theme-toggle.js?' ~ jsHash, trailing_slash=false) | safe }}"
+  defer
+></script>
+
+{% set jsHash = get_hash(path="js/copy-button.js", sha_type=256,
+base64=true) %}
+<script
+  src="{{ get_url(path='js/copy-button.js?' ~ jsHash, trailing_slash=false) | safe }}"
   defer
 ></script>
 <script>

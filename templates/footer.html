@@ -6,6 +6,16 @@
         get_env(name="CF_PAGES_COMMIT_SHA", default=load_data(path=".git/refs/heads/main", required=false))%}{% if hash is not string %}{% set hash = "unknown" %}{% endif %}<a href=https://github.com/taciturnaxolotl/zera/tree/{{ hash }}>zera@{{ hash |
         truncate(length=7, end="")}}</a>
     </p>
+    <p style="margin-bottom: 0.5rem">
+        Member of the
+        <a href="https://w.elr.sh">elr</a>
+        webring -
+        <span class='webring-links'>
+            <a href='javascript:void(0)' onclick='randomSite()'>random</a> |
+            <a href='#' id='prev-link'>previous</a> |
+            <a href='#' id='next-link'>next</a>
+        </span>
+    </p>
     <p>
         Content licensed under
         <a
@@ -24,7 +34,30 @@
             >AGPL 3.0</a
         >
     </p>
-    <div id='elr'>
     <script type="text/javascript" src="https://w.elr.sh/onionring-variables.js"></script>
-    <script type="text/javascript" src="https://w.elr.sh/onionring-widget.js"></script>
+    <script>
+      thisSite = "https://dunkirk.sh"
+      thisIndex = null;
+
+      for (i = 0; i < sites.length; i++) {
+        if (thisSite.startsWith(sites[i])) {
+          thisIndex = i;
+          break;
+        }
+      }
+
+      function randomSite() {
+        otherSites = sites.slice();
+        otherSites.splice(thisIndex, 1);
+        randomIndex = Math.floor(Math.random() * otherSites.length);
+        location.href = otherSites[randomIndex];
+      }
+
+
+      previousIndex = (thisIndex-1 < 0) ? sites.length-1 : thisIndex-1;
+      nextIndex = (thisIndex+1 >= sites.length) ? 0 : thisIndex+1;
+
+      document.getElementById('prev-link').href = sites[previousIndex];
+      document.getElementById('next-link').href = sites[nextIndex];
+    </script>
 </div>
