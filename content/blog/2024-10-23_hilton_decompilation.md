@@ -22,7 +22,7 @@ I was able to download the apk from the [apkcombo.com](https://apkcombo.com/down
 
 {{ img(id="https://cloud-qh7hbvivt-hack-club-bot.vercel.app/0image.png" alt="screenshot of the successful decompilation process" caption="all nicely decompiled") }}
 
-I started uploading the decompiled app to github ([kcoderhtml/hilton-honors](https://github.com/kcoderhtml/hilton-honors)) which was incredibly slow and then started poking around the app. The first thing I noticed was quite a few files with firebase in the name as well as several play store properties files. All of them seemed to follow the same pattern of having a `version`, `client`, and then file specific client key.
+I started uploading the decompiled app to github ([taciturnaxolotl/hilton-honors](https://github.com/taciturnaxolotl/hilton-honors)) which was incredibly slow and then started poking around the app. The first thing I noticed was quite a few files with firebase in the name as well as several play store properties files. All of them seemed to follow the same pattern of having a `version`, `client`, and then file specific client key.
 
 ```text
 $ ls unknown/firebase*
