@@ -12,7 +12,9 @@
     %}
     <li>
         {{ page.date | split(pat="T") | first }} &mdash;
-        <a href="{{ page.permalink | safe }}">{{ page.title }}</a>
+        <a href="{{ page.permalink | safe }}" class="text-glow"
+            >{{ page.title }}</a
+        >
     </li>
     {% endif %} {% endfor %}
 </ul>
@@ -25,7 +27,10 @@
     {% for page in section.pages %} {% if "archival" in page.taxonomies.tags %}
     <li>
         {{ page.date }} &mdash;
-        <a href="{{ page.permalink | safe }}">{{ page.title }}</a> (archival)
+        <a href="{{ page.permalink | safe }}" class="text-glow"
+            >{{ page.title }}</a
+        >
+        (archival)
     </li>
     {% endif %} {% endfor %}
 </ul>

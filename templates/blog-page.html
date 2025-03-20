@@ -15,7 +15,7 @@
         By
         <a
             rel="author"
-            class="accent-data p-author h-card"
+            class="accent-data p-author h-card text-glow"
             href="https://dunkirk.sh"
             >{{config.extra.author}}</a
         >
@@ -56,7 +56,9 @@
 
     <p class="tags-data">
         {% if page.taxonomies.tags %} {% for tag in page.taxonomies.tags %}
-        <a href="/tags/{{ tag | slugify }}" class="p-category">|{{ tag }}|</a>
+        <a href="/tags/{{ tag | slugify }}" class="p-category text-glow"
+            >|{{ tag }}|</a
+        >
         {% endfor %} {% endif %}
     </p>
 </article>

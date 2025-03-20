@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (navigator.clipboard) {
       // Code block header title
       const title = document.createElement("span");
+      title.style.color = "var(--accent-text)";
       const lang = block.getAttribute("data-lang");
       const comment =
         block.previousElementSibling &&
@@ -35,8 +36,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // Container that holds header and the code block itself
       const container = document.createElement("div");
-      container.classList.add("pre-container");
+      container.classList.add("pre-container", "crt", "scanlines");
       container.appendChild(header);
+
+      const code = block.querySelector("code");
+      const cursor = document.createElement("span");
+      cursor.classList.add("cursor");
+      cursor.setAttribute("style", "display: inline;");
+      cursor.innerHTML = "█";
+      const lastline = code.lastChild;
+      const spans = lastline.getElementsByTagName("span");
+      const lastspan = spans[spans.length - 1];
+      if (lastspan) {
+        lastspan.appendChild(cursor);
+      } else {
+        lastline.appendChild(cursor);
+      }
 
       // Move code block into the container
       block.parentNode.insertBefore(container, block);

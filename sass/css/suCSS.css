@@ -547,11 +547,10 @@ video,
 iframe[src^="https://www.youtube-nocookie.com"],
 iframe[src^="https://www.youtube.com"] {
 	max-width: 90%;
+	margin: 1rem;
 	height: auto;
-	padding: 0.125rem;
 	border: dashed 2px var(--accent);
 	border-radius: 15px;
-	z-index: 1;
 	opacity: 0.95;
 }
 

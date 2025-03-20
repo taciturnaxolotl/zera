@@ -4,7 +4,7 @@
     {% for nav_item in config.extra.header_nav %}
     <a
         href="{{ nav_item.url }}"
-        class="{% if nav_item.url == current_url %}active{% endif %}"
+        class="{% if nav_item.url == current_url %}active{% endif %} text-glow"
     >
         {{ nav_item.name }}
     </a>
