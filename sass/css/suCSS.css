@@ -22,6 +22,7 @@
 	--accent-text: #dfd1bc;
 	--border: #646868;
 	--link: var(--accent);
+	--selection: color-mix(in oklab, var(--accent), var(--gradient-average-light) 50%);
 }
 
 /* theme media queries */
@@ -40,7 +41,8 @@
 		--accent-dark: var(--dark-crushed-grape);
 		--accent-text: var(--purple-gray);
 		--link: var(--light-crushed-grape);
-		--border: var(--pink-puree)
+		--border: var(--pink-puree);
+		--selection: color-mix(in oklab, var(--accent), var(--gradient-average-dark) 50%);
 	}
 }
 
@@ -58,6 +60,7 @@
 	--accent-text: var(--purple-gray);
 	--link: var(--light-crushed-grape);
 	--border: var(--pink-puree);
+	--selection: color-mix(in oklab, var(--accent), var(--gradient-average-dark) 50%);
 }
 
 @media (prefers-color-scheme: light) {
@@ -74,6 +77,7 @@
 		--accent-text: #dfd1bc;
 		--border: #646868;
 		--link: var(--accent);
+		--selection: color-mix(in oklab, var(--accent), var(--gradient-average-light) 50%);
 	}
 }
 
@@ -92,12 +96,13 @@
 	--accent-text: #dfd1bc;
 	--border: #646868;
 	--link: var(--accent);
+	--selection: color-mix(in oklab, var(--accent), var(--gradient-average-light) 50%);
 }
 
 ::selection,
 ::-moz-selection {
 	color: var(--bg);
-	background: var(--accent);
+	background: var(--selection);
 }
 
 /* chromium scrollbars */
