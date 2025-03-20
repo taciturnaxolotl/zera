@@ -11,9 +11,8 @@
 	<img src="https://raw.githubusercontent.com/taciturnaxolotl/carriage/main/.github/images/line-break-thin.svg" />
 </p>
 
-<p align="center">
-    <img src="https://raw.githubusercontent.com/taciturnaxolotl/zera/refs/heads/main/.github/images/ss.webp" alt="screenshot of the website"/>
-</p>
+![screenshot of the website](https://raw.githubusercontent.com/taciturnaxolotl/zera/refs/heads/main/.github/images/preview.webp)
+
 
 <p align="center">
 	<img src="https://raw.githubusercontent.com/taciturnaxolotl/carriage/main/.github/images/line-break-thin.svg" />
