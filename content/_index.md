@@ -14,9 +14,9 @@ Erlo! My name is Kieran Klukas and i'm a homeschooled coder who is {{ age(length
 > init.ts
 ```ts
 const kieran = {
-  name: "kieran klukas"
-  age: {{ age(length=2) }}
-  education: ["Homeschooled", "Dual Enrollment"]
+  name: "kieran klukas",
+  age: {{ age(length=2 comma=true) }}
+  education: ["Homeschooled", "Dual Enrollment"],
   favFoods: ["lo mein", "bacon fried rice", "pretty much any meat"]
 }
 ```
