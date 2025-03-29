@@ -186,7 +186,7 @@ blockquote:has(+ pre) p::selection {
 	--light-crushed-grape: oklch(73.48% 0.1008 284.99);
 	--reseda-green: oklch(62.33% 0.0475 126.94);
 	--earth-yellow: oklch(86.49% 0.018 73.05);
-	--sunset: oklch(87.45% 0.0334 74.93);
+	--sunset: oklch(0.86 0.0213 73.05);
 	--ultra-violet: oklch(42.21% 0.0676 297.45);
 	--rose-quartz: oklch(65.32% 0.0585 311.96);
 	--pink-puree: oklch(75.65% 0.0555 290.76);
