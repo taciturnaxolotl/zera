@@ -2,9 +2,7 @@
 +++
 
 <div style="display: flex; justify-content: center; margin: 2rem;">
-    <div class="crt scanlines" style="width: 512px; height: 512px; box-shadow: var(--edge-highlight), var(--shadow-glow);">
-        <img src="/pfps/starry.webp" alt="kieran with a white and gray spotted kitten with a grainy background and star dust" width="512" height="512" class="u-photo"/>
-    </div>
+    <img src="/pfps/starry.webp" alt="kieran with a white and gray spotted kitten with a grainy background and star dust" width="512" height="512" class="u-photo"/>
 </div>
 
 # About me

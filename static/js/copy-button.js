@@ -39,20 +39,6 @@ document.addEventListener("DOMContentLoaded", () => {
       container.classList.add("pre-container", "crt", "scanlines");
       container.appendChild(header);
 
-      const code = block.querySelector("code");
-      const cursor = document.createElement("span");
-      cursor.classList.add("cursor");
-      cursor.setAttribute("style", "display: inline;");
-      cursor.innerHTML = "█";
-      const lastline = code.lastChild;
-      const spans = lastline.getElementsByTagName("span");
-      const lastspan = spans[spans.length - 1];
-      if (lastspan) {
-        lastspan.appendChild(cursor);
-      } else {
-        lastline.appendChild(cursor);
-      }
-
       // Move code block into the container
       block.parentNode.insertBefore(container, block);
       container.appendChild(block);
