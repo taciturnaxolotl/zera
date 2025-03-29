@@ -22,7 +22,7 @@
 	--accent-text: #dfd1bc;
 	--border: #646868;
 	--link: var(--accent);
-	--selection: color-mix(in oklab, var(--accent), var(--gradient-average-light) 50%);
+	--selection: color-mix(in oklab, var(--accent), var(--earth-yellow) 50%);
 }
 
 /* theme media queries */
@@ -30,8 +30,7 @@
 	:root,
 	::backdrop {
 		color-scheme: dark;
-		--bg: linear-gradient(0deg, var(--purple-night), var(--purple-night)),
-			var(--gradient-average-dark);
+		--bg: var(--purple-night);
 		--noise-strength: 0.15;
 		--bg-light: var(--ultra-violet);
 		--text: var(--lavendar-breeze);
@@ -42,14 +41,13 @@
 		--accent-text: var(--purple-gray);
 		--link: var(--light-crushed-grape);
 		--border: var(--pink-puree);
-		--selection: color-mix(in oklab, var(--accent), var(--gradient-average-dark) 50%);
+		--selection: color-mix(in oklab, var(--accent), var(--purple-night) 50%);
 	}
 }
 
 [data-theme="dark"] {
 	color-scheme: dark;
-	--bg: linear-gradient(0deg, var(--purple-night), var(--purple-night)),
-		var(--gradient-average-dark);
+	--bg: var(--purple-night);
 	--noise-strength: 0.15;
 	--bg-light: var(--ultra-violet);
 	--text: var(--lavendar-breeze);
@@ -60,7 +58,7 @@
 	--accent-text: var(--purple-gray);
 	--link: var(--light-crushed-grape);
 	--border: var(--pink-puree);
-	--selection: color-mix(in oklab, var(--accent), var(--gradient-average-dark) 50%);
+	--selection: color-mix(in oklab, var(--accent), var(--purple-night) 50%);
 }
 
 @media (prefers-color-scheme: light) {
@@ -77,15 +75,14 @@
 		--accent-text: #dfd1bc;
 		--border: #646868;
 		--link: var(--accent);
-		--selection: color-mix(in oklab, var(--accent), var(--gradient-average-light) 50%);
+		--selection: color-mix(in oklab, var(--accent), var(--earth-yellow) 50%);
 	}
 }
 
 [data-theme="light"] {
 	/* default (light) theme */
 	color-scheme: light;
-	--bg: linear-gradient(0deg, var(--earth-yellow), var(--earth-yellow)),
-		var(--gradient-average-light);
+	--bg: var(--earth-yellow);
 	--noise-strength: 0.22;
 	--bg-light: var(--reseda-green);
 	--text: #41474e;
@@ -96,7 +93,7 @@
 	--accent-text: #dfd1bc;
 	--border: #646868;
 	--link: var(--accent);
-	--selection: color-mix(in oklab, var(--accent), var(--gradient-average-light) 50%);
+	--selection: color-mix(in oklab, var(--accent), var(--earth-yellow) 50%);
 }
 
 ::selection,

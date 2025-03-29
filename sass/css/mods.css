@@ -180,14 +180,12 @@ blockquote:has(+ pre) p::selection {
 }
 
 :root {
-	--gradient-average-light: oklch(86.49% 0.018 73.05);
-	--gradient-average-dark: oklch(27.58% 0.0203 289.13);
-	--nightshade-violet: oklch(22.96% 0.0242 287.67);
-	--purple-night: oklch(18.96% 0.0242 287.67);
+	--nightshade-violet: oklch(0.27 0.0242 287.67);
+	--purple-night: oklch(27.58% 0.0203 289.13);
 	--dark-crushed-grape: oklch(74.02% 0.0756 311.96);
 	--light-crushed-grape: oklch(73.48% 0.1008 284.99);
 	--reseda-green: oklch(62.33% 0.0475 126.94);
-	--earth-yellow: oklch(87.45% 0.0203 74.93);
+	--earth-yellow: oklch(86.49% 0.018 73.05);
 	--sunset: oklch(87.45% 0.0334 74.93);
 	--ultra-violet: oklch(42.21% 0.0676 297.45);
 	--rose-quartz: oklch(65.32% 0.0585 311.96);
@@ -204,8 +202,5 @@ body::after {
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='500' height='500'%3E%3Cfilter id='noise' x='0' y='0'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.25' numOctaves='3' stitchTiles='stitch'/%3E%3CfeBlend mode='screen'/%3E%3C/filter%3E%3Crect width='500' height='500' filter='url(%23noise)' /%3E%3C/svg%3E");
-	background-size: 12%;
-	opacity: var(--noise-strength);
 	pointer-events: none;
 }
