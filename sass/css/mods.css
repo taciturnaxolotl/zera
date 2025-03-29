@@ -1,169 +1,169 @@
 #nav-bar {
-	padding: 0.625rem 0 0 0;
-	display: flex;
-	flex-direction: row;
-	gap: 0.25rem;
-	flex-wrap: wrap;
-	justify-content: flex-end;
-	align-items: center;
-	align-content: flex-end;
+    padding: 0.625rem 0 0 0;
+    display: flex;
+    flex-direction: row;
+    gap: 0.25rem;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-items: center;
+    align-content: flex-end;
 }
 
 #footer-container {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	text-align: center;
-	padding-bottom: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding-bottom: 0.5rem;
 }
 
 #footer-container p {
-	margin: 0;
+    margin: 0;
 }
 
 .accent-data {
-	color: var(--accent-dark);
+    color: var(--accent-dark);
 }
 
 .tags-data {
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	justify-content: flex-end;
-	align-items: flex-start;
-	align-content: flex-end;
-	gap: 0.25rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-items: flex-start;
+    align-content: flex-end;
+    gap: 0.25rem;
 }
 
 .title-list li {
-	margin-bottom: 0.375rem;
+    margin-bottom: 0.375rem;
 }
 
 /* icons settings */
 .icons {
-	width: 1.3rem;
-	height: 1.3rem;
-	aspect-ratio: 1 / 1;
-	display: inline-block;
-	vertical-align: middle;
-	color: var(--text);
-	fill: var(--text);
-	background-color: transparent;
-	cursor: pointer;
+    width: 1.3rem;
+    height: 1.3rem;
+    aspect-ratio: 1 / 1;
+    display: inline-block;
+    vertical-align: middle;
+    color: var(--text);
+    fill: var(--text);
+    background-color: transparent;
+    cursor: pointer;
 }
 
 .icons:hover {
-	background-color: transparent;
-	color: var(--accent);
+    background-color: transparent;
+    color: var(--accent);
 }
 
 /* footnotes */
 .footnote-definition {
-	margin: 0 0 0 0.125rem;
+    margin: 0 0 0 0.125rem;
 }
 
 .footnote-definition-label {
-	color: var(--accent);
+    color: var(--accent);
 }
 
 .footnote-definition p {
-	display: inline;
-	margin: 0.625rem 0 0 0.625rem;
+    display: inline;
+    margin: 0.625rem 0 0 0.625rem;
 }
 
 /* general classes */
 .no-style {
-	padding: 0;
-	margin: 0;
-	border: none;
-	border-radius: 0;
+    padding: 0;
+    margin: 0;
+    border: none;
+    border-radius: 0;
 }
 
 .no-style:hover {
-	background-color: transparent;
-	color: var(--accent);
+    background-color: transparent;
+    color: var(--accent);
 }
 
 .center {
-	text-align: center;
+    text-align: center;
 }
 
 .center img {
-	display: block;
-	margin: 1rem auto;
+    display: block;
+    margin: 1rem auto;
 }
 
 .center figcaption {
-	text-align: center;
+    text-align: center;
 }
 
 .float-right {
-	float: right;
+    float: right;
 }
 
 .float-left {
-	float: left;
+    float: left;
 }
 
 div > code,
 li code,
 p code {
-	padding: 0.1em 0.3em 0.1em 0.3em;
-	color: var(--text-dark);
-	background-color: var(--bg-light);
+    padding: 0.1em 0.3em 0.1em 0.3em;
+    color: var(--text-dark);
+    background-color: var(--bg-light);
 }
 
 pre {
-	border-top-left-radius: 0;
+    border-top-left-radius: 0;
 }
 
 blockquote {
-	padding-top: 0.2rem;
-	padding-bottom: 0.2rem;
+    padding-top: 0.2rem;
+    padding-bottom: 0.2rem;
 }
 
 blockquote:has(+ pre) {
-	display: inline-block;
-	border: none;
-	font-family: "code", monospace !important;
-	font-size: 0.8rem;
-	font-weight: 600;
-	margin: 0;
-	margin-bottom: 0.2rem;
-	margin-block: 0 0;
-	border-top-left-radius: 0.2em;
-	border-top-right-radius: 0.2em;
-	padding-left: 0.75rem;
-	padding-right: 0.75rem;
-	padding-top: 0.25rem;
-	padding-bottom: 0.25rem;
-	position: relative;
-	background-color: var(--accent);
+    display: inline-block;
+    border: none;
+    font-family: "code", monospace !important;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin: 0;
+    margin-bottom: 0.2rem;
+    margin-block: 0 0;
+    border-top-left-radius: 0.2em;
+    border-top-right-radius: 0.2em;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+    position: relative;
+    background-color: var(--accent);
 }
 
 blockquote:has(+ pre) p {
-	margin: 0;
-	color: var(--accent-text);
+    margin: 0;
+    color: var(--accent-text);
 }
 
 blockquote:has(+ pre) p::selection {
-	background: var(--pink-puree);
+    background: var(--pink-puree);
 }
 
 .yt-embed {
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-content: center;
-	text-align: center;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    text-align: center;
 }
 
 .yt-embed iframe {
-	width: 100%;
-	aspect-ratio: 16 / 9;
-	align-self: center;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    align-self: center;
 }
 
 .yt-embed figcaption {
@@ -180,27 +180,17 @@ blockquote:has(+ pre) p::selection {
 }
 
 :root {
-	--nightshade-violet: oklch(0.27 0.0242 287.67);
-	--purple-night: oklch(27.58% 0.0203 289.13);
-	--dark-crushed-grape: oklch(74.02% 0.0756 311.96);
-	--light-crushed-grape: oklch(73.48% 0.1008 284.99);
-	--reseda-green: oklch(62.33% 0.0475 126.94);
-	--earth-yellow: oklch(86.49% 0.018 73.05);
-	--sunset: oklch(0.86 0.0213 73.05);
-	--ultra-violet: oklch(42.21% 0.0676 297.45);
-	--rose-quartz: oklch(65.32% 0.0585 311.96);
-	--pink-puree: oklch(75.65% 0.0555 290.76);
-	--lavendar-breeze: oklch(91.06% 0.0223 290.76);
-	--purple-gray: oklch(25.63% 0.0002 290.76);
-	--alice-blue: oklch(95.38% 0.0118 239.91);
-}
-
-body::after {
-	content: "";
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	pointer-events: none;
+    --nightshade-violet: oklch(0.27 0.0242 287.67);
+    --purple-night: oklch(27.58% 0.0203 289.13);
+    --dark-crushed-grape: oklch(74.02% 0.0756 311.96);
+    --light-crushed-grape: oklch(73.48% 0.1008 284.99);
+    --reseda-green: oklch(62.33% 0.0475 126.94);
+    --earth-yellow: oklch(86.49% 0.018 73.05);
+    --sunset: oklch(0.86 0.0213 73.05);
+    --ultra-violet: oklch(42.21% 0.0676 297.45);
+    --rose-quartz: oklch(65.32% 0.0585 311.96);
+    --pink-puree: oklch(75.65% 0.0555 290.76);
+    --lavendar-breeze: oklch(91.06% 0.0223 290.76);
+    --purple-gray: oklch(25.63% 0.0002 290.76);
+    --alice-blue: oklch(95.38% 0.0118 239.91);
 }
