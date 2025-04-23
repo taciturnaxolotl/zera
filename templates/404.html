@@ -1,6 +1,7 @@
 {% extends "base.html" %} {% block content %}
 
 <div
+    id="suggestions"
     style="
         display: flex;
         flex-direction: column;
@@ -10,10 +11,15 @@
     "
 >
     <p><strong>I think you stumbled on something non existent :)</strong></p>
-    <p><i id="redirect">Redirecting you back home in 5</i></p>
 </div>
 
-<script>
+{% set jsHash = get_hash(path="js/404-matcher.js", sha_type=256, base64=true) %}
+<script
+    src="{{ get_url(path='js/404-matcher.js?' ~ jsHash, trailing_slash=false) | safe }}"
+    defer
+></script>
+
+<!-- <script>
     const link = document.getElementById("redirect");
 
     // count down to redirect
@@ -26,6 +32,6 @@
             window.location.href = "/";
         }
     }, 1000);
-</script>
+</script> -->
 
 {% endblock content %}
