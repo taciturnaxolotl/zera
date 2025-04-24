@@ -179,6 +179,34 @@ blockquote:has(+ pre) p::selection {
     border-style: dashed;
 }
 
+img.avatar {
+    width: 24px;
+    height: 24px;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    vertical-align: middle;
+    display: inline-block;
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
+cite {
+    display: inline-flex;
+    align-items: center;
+    vertical-align: middle;
+    gap: 0.5rem;
+}
+
+cite a {
+    display: inline-flex;
+    align-items: center;
+}
+
+cite a img.avatar {
+    margin-right: 5px;
+}
+
 :root {
     --nightshade-violet: oklch(0.27 0.0242 287.67);
     --purple-night: oklch(27.58% 0.0203 289.13);

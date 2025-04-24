@@ -1,0 +1,51 @@
+{% set profile_part = post | split(pat="profile/") | last %} {% set parts =
+profile_part | split(pat="/") %} {% set handle = parts[0] %} {% set post_id =
+parts[2] %} {% set api_url =
+"https://public.api.bsky.app/xrpc/app.bsky.feed.getPostThread?uri=at://" ~
+handle ~ "/app.bsky.feed.post/" ~ post_id %} {% set response =
+load_data(url=api_url, format="json") %} {% if response.thread and
+response.thread.post %} {% set post_data = response.thread.post %} {% set author
+= post_data.author.displayName %} {% set handle = post_data.author.handle %} {%
+set content = post_data.record.text %} {% set has_embed = post_data.embed is
+defined and post_data.embed %}
+<blockquote>
+    {{ content }} {% if has_embed and post_data.embed["$type"] ==
+    "app.bsky.embed.video#view" %}
+    <video controls poster="{{ post_data.embed.thumbnail }}">
+        <source
+            src="{{ post_data.embed.playlist }}"
+            type="application/x-mpegURL"
+        />
+    </video>
+    {% endif %}
+    <p>
+        <cite>
+            <a href="{{ post }}" target="_blank" rel="noopener"
+                ><img
+                    src="{{ post_data.author.avatar }}"
+                    alt="{{ author }}'s avatar"
+                    class="avatar"
+                />@{{ handle }}</a
+            ></cite
+        >
+    </p>
+</blockquote>
+{% else %}
+<blockquote>
+    <div class="bsky-post">
+        <div class="bsky-post-content">"Failed to render Bluesky post"</div>
+        <div class="bsky-post-footer">
+            <cite
+                ><img
+                    src="/img/bluesky-logo.png"
+                    alt="Bluesky logo"
+                    class="avatar"
+                />
+                <a href="{{ post }}" target="_blank" rel="noopener"
+                    >View on Bluesky</a
+                ></cite
+            >
+        </div>
+    </div>
+</blockquote>
+{% endif %}
