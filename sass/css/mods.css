@@ -195,7 +195,6 @@ cite {
     display: inline-flex;
     align-items: center;
     vertical-align: middle;
-    gap: 0.5rem;
 }
 
 cite a {
