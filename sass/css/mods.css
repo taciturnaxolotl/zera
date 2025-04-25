@@ -206,6 +206,41 @@ cite a img.avatar {
     margin-right: 5px;
 }
 
+.image-gallery {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding-top: 0.5rem;
+}
+
+.image-gallery img {
+    max-width: 100%;
+    border-radius: 0.25rem;
+    padding: 0;
+    margin: 0;
+}
+
+.side-by-side {
+    display: flex;
+    flex-direction: row;
+}
+
+.side-by-side img {
+    max-width: calc(50% - 0.25rem);
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.1rem;
+}
+
+.gallery-grid img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
 :root {
     --nightshade-violet: oklch(0.27 0.0242 287.67);
     --purple-night: oklch(27.58% 0.0203 289.13);

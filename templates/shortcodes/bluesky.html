@@ -9,7 +9,7 @@ response.thread.post %} {% set post_data = response.thread.post %} {% set author
 set content = post_data.record.text %} {% set has_embed = post_data.embed is
 defined and post_data.embed %}
 <blockquote>
-    {{ content }} {% if has_embed and post_data.embed["$type"] ==
+    {{ content }} {% if has_embed %} {% if post_data.embed["$type"] ==
     "app.bsky.embed.video#view" %}
     <video controls poster="{{ post_data.embed.thumbnail }}">
         <source
@@ -17,7 +17,26 @@ defined and post_data.embed %}
             type="application/x-mpegURL"
         />
     </video>
-    {% endif %}
+    {% elif post_data.embed["$type"] == "app.bsky.embed.images#view" %} {% if
+    post_data.embed.images | length > 3 %}
+    <div class="image-gallery gallery-grid">
+        {% for image in post_data.embed.images %}
+        <img src="{{ image.fullsize }}" alt="{{ image.alt }}" loading="lazy" />
+        {% endfor %}
+    </div>
+    {% elif post_data.embed.images | length == 2 %}
+    <div class="image-gallery side-by-side">
+        {% for image in post_data.embed.images %}
+        <img src="{{ image.fullsize }}" alt="{{ image.alt }}" loading="lazy" />
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="image-gallery">
+        {% for image in post_data.embed.images %}
+        <img src="{{ image.fullsize }}" alt="{{ image.alt }}" loading="lazy" />
+        {% endfor %}
+    </div>
+    {% endif %} {% endif %} {% endif %}
     <p>
         <cite>
             <a href="{{ post }}" target="_blank" rel="noopener"
