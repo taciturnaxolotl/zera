@@ -1,8 +1,8 @@
 +++
-title = "Test Post"
+title = "The *Mega* test case"
 date = 2024-10-11
-slug = "test-post"
-description = "Testing out styling and features."
+slug = "mega"
+description = "How I write / leme check if that broke anything page"
 
 [taxonomies]
 tags = ["meta"]
@@ -23,13 +23,7 @@ Sections headers (prefixed with `##` in markdown) are the main content separator
 can be [linked to](#section-headers) directly. To link to them, the header's text needs to be
 *kebab-cased*, so the above would be `#section-headers`.
 
-### But what about sub-headers?
-
-I usually use `###` sub-headers to ask the question I think the reader is (or should be) asking at
-this point in the article. For example, if I just posted some code with an obvious error, I might
-follow that up with `### Wait, won't that crash?` or something similar. Using this approach lets
-me write posts in a conversational way, and helps me continually frame myself in the mind of the
-reader.
+Not quite a section header, the `<!-- more -->` tag is used to indicate where a post should be split for rss purposes. This should generally be right after the first paragraph.
 
 ### Table of Contents
 
@@ -42,30 +36,18 @@ enable this feature for a post, add the following to the page's frontmatter:
 has_toc = true
 ```
 
-I don't like content that is nested more than 2 layers deep, so only `##` and `###` should be used
-to divide things up.
+The table of contents will only ever be generated for `##` and `###` headers. I don't particularly love the look of it and tend to write shorter posts so I hardly use it.
 
 ## Embedding Code
 
-This is prominently a coding blog, so code will show up a lot. First off, a monospaced text block is
-denoted by wrapping the text in triple back-tick characters <code>&#x0060;&#x0060;&#x0060;</code>.
-
-```
-┌──────────────────────────┐
-│ This text is monospaced. │
-│ This                     │
-│      text                │
-│           is             │
-│              monospaced. │
-└──────────────────────────┘
-```
+I tend to do this alot so this is an important bit of the blog. All code blocks with a code type are progressively enhanced with a copy button.
 
 ### Syntax Highlighting
 
 If you want syntax coloring, you put the name of the programming language immediately after the ticks.
 So writing this:
 
-~~~
+~~~md
 ```rust
 fn main() {
     println!("Hello, world!");
@@ -85,31 +67,22 @@ fn main() {
 
 Sometimes it can help to give a header to a code block to signal what it represents. To do this, you put
 a single-line block quote immediately before the code block. So by prepending the following code with
-`> src/main.rs`, I can produce this:
+`> src/index.ts`, I can produce this:
 
-> src/main.rs
-```rust
-fn main() {
-    println!("This code is in main.rs!");
-}
-```
-
-This can be useful to explicitly state the programming language or format being used:
-
-> TOML
-```toml
-title = "Test Post"
-slug = "test-post"
-description = "Testing out styling and features."
-
-[taxonomies]
-tags = ["meta"]
+> src/index.ts
+```ts
+Bun.serve({
+  port: 3000,
+  fetch(req) {
+    return new Response("Hello, world!");
+  }
+});
 ```
 
 ### Inline Code
 
 As seen above, sometimes code items are mentioned in regular paragraphs, but you want to
-draw attention to them. To do this, you can wrap it in &#x0060; back-tick quotes. For
+draw attention to them. To do this, you can wrap it in back-tick (\`) quotes. For
 example, if I wanted to mention Rust's `Vec<T>` type.
 
 ```md
@@ -131,15 +104,6 @@ wrap it in a `blockquote` tag:
 
 > "This text will appear italicized in a quote box!"
 
-### Reader Questions
-
-When displaying reader questions, I start the block quote with a bolded name, like so:
-
-> **SonicFan420x69 asks:**
->
-> &ldquo;What is your opinion of the inimitable video game character, Sonic the Hedgehog? Please
-> answer soon as it is a matter of life or death.&rdquo;
-
 ### Cited Quotations
 
 For when I want to have a citation, I can use the html `<cite>` tag after the quote text and it
@@ -149,12 +113,6 @@ will prepend it with a nice `—` em dash.
 > as well as you deserve."
 >
 > <cite>Bilbo Baggins</cite>
-
-## Icons &amp; Images
-
-They were shown in the previous section, but icons (provided by [Remix Icon](https://remixicon.com/)),
-can be used anywhere by inserting an `<i>` tag with the icon's class. These are useful for adding
-some detail and decorating to the pages, and is another way to break up text.
 
 ## Embedding Media
 
@@ -175,41 +133,23 @@ them up, images can be interspersed to help prevent text-wall fatique.
 
 You can also add captions to images:
 
-<figure>
-    <img src="https://img.itch.zone/aW1hZ2UvNTU2NDU0LzI5MTYzNzkucG5n/original/8LIdCb.png" alt="NOISE1 screenshot">
-    <figcaption>
-        NOISE1 is a dark sci-fi hacker-typing stealth game.
-    </figcaption>
-</figure>
-
-But there is no way to do this in markdown so you have to use the `<figure>` tag like so:
-
-```html
-<figure>
-    <img src="/path/to/image.png" alt="Alt text goes here.">
-    <figcaption>Caption text goes here.</figcaption>
-</figure>
+```terra
+{{/* img(id="https://url.com/image.png" alt="alt text" caption="this can be ommited if you want or added! It's optional :)") */}}
 ```
+
+{{ img(id="https://cloud-owp7vmln1-hack-club-bot.vercel.app/0img_1846_1_.jpg" alt="MacBook proprietary blade SSD" caption="it really was a rather sleek design; shame that apple got rid of it in favor of soldered on storage") }}
 
 ### Videos
 
-To embed a video, you use the `youtube` shortcode e.g.
-
-> post.md
-```md
-{{/* youtube(id="kiWvNwuBbEE") */}}
-```
-
-You can also add the `autoplay=true` flag to make the video autoplay.
+To embed a video, you use the `youtube(id="", autoplay?=bool)` shortcode e.g.
 
 {{ youtube(id="NodwjZF7uZw") }}
 
-The shortcode is processed into an iframe which looks like this:
+### Bluesky posts
 
-> post.html
-```html
-{{ youtube(id="kiWvNwuBbEE") }}
-```
+This is handled by a shortcode `bluesky(post="")` and takes the post url as a parameter. These will automatically attach images and videos.
+
+{{ bluesky(post="https://bsky.app/profile/svenninifl.bsky.social/post/3lnkivz3ans2k") }}
 
 ## Miscellaneous
 
