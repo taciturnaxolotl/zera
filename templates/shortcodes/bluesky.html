@@ -37,18 +37,18 @@ defined and post_data.embed %}
         {% endfor %}
     </div>
     {% endif %} {% endif %} {% endif %}
-    <p>
-        <cite>
-            <a href="{{ post }}" target="_blank" rel="noopener"
-                ><img
-                    src="{{ post_data.author.avatar }}"
-                    alt="{{ author }}'s avatar"
-                    class="avatar"
-                />@{{ handle }}</a
-            ></cite
-        >
-    </p>
 </blockquote>
+<p>
+    <cite>
+        <a href="{{ post }}" target="_blank" rel="noopener"
+            ><img
+                src="{{ post_data.author.avatar }}"
+                alt="{{ author }}'s avatar"
+                class="avatar"
+            />@{{ handle }}</a
+        ></cite
+    >
+</p>
 {% else %}
 <blockquote>
     <div class="bsky-post">
