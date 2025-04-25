@@ -6,9 +6,6 @@ description = "took longer then it probably should have 😊"
 
 [taxonomies]
 tags = ["mildrant", "tutorial"]
-
-[extra]
-has_toc = true
 +++
 
 I saw this [post](https://jade.fyi/blog/pre-commit-exif-safety/) from [jade.fyi](https://jade.fyi) on using a git hook to clear exif data from your images before you commit them and realized I should probably implement that too lol. Interestingly jade also uses zola for her site but she used pre-commit hooks whereas I wanted to do something that used native git hooks.

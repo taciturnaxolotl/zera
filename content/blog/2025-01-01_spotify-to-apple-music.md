@@ -3,12 +3,10 @@ title = "Exodus of Spotify Songs to the land of Apple Music"
 date = 2025-01-01
 slug = "spotify-to-apple-music"
 description = "Homegrown solution rather than paying for it ^-^"
+draft = true
 
 [taxonomies]
 tags = ["apple", "music"]
-
-[extra]
-has_toc = true
 +++
 
 Today my family decided to get an Apple One subscription and use Apple Music instead of spotify. It makes sense from a cost standpoint (spotify is $20 a month vs $37.95 and `2TB` of storage plus all apple subscriptions) but I have about 3 years of history on spotify (1267 at time of writing) so manually transferring the songs isn't an option. I did some research but all I found was over priced apps and annoying python scripts.

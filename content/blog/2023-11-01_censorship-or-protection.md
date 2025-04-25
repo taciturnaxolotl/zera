@@ -6,9 +6,6 @@ description = "An essay on the new wave of  “online safety bills”"
 
 [taxonomies]
 tags = ["essays", "archival"]
-
-[extra]
-has_toc = true
 +++
 
 <!-- more -->

@@ -6,9 +6,6 @@ description = "Playing around with mitmproxy and the Hilton Honors app as well a
 
 [taxonomies]
 tags = ["reverse engineering", "hilton"]
-
-[extra]
-has_toc = true
 +++
 
 I'm at a Hilton at the time of writing this, and I'm decently bored. Currently, I'm downloading the latest version of RogueMaster (0.420.0) to my flipper, as it is currently crashing every time I open the NFC app. My dad tried out the app unlock feature in the Hilton app for the first time today, which, as most new tech things, made me quite curious how it worked and whether I could break it. Based on playing with it, there seems to be a proximity reading (over Bluetooth? Perhaps a BLE beacon?) to detect if you are by your door but for a period of time (~20 sec) after getting that signal it allows you to unlock the door from across the room which I'm guessing means that it controls the locks via a central server. The current plan is to install the root cert (of mitmproxy) on my iPhone and then try and intercept those API calls and see if we can manipulate them in any interesting ways. I'm also planning on live blogging this, which I've never tried before. (I also wrote this whole article in vim ^_^)

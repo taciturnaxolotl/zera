@@ -7,9 +7,6 @@ draft = true
 
 [taxonomies]
 tags = ["reverse engineering", "hilton"]
-
-[extra]
-has_toc = true
 +++
 
 Ello! I'm back again! I'll be staying at a Hotel again in two days so I decided to try to decompile the app ahead of time so I can test stuff while I'm there. I decided to target the android app first because it seemed easier to decompile (i've partly decompiled an apk before about 3 and half years ago to embed a payload in it and I don't remember it being horrible) and I knew getting the apk itself would be far easier than from the Apple App Store.

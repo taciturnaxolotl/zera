@@ -6,9 +6,6 @@ description = "yes i made a tool to help with it :)"
 
 [taxonomies]
 tags = ["tool", "fancy", "physics"]
-
-[extra]
-has_toc = true
 +++
 
 I was recently working through the Geometric Optics section of my physics textbook and was having trouble drawing all the ray diagrams (my wrist is still in a cast though that should come off in a few weeks) so I decided to try and make a tool to make them for me instead! I rather expected this to be a fairly simple process but instead it ended up being one of the most math intensive, most difficult — and also most rewarding — projects I've made recently!

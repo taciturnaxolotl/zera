@@ -6,9 +6,6 @@ description = "How to install TrueNas Core on proxmox with drive passthrough"
 
 [taxonomies]
 tags = ["tutorial", "archival"]
-
-[extra]
-has_toc = true
 +++
 
 I have been using Proxmox for a while now but I've also wanted to make use of some large HDDs that have been lying around. I really didn't want to get another machine just for TrueNAS so I decided to install it on Proxmox. This is how I did it.

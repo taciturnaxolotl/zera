@@ -6,9 +6,6 @@ description = "I wanted to control my smart home from my Garmin Vivoactive 4 but
 
 [taxonomies]
 tags = ["essays", "archival"]
-
-[extra]
-has_toc = true
 +++
 
 This morning I saw a [Reddit post](https://libreddit.kieranklukas.com/r/flipperzero/comments/ybjsvt/flipper_control_via_smartwatch/) where someone connected their flipper zero to a Fossil HR through [Gadgetbridge](https://gadgetbridge.org/). I immediately started [ducking,](https://libreddit.kieranklukas.com/r/duckduckgo/wiki/index#wiki_what_is_searching_on_duckduckgo_called.3F) trying to find out if I could do the same with my Garmin Vivoactive 4 but ended up realizing that there was no apparent way to connect the two. I did however find a widget compatible with my watch named [APICall](https://apps.garmin.com/en-US/apps/ac9a81ab-a52d-41b3-8c14-940a9de37544) on the Connect IQ store.

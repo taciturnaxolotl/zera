@@ -6,9 +6,6 @@ description = "replacing a failed drive in a proxmox zpool"
 
 [taxonomies]
 tags = ["homelab", "tutorial"]
-
-[extra]
-has_toc = true
 +++
 
 I decided to finally fix the network issues with my proxmox server (old static ip and used vlans which I hadn't setup with the new switch and router) as I had some time today but after fixing that fairly easily I discovered that my main `2.23 TB` zpool had a drive failure. Thankfully I had managed to stuff 3 disks into the case before so loosing one meant no data loss (thankfully 😬; all my projects from the last 5 years as well as my entire video archive is on this pool). I still have 3 more disks of the same type so I can swap in a new one 2 more times after this.
