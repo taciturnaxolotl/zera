@@ -6,7 +6,7 @@ Inspired by [@Molly White](https://www.mollywhite.net/verify/) and [@Rob Knight]
 
 # domains / email
 
-I personally own and control this domain ([dunkirk.sh](https://dunkirk.sh)) as well as [kieranklukas.com](https://kieranklukas.com) and maintain email addresses on both domains.
+I personally own and control this domain ([dunkirk.sh](https://dunkirk.sh)) as well as [kieranklukas.com](https://kieranklukas.com) and maintain email addresses on both domains. I also just got [serif.blue](https://serif.blue) which I'm super excited about!
 
 If you want to contact me, via email to `me@dunkirk.sh` or `me@kieranklukas.com` are both good places to find me. I also send email from `kieran@hackclub.com` and ~`kieran@purplebubble.org`~.
 
