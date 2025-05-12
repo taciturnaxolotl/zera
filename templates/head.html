@@ -61,13 +61,13 @@ default(value=true) %} {% if twitter_card != false %}
 <meta property="twitter:image" content="{{ image }}" />
 {% endif %} {% endif %}
 <link rel="canonical" href="{{ url | safe }}" />
-{% if image %}
-<link
-  rel="shortcut icon"
-  type="image/x-icon"
-  href="{{ get_url(path=config.extra.favicon, trailing_slash=false) }}"
-/>
-{% endif %} {% endblock metatags %} {% if config.generate_feeds %} {% block
+<link rel="icon" type="image/png" href="/favicon/favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
+<link rel="shortcut icon" href="/favicon/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+<meta name="apple-mobile-web-app-title" content="site@zera" />
+<link rel="manifest" href="/favicon/site.webmanifest" />
+{% endblock metatags %} {% if config.generate_feeds %} {% block
 feed%} <link rel="alternate" type="application/atom+xml" title="Kieran Klukas' Atom feed" href="{{
 get_url(path="atom.xml", trailing_slash=false) }}"> <link rel="alternate"
 type="application/rss+xml" title="Kieran Klukas' RSS feed" href="{{ get_url(path="rss.xml",

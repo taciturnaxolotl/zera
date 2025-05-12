@@ -31,9 +31,6 @@ internal_level = "warn"
 author = "Kieran Klukas"
 display_author = true
 
-favicon = "favicon.ico"
-image = ""
-
 default_theme = "light"
 list_pages = false
 twitter_card = true
