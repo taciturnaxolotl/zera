@@ -1,8 +1,9 @@
 +++
 +++
 
-<div style="display: flex; justify-content: center; margin: 2rem;">
+<div style="display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 2rem;">
     <img src="/pfps/starry.webp" alt="kieran with a white and gray spotted kitten with a grainy background and star dust" width="512" height="512" class="u-photo"/>
+    {{ is() }}
 </div>
 
 # About me

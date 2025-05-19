@@ -241,6 +241,30 @@ cite a img.avatar {
     object-fit: cover;
 }
 
+.inlined-bubbles {
+    width: auto;
+    pointer-events: none;
+    display: block;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.bubble {
+    padding: 0.7em 1.2em 0.7em 1.2em;
+    background: var(--accent);
+    border-bottom: 5px solid var(--bg-light);
+    border-radius: 7px 7px 10px 10px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--accent-text);
+    display: inline-block;
+    text-align: center;
+}
+
+.bubble a {
+    color: var(--accent-text);
+}
+
 :root {
     --nightshade-violet: oklch(0.27 0.0242 287.67);
     --purple-night: oklch(27.58% 0.0203 289.13);
