@@ -265,6 +265,11 @@ cite a img.avatar {
     color: var(--accent-text);
 }
 
+#time-ago {
+    font-weight: normal;
+    font-size: 0.8rem;
+}
+
 :root {
     --nightshade-violet: oklch(0.27 0.0242 287.67);
     --purple-night: oklch(27.58% 0.0203 289.13);
