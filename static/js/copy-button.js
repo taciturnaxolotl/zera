@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // Container that holds header and the code block itself
       const container = document.createElement("div");
-      container.classList.add("pre-container", "crt", "scanlines");
+      container.classList.add("pre-container");
       container.appendChild(header);
 
       // Move code block into the container

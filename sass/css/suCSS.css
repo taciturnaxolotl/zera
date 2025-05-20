@@ -189,6 +189,8 @@ h6 {
     padding: 0.22em 0.4em 0.22em 0.4em;
     border-radius: 0.1em;
     background-color: var(--accent);
+    border-bottom: 5px solid var(--bg-light);
+    border-radius: 7px 7px 10px 10px;
     color: var(--accent-text);
     width: fit-content;
 }
