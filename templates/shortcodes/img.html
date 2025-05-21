@@ -1,6 +1,6 @@
 <figure {% if class %}class="{{class}}" {% else %}class="center" {% endif %}>
     <img src="{{id}}" {% if alt %}alt="{{alt}}" {% endif %} />
     {% if caption %}
-    <figcaption>{{caption}}</figcaption>
+    <figcaption>{{caption | markdown | safe}}</figcaption>
     {% endif %}
 </figure>
