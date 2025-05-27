@@ -259,6 +259,26 @@ cite a img.avatar {
     color: var(--accent-text);
     display: inline-block;
     text-align: center;
+    transition:
+        transform 0.3s ease,
+        opacity 0.3s ease;
+}
+
+@keyframes bubbleIn {
+    0% {
+        opacity: 0;
+        transform: translateY(10px) scale(0.95);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .bubble.animate-in {
+        animation: bubbleIn 0.3s ease-out forwards;
+    }
 }
 
 .bubble a {
