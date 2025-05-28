@@ -116,3 +116,45 @@ i.icon {
         border: none;
     }
 }
+
+blockquote:not(.pre-container blockquote):has(+ pre) {
+    margin-bottom: 0;
+    background-color: var(--accent);
+    border-radius: 7px 7px 0 0;
+    padding: 0.25rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    p {
+        margin: 0;
+        padding: 0.25rem 0.75rem;
+        color: var(--purple-gray);
+        font-weight: bold;
+        line-height: 1;
+    }
+}
+
+pre.z-code:not(.pre-container):not(.pre-container pre) {
+    position: relative;
+    border-radius: 7px;
+    border: none;
+    background-color: var(--accent);
+    padding: 0.4em;
+    border-bottom: 5px solid var(--bg-light);
+
+    code {
+        border-radius: 0.3rem;
+        display: block;
+        overflow-x: auto;
+        padding: 1em;
+        background-color: var(--bg-light);
+        margin: 0;
+        border: none;
+        box-shadow: none;
+    }
+}
+
+blockquote:not(.pre-container blockquote) + pre.z-code {
+    border-radius: 0 7px 7px 7px;
+}
