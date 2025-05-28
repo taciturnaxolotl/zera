@@ -1,5 +1,6 @@
-{% set api_url = "https://bsky.social/xrpc/com.atproto.repo.listRecords?repo=dunkirk.sh&collection=a.status.update&limit=50" %}
-{% set response = load_data(url=api_url, format="json") %}
+{% set api_url =
+"https://bsky.social/xrpc/com.atproto.repo.listRecords?repo=dunkirk.sh&collection=a.status.update"
+%} {% set response = load_data(url=api_url, format="json") %}
 
 <style>
     #status-updates-container {
@@ -43,45 +44,53 @@
 </style>
 
 <div id="status-updates-container">
-    {% if response.records %}
-        {% for record in response.records | sort(attribute="value.createdAt") | reverse %}
-        {% set created_at = record.value.createdAt %}
-        {% set status_text = record.value.text %}
-        <div class="bsky-post" data-cid="{{ record.cid }}" data-created="{{ created_at }}">
-            <div class="bsky-post-content">{{ status_text }}</div>
-            <div class="bsky-post-footer">
-                <cite>
-                    <img
-                        src="https://cdn.bsky.app/img/avatar_thumbnail/plain/did:plc:3h24oe2owgmqpulq6dwwnsph/bafkreiaosnd5uyvwfii4ecb7zks67vwdiovnulsjnr6kb3azbfigjcaw5u@jpeg"
-                        alt="Kieran's avatar"
-                        class="avatar"
-                    />
-                    <a href="https://bsky.app/@doing.dunkirk.sh" target="_blank" rel="noopener">@doing.dunkirk.sh</a>
-                </cite>
-                <span class="bsky-post-time">
-                    {{ record.value.createdAt | date(format="%b %d, %Y") }}
-                </span>
-            </div>
+    {% if response.records %} {% for record in response.records |
+    sort(attribute="value.createdAt") | reverse %} {% set created_at =
+    record.value.createdAt %} {% set status_text = record.value.text %}
+    <div
+        class="bsky-post"
+        data-cid="{{ record.cid }}"
+        data-created="{{ created_at }}"
+    >
+        <div class="bsky-post-content">Kieran was {{ status_text }}</div>
+        <div class="bsky-post-footer">
+            <cite>
+                <img
+                    src="https://cdn.bsky.app/img/avatar_thumbnail/plain/did:plc:3h24oe2owgmqpulq6dwwnsph/bafkreiaosnd5uyvwfii4ecb7zks67vwdiovnulsjnr6kb3azbfigjcaw5u@jpeg"
+                    alt="Kieran's avatar"
+                    class="avatar"
+                />
+                <a
+                    href="https://bsky.app/@doing.dunkirk.sh"
+                    target="_blank"
+                    rel="noopener"
+                    >@doing.dunkirk.sh</a
+                >
+            </cite>
+            <span class="bsky-post-time">
+                {{ record.value.createdAt | date(format="%b %d, %Y") }}
+            </span>
         </div>
-        {% endfor %}
-    {% else %}
-        <div class="bsky-post">
-            <div class="bsky-post-content">No status updates found.</div>
-        </div>
+    </div>
+    {% endfor %} {% else %}
+    <div class="bsky-post">
+        <div class="bsky-post-content">No status updates found.</div>
+    </div>
     {% endif %}
 </div>
 
 <script>
     document.addEventListener("DOMContentLoaded", () => {
         const container = document.getElementById("status-updates-container");
-        const API_URL = "https://bsky.social/xrpc/com.atproto.repo.listRecords?repo=dunkirk.sh&collection=a.status.update&limit=50";
+        const API_URL =
+            "https://bsky.social/xrpc/com.atproto.repo.listRecords?repo=dunkirk.sh&collection=a.status.update";
         const existingPosts = new Map();
-        
+
         // Collect existing posts by CID
-        document.querySelectorAll('.bsky-post[data-cid]').forEach(post => {
+        document.querySelectorAll(".bsky-post[data-cid]").forEach((post) => {
             existingPosts.set(post.dataset.cid, {
                 element: post,
-                created: new Date(post.dataset.created)
+                created: new Date(post.dataset.created),
             });
         });
 
@@ -91,23 +100,39 @@
             const diffInMs = now - date;
             const diffInMins = Math.floor(diffInMs / (1000 * 60));
             const diffInHours = Math.floor(diffInMs / (1000 * 60 * 60));
-            
+
             if (diffInMins < 1) return "just now";
             if (diffInMins < 60) return `${Math.round(diffInMins)}m`;
             if (diffInHours < 24) return `${Math.round(diffInHours)}h`;
-            
+
             return new Intl.DateTimeFormat("en", {
                 month: "short",
-                day: "numeric"
+                day: "numeric",
             }).format(date);
         }
 
-        // Update timestamps on existing posts
+        // Update timestamps and verbs on existing posts
         function updateTimestamps() {
             existingPosts.forEach((post) => {
-                const timeElement = post.element.querySelector('.bsky-post-time');
+                const timeElement =
+                    post.element.querySelector(".bsky-post-time");
+                const contentElement =
+                    post.element.querySelector(".bsky-post-content");
                 if (timeElement) {
                     timeElement.textContent = formatTimeAgo(post.created);
+                }
+
+                // Update the is/was verb based on post age
+                const now = new Date();
+                const diffInMs = now - post.created;
+                const diffInMins = diffInMs / (1000 * 60);
+                const verb = diffInMins < 30 ? "is" : "was";
+
+                // Get the status text (everything after "Kieran was/is ")
+                if (contentElement) {
+                    const text = contentElement.textContent;
+                    const statusText = text.replace(/^Kieran (is|was) /, "");
+                    contentElement.textContent = `Kieran ${verb} ${statusText}`;
                 }
             });
         }
@@ -115,13 +140,19 @@
         // Create a new post element
         function createPostElement(record) {
             const createdDate = new Date(record.value.createdAt);
-            const postElement = document.createElement('div');
-            postElement.className = 'bsky-post';
+            const postElement = document.createElement("div");
+            postElement.className = "bsky-post";
             postElement.dataset.cid = record.cid;
             postElement.dataset.created = record.value.createdAt;
-            
+
+            // Determine if status is recent (within 30 minutes)
+            const now = new Date();
+            const diffInMs = now - createdDate;
+            const diffInMins = diffInMs / (1000 * 60);
+            const verb = diffInMins < 30 ? "is" : "was";
+
             postElement.innerHTML = `
-                <div class="bsky-post-content">${record.value.text}</div>
+                <div class="bsky-post-content">Kieran ${verb} ${record.value.text}</div>
                 <div class="bsky-post-footer">
                     <cite>
                         <img src="https://cdn.bsky.app/img/avatar_thumbnail/plain/did:plc:3h24oe2owgmqpulq6dwwnsph/bafkreiaosnd5uyvwfii4ecb7zks67vwdiovnulsjnr6kb3azbfigjcaw5u@jpeg" alt="Kieran's avatar" class="avatar" />
@@ -130,70 +161,77 @@
                     <span class="bsky-post-time">${formatTimeAgo(createdDate)}</span>
                 </div>
             `;
-            
+
             return postElement;
         }
 
         // Fetch and update posts
         function fetchAndUpdatePosts() {
             fetch(API_URL)
-                .then(response => response.json())
-                .then(data => {
+                .then((response) => response.json())
+                .then((data) => {
                     if (!data.records || data.records.length === 0) {
                         if (existingPosts.size === 0) {
-                            container.innerHTML = '<div class="bsky-post"><div class="bsky-post-content">No status updates found.</div></div>';
+                            container.innerHTML =
+                                '<div class="bsky-post"><div class="bsky-post-content">No status updates found.</div></div>';
                         }
                         return;
                     }
 
                     // Sort newest first
                     const sortedRecords = data.records.sort((a, b) => {
-                        return new Date(b.value.createdAt) - new Date(a.value.createdAt);
+                        return (
+                            new Date(b.value.createdAt) -
+                            new Date(a.value.createdAt)
+                        );
                     });
 
                     // Track if we need to reorder
                     let needsReordering = false;
-                    
+
                     // Add new posts
                     for (const record of sortedRecords) {
                         if (!existingPosts.has(record.cid)) {
                             const newPostElement = createPostElement(record);
                             // Always insert at the beginning for now (we'll reorder if needed)
-                            container.insertBefore(newPostElement, container.firstChild);
+                            container.insertBefore(
+                                newPostElement,
+                                container.firstChild,
+                            );
                             existingPosts.set(record.cid, {
                                 element: newPostElement,
-                                created: new Date(record.value.createdAt)
+                                created: new Date(record.value.createdAt),
                             });
                             needsReordering = true;
                         }
                     }
-                    
+
                     // If we added new posts, reorder everything
                     if (needsReordering) {
                         const sortedElements = [...existingPosts.entries()]
                             .sort((a, b) => b[1].created - a[1].created)
-                            .map(entry => entry[1].element);
-                            
+                            .map((entry) => entry[1].element);
+
                         // Reattach in correct order
-                        sortedElements.forEach(element => {
+                        sortedElements.forEach((element) => {
                             container.appendChild(element);
                         });
                     }
-                    
+
                     // Update all timestamps
                     updateTimestamps();
                 })
-                .catch(error => {
+                .catch((error) => {
                     console.error("Error fetching status updates:", error);
                 });
         }
 
         // Initial update
         fetchAndUpdatePosts();
-        
+
         // Update timestamps every minute
         setInterval(updateTimestamps, 60000);
-        
+
         // Fetch new posts every 5 minutes
         setInterval(fetchAndUpdatePosts, 300000);
     });
