@@ -2,7 +2,7 @@
 +++
 
 <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 2rem;">
-    <img src="/pfps/starry.webp" alt="kieran with a white and gray spotted kitten with a grainy background and star dust" width="512" height="512" class="u-photo"/>
+    <img src="https://cachet.dunkirk.sh/users/U062UG485EE/r" alt="kieran with a white and gray spotted kitten with a grainy background and star dust" width="512" height="512" class="u-photo"/>
     {{ is() }}
 </div>
 
