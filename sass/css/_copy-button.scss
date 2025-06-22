@@ -24,7 +24,7 @@ i.icon {
         justify-content: space-between;
         align-items: center;
         border-radius: 0.2em 0.2em 0 0;
-        background-color: var(--accent);
+        /* background-color: var(--accent); */
         background-size: 200%;
         padding: 0.25rem;
         height: 2.5rem;
@@ -129,7 +129,6 @@ blockquote:not(.pre-container blockquote):has(+ pre) {
     p {
         margin: 0;
         padding: 0.25rem 0.75rem;
-        color: var(--purple-gray);
         font-weight: bold;
         line-height: 1;
     }
@@ -137,7 +136,6 @@ blockquote:not(.pre-container blockquote):has(+ pre) {
 
 pre.z-code:not(.pre-container):not(.pre-container pre) {
     position: relative;
-    border-radius: 7px;
     border: none;
     background-color: var(--accent);
     padding: 0.4em;
@@ -156,5 +154,5 @@ pre.z-code:not(.pre-container):not(.pre-container pre) {
 }
 
 blockquote:not(.pre-container blockquote) + pre.z-code {
-    border-radius: 0 7px 7px 7px;
+    border-radius: 0 0 7px 7px;
 }
