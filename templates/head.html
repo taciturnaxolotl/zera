@@ -91,6 +91,18 @@ base64=true) %}
   defer
 ></script>
 
+<script type="speculationrules">
+{
+  "prerender": [
+    {
+      "where": {
+        "selector_matches": "a"
+      }
+    }
+  ]
+}
+</script>
+
 <script>
     function cb(res) {
         const fmt = new Intl.NumberFormat('en', { notation: 'compact' });
