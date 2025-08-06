@@ -137,7 +137,7 @@ You can also add captions to images:
 {{/* img(id="https://url.com/image.png" alt="alt text" caption="this can be ommited if you want or added! It's optional :)") */}}
 ```
 
-{{ img(id="https://cloud-owp7vmln1-hack-club-bot.vercel.app/0img_1846_1_.jpg" alt="MacBook proprietary blade SSD" caption="it really was a rather sleek design; shame that apple got rid of it in favor of soldered on storage") }}
+{{ img(id="https://hc-cdn.hel1.your-objectstorage.com/s/v3/d294f113bf415a0d1c544fbf3c2d0f4286d892a6_0img_1846_1_.jpg" alt="MacBook proprietary blade SSD" caption="it really was a rather sleek design; shame that apple got rid of it in favor of soldered on storage") }}
 
 ### Videos
 

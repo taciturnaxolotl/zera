@@ -14,7 +14,7 @@ I saw this [post](https://jade.fyi/blog/pre-commit-exif-safety/) from [jade.fyi]
 
 I started with the naive method of just having a `.git/hooks/pre-commit` file that would run `exiftool` on the input but after realizing that hooks placed there wouldn't be synced to the repo decided that wasn't the best way. I moved to using a script that would symlink files from the `hooks` directory to `.git/hooks`. It worked moderately well but due to the fact that I used (yes I feel the shame admitting this [:uw_embarrassed:](https://cachet.dunkirk.sh/emojis/uw_embarrassed/r)) `#!/bin/bash` instead of `#!/usr/bin/env bash`. Not realizing my mistake and believing it to be related to the symlink I found [this stack overflow](https://stackoverflow.com/questions/4592838/symbolic-link-to-a-hook-in-git/#:~:text=While%20you%20can%20use%20symbolic%20links) answer which taught me that you can use `git config core.hooksPath hooks` to move the hooks directory to `./hooks` in the root of your repo! After doing that and it still not working (i feel very dense writing this lol) I finally realized that the shebang was wrong and then it worked!
 
-{{ img(id="https://cdn.hackclubber.dev/slackcdn/9049d20038cc3058acee1bbe58c5ac3f.png" alt="the commit hook finally working!" caption="phew") }}
+{{ img(id="https://hc-cdn.hel1.your-objectstorage.com/s/v3/f2ba3f2dbad8c67eccc42ddbb51bc7128f85d049_9049d20038cc3058acee1bbe58c5ac3f.png" alt="the commit hook finally working!" caption="phew") }}
 
 Is there anything at all to learn from this? Well yes actually! You can use the script below and the `git config core.hooksPath hooks` setting to scrub your own images!
 

@@ -12,13 +12,13 @@ I decided to finally fix the network issues with my proxmox server (old static i
 
 <!-- more -->
 
-{{ img(id="https://cloud-n6m4bt2xl-hack-club-bot.vercel.app/2image.png" alt="the zpool reporting a downed disk" caption="That really scared the pants off me when I first saw it 😂") }}
+{{ img(id="https://hc-cdn.hel1.your-objectstorage.com/s/v3/e54fd32f9a72ef35d310cb3cdc299b297c87baea_2image.png" alt="the zpool reporting a downed disk" caption="That really scared the pants off me when I first saw it 😂") }}
 
 ## Actually fixing it 
 
 First I had to find the affected disk physically in my case. Because I was stupid I didn't bother to label them but thankfully the serial numbers of the drives are stuck to them with a sticker so that wasn't terrible.
 
-{{ img(id="https://cloud-pi335w1l0-hack-club-bot.vercel.app/0image_from_ios.jpg" alt="chick-fil-a macaroni and cheese with 2 nuggets and some ketchup" caption="(By this point I had spent 30 minutes moaning so I went to lunch)") }}
+{{ img(id="https://hc-cdn.hel1.your-objectstorage.com/s/v3/a6512def9bbeedbc1315a8ee58c92fbfb9e4d169_0image_from_ios.jpg" alt="chick-fil-a macaroni and cheese with 2 nuggets and some ketchup" caption="(By this point I had spent 30 minutes moaning so I went to lunch)") }}
 
 Now we can run `lsblk -o +MODEL,SERIAL` to find the serial number of our new drive.
 
@@ -89,7 +89,7 @@ Our two current drives are `3QD0BG0J` and `3QD0BQ5G` as we can see in proxmox bu
 ata-ST3750640NS_3QD0BN6V
 ```
 
-{{ img(id="https://cloud-d0bjeue06-hack-club-bot.vercel.app/0image_from_ios.jpg" alt="chick-fil-a macaroni and cheese with 2 nuggets and some ketchup" caption="My case situation is a bit of a mess and I'm using old 7200rpm server drives for pretty much everything; the dream is a 3 drive 2 TB each m.2 nvme ssd setup, maybe someday 🤷") }}
+{{ img(id="https://hc-cdn.hel1.your-objectstorage.com/s/v3/f539cc5cb4e40b768f4b7bc6dc719467e438c6ed_0image_from_ios.jpg" alt="chick-fil-a macaroni and cheese with 2 nuggets and some ketchup" caption="My case situation is a bit of a mess and I'm using old 7200rpm server drives for pretty much everything; the dream is a 3 drive 2 TB each m.2 nvme ssd setup, maybe someday 🤷") }}
 
 We are going to go with the first id so no we move on to the zfs part. Running `zpool status vault-of-the-eldunari` we can get the status of the pool:
 
@@ -117,4 +117,4 @@ errors: No known data errors
 
 We can add our new disk with `zpool replace vault-of-the-eldunari 9201394420428878514 ata-ST3750640NS_3QD0BN6V` but first we wipe the disk from proxmox under the disks tab on our proxmox node to make sure its all clean before we restore the pool after we do that we also initalize a new gpt table. Now we are ready to replace the disk. Running this command can take quite a while and it doesn't output anything so sit tight. After waiting a few minutes proxmox reported that resilvering would take 1:49 minutes and it was 5% done already! I hope this helped at least one other person but I'm mainly writing this to remind myself how to do this when it inevitably happens again :)
 
-{{ img(id="https://cloud-n6m4bt2xl-hack-club-bot.vercel.app/0image.png" alt="the zpool reporting a downed disk" caption="It's slow but faster then I expected for HDDs") }}
+{{ img(id="https://hc-cdn.hel1.your-objectstorage.com/s/v3/8cc1c0d1717abacbc29d634004b14ec7475de0f2_0image.png" alt="the zpool reporting a downed disk" caption="It's slow but faster then I expected for HDDs") }}

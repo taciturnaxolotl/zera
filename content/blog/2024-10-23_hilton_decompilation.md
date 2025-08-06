@@ -13,11 +13,11 @@ Ello! I'm back again! I'll be staying at a Hotel again in two days so I decided 
 
 <!-- more -->
 
-{{ img(id="https://cloud-glc3mgu9t-hack-club-bot.vercel.app/0image.png" alt="screenshot of the nix packages entry" caption="prepackaged for nix; always a good sign") }}
+{{ img(id="https://hc-cdn.hel1.your-objectstorage.com/s/v3/4e667b8066044667ea63d5ec44222aef97dc764c_0image.png" alt="screenshot of the nix packages entry" caption="prepackaged for nix; always a good sign") }}
 
 I was able to download the apk from the [apkcombo.com](https://apkcombo.com/downloader/#package=com.hilton.android.hhonors) website by simply inputing the play store URL so we were off to a good start. Apktool was already in [nix packages](https://search.nixos.org/packages?channel=unstable&from=0&size=50&sort=relevance&type=packages&query=apktool) so we didn't have to do anything fancy there. One `pkgs.unstable.apktool` and a `sudo nixos-rebuild switch` latter and we were ready to go. Then I waited another 2 days lol. Finally in the hotel room (again crunched on time; why do I never seem to learn?) I was able to decompile the apk and start looking around.
 
-{{ img(id="https://cloud-qh7hbvivt-hack-club-bot.vercel.app/0image.png" alt="screenshot of the successful decompilation process" caption="all nicely decompiled") }}
+{{ img(id="https://hc-cdn.hel1.your-objectstorage.com/s/v3/55f3ffe6a3f8130fc7f389d5d151660364e99d93_0image.png" alt="screenshot of the successful decompilation process" caption="all nicely decompiled") }}
 
 I started uploading the decompiled app to github ([taciturnaxolotl/hilton-honors](https://github.com/taciturnaxolotl/hilton-honors)) which was incredibly slow and then started poking around the app. The first thing I noticed was quite a few files with firebase in the name as well as several play store properties files. All of them seemed to follow the same pattern of having a `version`, `client`, and then file specific client key.
 

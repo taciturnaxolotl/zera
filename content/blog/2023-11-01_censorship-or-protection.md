@@ -10,7 +10,7 @@ tags = ["essays", "archival"]
 
 <!-- more -->
 
-{{ img(id="https://cloud-quuwed8n2-hack-club-bot.vercel.app/0image.png" alt="child looking out window" caption="Law makers keeping producing new “online safety bills” but do they really help?") }}
+{{ img(id="https://hc-cdn.hel1.your-objectstorage.com/s/v3/5523fdca5f558bc9ff49b4053e02cd1ded0c6e43_0image.png" alt="child looking out window" caption="Law makers keeping producing new “online safety bills” but do they really help?") }}
 
 In the last few years, we have seen a wave of “online safety bills” created by lawmakers that will ostensibly help protect children online. The US has the Protecting Kids on Social Media Act (PKSMA, S.1291) and the Kids Online Safety Act (KOSA, S.1409) while in the UK they have the Online Safety Bill (OSB). The main feature that all of these bills have in common is the censorship of online content for minors. The Electronic Frontier Foundation (EFF) has raised concerns over KOSA, saying, “The bill requires all websites, apps, and online platforms to filter and block legal speech” (Mullin). These bills raise an important question–should the government regulate the online activities of children, or should that responsibility lie solely with parents?
 
