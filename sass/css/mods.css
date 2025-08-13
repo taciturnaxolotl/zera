@@ -283,6 +283,7 @@ cite a img.avatar {
 
 .bubble a {
     color: var(--accent-text);
+    text-decoration: none;
 }
 
 #time-ago {
