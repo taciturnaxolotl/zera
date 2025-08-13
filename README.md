@@ -43,7 +43,7 @@
 
 Huge thanks to [Speyll/anemone](https://github.com/Speyll/anemone) for the template that helped me understand [Zola](https://www.getzola.org/)
 
-This site's theme is based off of the awesome project [Speyll/suCSS/](https://github.com/) with my own flavoring on top and the code theme is based off of [uncomfyhalomacro/catppuccin-zola](https://github.com/uncomfyhalomacro/catppuccin-zola) modified to work with `data-theme`.
+This site's theme is based off of the awesome project [Speyll/suCSS/](https://github.com/) with my own flavoring on top and the code theme is based off of [uncomfyhalomacro/catppuccin-zola](https://github.com/uncomfyhalomacro/catppuccin-zola) modified to work with `data-theme` (and then removed again lol).
 
 <p align="center">
 	<img src="https://raw.githubusercontent.com/taciturnaxolotl/carriage/main/.github/images/line-break.svg" />
