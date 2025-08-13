@@ -9,17 +9,5 @@
         {{ nav_item.name }}
     </a>
     {% endfor %}
-    <div>
-        <input type="checkbox" id="theme-toggle" style="display: none" />
-        <label for="theme-toggle" id="theme-toggle-label"
-            ><i class="icon"></i
-        ></label>
-        <audio id="theme-sound">
-            <source
-                src="{{ get_url(path='click.ogg', trailing_slash=false) | safe }}"
-                type="audio/ogg"
-            />
-        </audio>
-    </div>
 </nav>
 {% endif %}

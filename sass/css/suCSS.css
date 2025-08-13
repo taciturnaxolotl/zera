@@ -14,45 +14,6 @@
     --standard-border-radius: 5px;
 
     /* default colors */
-    --bg: var(--earth-yellow);
-    --noise-strength: 0.3;
-    --bg-light: #cbcdcd;
-    --text: #41474e;
-    --text-light: #686764;
-    --text-dark: #20252b;
-    --accent: oklch(35.55% 0.0754 60.09);
-    --accent-dark: #56412bc5;
-    --accent-text: #dfd1bc;
-    --border: #646868;
-    --link: var(--accent);
-    --selection: color-mix(in oklab, var(--accent), var(--earth-yellow) 50%);
-}
-
-/* theme media queries */
-@media (prefers-color-scheme: dark) {
-    :root,
-    ::backdrop {
-        color-scheme: dark;
-        --bg: var(--purple-night);
-        --noise-strength: 0.15;
-        --bg-light: var(--ultra-violet);
-        --text: var(--lavendar-breeze);
-        --text-light: var(--pink-puree);
-        --text-dark: oklch(80.28% 0.0111 204.11);
-        --accent: var(--rose-quartz);
-        --accent-dark: var(--dark-crushed-grape);
-        --accent-text: var(--purple-gray);
-        --link: var(--light-crushed-grape);
-        --border: var(--pink-puree);
-        --selection: color-mix(
-            in oklab,
-            var(--accent),
-            var(--purple-night) 50%
-        );
-    }
-}
-
-[data-theme="dark"] {
     color-scheme: dark;
     --bg: var(--purple-night);
     --noise-strength: 0.15;
@@ -64,47 +25,9 @@
     --accent-dark: var(--dark-crushed-grape);
     --accent-text: var(--purple-gray);
     --link: var(--light-crushed-grape);
+    --link-visited: var(--red-crushed-grape);
     --border: var(--pink-puree);
     --selection: color-mix(in oklab, var(--accent), var(--purple-night) 50%);
-}
-
-@media (prefers-color-scheme: light) {
-    :root,
-    ::backdrop {
-        color-scheme: light;
-        --bg: var(--earth-yellow);
-        --noise-strength: 0.15;
-        --bg-light: #cbcdcd;
-        --text: #41474e;
-        --text-light: #686764;
-        --accent: #58310ac5;
-        --accent-dark: #e08f67;
-        --accent-text: #dfd1bc;
-        --border: #646868;
-        --link: var(--accent);
-        --selection: color-mix(
-            in oklab,
-            var(--accent),
-            var(--earth-yellow) 50%
-        );
-    }
-}
-
-[data-theme="light"] {
-    /* default (light) theme */
-    color-scheme: light;
-    --bg: var(--earth-yellow);
-    --noise-strength: 0.22;
-    --bg-light: var(--reseda-green);
-    --text: #41474e;
-    --text-light: #686764;
-    --text-dark: #20252b;
-    --accent: #58310ac5;
-    --accent-dark: #56412bc5;
-    --accent-text: #dfd1bc;
-    --border: #646868;
-    --link: var(--accent);
-    --selection: color-mix(in oklab, var(--accent), var(--earth-yellow) 50%);
 }
 
 ::selection,
@@ -187,10 +110,9 @@ h5,
 h6 {
     margin: 0.5em 0 0.5em 0;
     padding: 0.22em 0.4em 0.22em 0.4em;
-    border-radius: 0.1em;
     background-color: var(--accent);
     border-bottom: 5px solid var(--bg-light);
-    border-radius: 7px 7px 10px 10px;
+    border-radius: 0.2em 0.2em 0.27em 0.27em;
     color: var(--accent-text);
     width: fit-content;
 }
@@ -228,20 +150,19 @@ p {
 }
 
 /* format links */
-a,
-a:visited {
-    text-decoration: none;
+a {
     font-weight: bold;
     border-radius: 0.125rem;
-    color: var(--accent-dark);
+    color: var(--link);
+    text-decoration: underline double;
 }
 
-a {
-    color: var(--link);
+a:visited {
+    color: var(--link-visited);
 }
 
 a:hover {
-    text-decoration: underline wavy;
+    color: var(--accent-dark);
 }
 
 /* format lists */
@@ -499,7 +420,6 @@ input[type="checkbox"],
 input[type="radio"] {
     vertical-align: middle;
     position: relative;
-    width: min-content;
     width: 14px;
     height: 14px;
 }
