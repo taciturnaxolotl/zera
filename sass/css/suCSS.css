@@ -151,18 +151,44 @@ p {
 
 /* format links */
 a {
-    font-weight: bold;
-    border-radius: 0.125rem;
     color: var(--link);
-    text-decoration: underline double;
+    text-decoration: underline;
+    text-decoration-color: color-mix(
+        in oklab,
+        var(--link) 100%,
+        transparent 65%
+    );
+    text-decoration-thickness: 0.06em;
+    text-underline-offset: 0.14em;
+    transition:
+        color 120ms ease,
+        text-decoration-color 120ms ease,
+        text-underline-offset 120ms ease,
+        text-decoration-thickness 120ms ease;
 }
 
 a:visited {
-    color: var(--link-visited);
+    color: var(--link-visited); /* deeper purple */
+    text-decoration-color: color-mix(
+        in oklab,
+        var(--link-visited) 100%,
+        transparent 55%
+    );
 }
 
-a:hover {
+a:hover,
+a:focus-visible {
+    color: var(--accent-dark); /* bright purple */
+    text-decoration-thickness: 0.1em;
+    text-underline-offset: 0.18em;
+    text-decoration-color: var(--accent-dark);
+    outline: none;
+}
+
+a:visited:hover,
+a:visited:focus-visible {
     color: var(--accent-dark);
+    text-decoration-color: var(--accent-dark);
 }
 
 /* format lists */
