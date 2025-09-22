@@ -2,7 +2,7 @@
 +++
 
 <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 2rem;">
-    <img src="https://cachet.dunkirk.sh/users/U062UG485EE/r" alt="kieran with a white and gray spotted kitten with a grainy background and star dust" width="512" height="512" class="u-photo"/>
+    <img src="/pfps/hands.jpg" alt="kieran with his hands framing his face wearing a frc rebuilt shirt" width="512" height="512" class="u-photo"/>
     {{ is() }}
 </div>
 
@@ -11,6 +11,7 @@
 Erlo! My name is Kieran Klukas and i'm a homeschooled coder who is {{ age(length=0) }} years old and loves film making, fpv, and typescript :)
 
 > init.ts
+
 ```ts
 const kieran = {
   name: "kieran klukas",
@@ -20,7 +21,7 @@ const kieran = {
 }
 ```
 
-this site has page hits (<code id="visits">0</code> and counting) via [abacus](https://jasoncameron.dev/abacus/) but they are completely anonymous and just http requests! 
+this site has page hits (<code id="visits">0</code> and counting) via [abacus](https://jasoncameron.dev/abacus/) but they are completely anonymous and just http requests!
 
 # Want to talk to me?
 
