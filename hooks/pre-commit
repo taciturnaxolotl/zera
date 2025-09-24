@@ -2,10 +2,40 @@
 
 # Check if exiftool is installed
 if ! command -v exiftool &> /dev/null; then
-  echo "Error: exiftool is not installed.  Please install it." >&2
+  echo "Error: exiftool is not installed. Please install it." >&2
   exit 1
 fi
 
+# Flag to track if we found any draft files
+found_draft=0
+
+# First pass: check for draft files
+while read -r file; do
+  case "$file" in
+    *.md)
+      # Check if file contains draft = true within +++ header section
+      awk '
+        /^\+\+\+$/ { inblock = !inblock }
+        inblock && /draft = true/ { found = 1 }
+        END { exit(found ? 0 : 1) }
+      ' "$file"
+      if [ $? -eq 0 ]; then
+        echo "Error: Draft file detected: $file" >&2
+        echo "Please remove draft status or unstage this file before committing." >&2
+        found_draft=1
+      fi
+      ;;
+    *)
+      ;;
+  esac
+done < <(git diff --cached --name-only --diff-filter=ACMR)
+
+# Exit if we found any draft files
+if [ $found_draft -eq 1 ]; then
+  exit 1
+fi
+
+# Second pass: process images
 while read -r file; do
   case "$file" in
     *.jpg|*.jpeg|*.png|*.gif|*.tiff|*.bmp)
