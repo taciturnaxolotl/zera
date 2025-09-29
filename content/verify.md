@@ -20,7 +20,7 @@ If you want to contact me, via email to `me@dunkirk.sh` or `me@kieranklukas.com`
 * Youtube: [@kieran.rambles](https://www.youtube.com/@kieran.rambles)
 * Matrix: ~[@kieran:dumpsterfire.icu](https://matrix.to/#/@kieran.matrix.dumpsterfire.icu)~ or [@sclacker:matrix.org](https://matrix.to/#/@sclacker:matrix.org) (i'm active on here once in a blue moon so this isn't a great way to contact me urgently)
 * Signal: `verox.89`
-* Phone #: _Do you really think i'm going to publicly share that?_
+* Phone #: *Do you really think i'm going to publicly share that?*
 
 # keys
 
