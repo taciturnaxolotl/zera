@@ -1,63 +1,60 @@
 <hr />
 <div id="footer-container">
-    <p style="margin-bottom: 0.5rem">
-        &copy; {{ now() | date(format="%Y") }} Kieran Klukas ||
-        <code id="visits">0</code> page visits || {% set hash =
-        get_env(name="CF_PAGES_COMMIT_SHA", default=load_data(path=".git/refs/heads/main", required=false))%}{% if hash is not string %}{% set hash = "unknown" %}{% endif %}<a href=https://tangled.sh/@dunkirk.sh/zera/commit/{{ hash }}>zera@{{ hash |
-        truncate(length=7, end="")}}</a>
-    </p>
-    <p style="margin-bottom: 0.5rem">
-        Webrings:
-        <a href="https://w.elr.sh">elr</a>
-        [<a href='javascript:void(0)' onclick='randomSite()'>random</a> |
-        <a href='#' id='prev-link'>prev</a> |
-        <a href='#' id='next-link'>next</a>] •
-        <a href="https://ctp-webr.ing">ctp</a>
-        [<a href="https://ctp-webr.ing/dunkirk/previous">prev</a> |
-        <a href="https://ctp-webr.ing/dunkirk/next">next</a>]
-    </p>
-    <p>
-        Content licensed under
-        <a
-            target="_blank"
-            rel="noopener noreferrer"
-            href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
-            >CC BY-NC-SA 4.0</a
-        >
-    </p>
-    <p>
-        Code licensed under
-        <a
-            target="_blank"
-            rel="noopener noreferrer"
-            href="https://tangled.sh/@dunkirk.sh/zera/blob/main/LICENSE.md"
-            >AGPL 3.0</a
-        >
-    </p>
-    <script type="text/javascript" src="https://w.elr.sh/onionring-variables.js"></script>
-    <script>
-      thisSite = "https://dunkirk.sh"
-      thisIndex = null;
+  <p class="badge-row">
+    <a href="https://512kb.club"><img src="badges/green-team.gif"
+        alt="a proud member of the green team of 512KB club" /></a>
+    <a href="https://yesterweb.org/no-to-web3/index.html?s=09"><img src="badges/no-web3.gif"
+        alt="say no to web3, keep the web free" /></a>
+    <a href="https://hackclub.com"><img src="badges/hackclub.png" alt="linux powered" /></a>
+    <a href="https://tangled.org"><img src=" badges/tangled.png" alt="tangled beta" /></a>
+    <a href="https://www.netscape-communications.com/download/"><img src="badges/get-netscape.gif"
+        alt="get netscape" /></a>
+    <a href="https://tangled.org/@dunkirk.sh/dots"><img src="badges/powered-by-nix.gif" alt="powered by nix" /></a>
+    <a href="https://tangled.org/@dunkirk.sh/nixvim"><img src="badges/made-with-neovim.png" /></a>
+  </p>
+  <p style="margin-bottom: 0.5rem">
+    &copy; {{ now() | date(format="%Y") }} Kieran Klukas ||
+    <code id="visits">0</code> page visits || {% set hash =
+    get_env(name="CF_PAGES_COMMIT_SHA", default=load_data(path=".git/refs/heads/main", required=false))%}{% if hash is
+    not string %}{% set hash = "unknown" %}{% endif %}<a href=https://tangled.sh/@dunkirk.sh/zera/commit/{{ hash
+      }}>zera@{{ hash |
+      truncate(length=7, end="")}}</a>
+  </p>
+  <p style="margin-bottom: 0.5rem">
+    Webrings:
+    <a href="https://w.elr.sh">elr</a>
+    [<a href='javascript:void(0)' onclick='randomSite()'>random</a> |
+    <a href='#' id='prev-link'>prev</a> |
+    <a href='#' id='next-link'>next</a>] •
+    <a href="https://ctp-webr.ing">ctp</a>
+    [<a href="https://ctp-webr.ing/dunkirk/previous">prev</a> |
+    <a href="https://ctp-webr.ing/dunkirk/next">next</a>]
+  </p>
 
-      for (i = 0; i < sites.length; i++) {
-        if (thisSite.startsWith(sites[i])) {
-          thisIndex = i;
-          break;
-        }
+  <script type="text/javascript" src="https://w.elr.sh/onionring-variables.js"></script>
+  <script>
+    thisSite = "https://dunkirk.sh"
+    thisIndex = null;
+
+    for (i = 0; i < sites.length; i++) {
+      if (thisSite.startsWith(sites[i])) {
+        thisIndex = i;
+        break;
       }
+    }
 
-      function randomSite() {
-        otherSites = sites.slice();
-        otherSites.splice(thisIndex, 1);
-        randomIndex = Math.floor(Math.random() * otherSites.length);
-        location.href = otherSites[randomIndex];
-      }
+    function randomSite() {
+      otherSites = sites.slice();
+      otherSites.splice(thisIndex, 1);
+      randomIndex = Math.floor(Math.random() * otherSites.length);
+      location.href = otherSites[randomIndex];
+    }
 
 
-      previousIndex = (thisIndex-1 < 0) ? sites.length-1 : thisIndex-1;
-      nextIndex = (thisIndex+1 >= sites.length) ? 0 : thisIndex+1;
+    previousIndex = (thisIndex - 1 < 0) ? sites.length - 1 : thisIndex - 1;
+    nextIndex = (thisIndex + 1 >= sites.length) ? 0 : thisIndex + 1;
 
-      document.getElementById('prev-link').href = sites[previousIndex];
-      document.getElementById('next-link').href = sites[nextIndex];
-    </script>
+    document.getElementById('prev-link').href = sites[previousIndex];
+    document.getElementById('next-link').href = sites[nextIndex];
+  </script>
 </div>
