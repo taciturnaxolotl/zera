@@ -2,7 +2,7 @@
 +++
 
 <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 2rem;">
-    <img src="/pfps/hands.jpg" alt="kieran with his hands framing his face wearing a frc rebuilt shirt" width="512" height="512" class="u-photo"/>
+    <img src="/pfps/fall.jpg" alt="kieran wearing a robotics sweatshirt and standing in front of a tree with fall leaves" width="512" height="512" class="u-photo"/>
     {{ is() }}
 </div>
 

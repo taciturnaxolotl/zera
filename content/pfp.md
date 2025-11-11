@@ -6,7 +6,11 @@ All my profile pictures over the years
 
 # 2025
 
-September 13th till present
+November 11th till present
+
+![kieran with a robotics sweatshirt and fall leaves behind](/pfps/fall.webp)
+
+September 13th till November 11th
 
 ![kieran with his hands framing his face](/pfps/hands.jpg)
 
