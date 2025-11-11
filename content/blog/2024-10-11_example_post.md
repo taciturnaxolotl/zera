@@ -158,3 +158,5 @@ You can also create `<hr>` horizontal rule tags using `---` in markdown, like so
 ---
 
 But these should be used sparingly, if at all.
+
+You can also use emojis inline from the hackclub slack like this :yay:! This is just done by writing `:emoji:` and it gets progressively enhanced with a bit of js as long as the emoji is in cachet!

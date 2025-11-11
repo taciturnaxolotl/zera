@@ -86,6 +86,13 @@ base64=true) %}
   defer
 ></script>
 
+{% set emojiJsHash = get_hash(path="js/emoji-replace.js", sha_type=256,
+base64=true) %}
+<script
+  src="{{ get_url(path='js/emoji-replace.js?' ~ emojiJsHash, trailing_slash=false) | safe }}"
+  defer
+></script>
+
 <script type="speculationrules">
 {
   "prerender": [
