@@ -8,25 +8,36 @@
 
 # About me
 
-Erlo! My name is Kieran Klukas and i'm a homeschooled coder who is {{ age(length=0) }} years old and loves film making, fpv, and typescript :)
+Erlo! My name is Kieran Klukas i'm {{ age(length=0) }} years old and love cyber, anything with micro-controllers, obscure languages, nix :nix:, and yummy food :)
 
-> init.ts
+> flake.nix
 
-```ts
-const kieran = {
-  name: "kieran klukas",
-  age: {{ age(length=2 comma=true) }}
-  education: ["Homeschooled", "Dual Enrollment"],
-  favFoods: ["lo mein", "bacon fried rice", "pretty much any meat"]
+```nix
+{
+  description = "a short bit about me";
+
+  outputs = { self, ... }:
+  let
+    kieran = rec {
+      name = "Kieran Klukas";
+      pronouns = "he/him";
+      aliases = [ "taciturnaxolotl" "krn" ];
+      location = "Westerville, Ohio, USA";
+      hobbies = [ "frc" "ctfs" "random side projects"];
+    };
+  in
+  {
+    inherit kieran;
+  };
 }
 ```
 
-this site has page hits (<code id="visits">0</code> and counting) via [abacus](https://jasoncameron.dev/abacus/) but they are completely anonymous and just http requests!
+this site has page hits (<code id="visits">0</code> and counting) via [abacus](https://jasoncameron.dev/abacus/) but they are completely anonymous and just http requests so no sketchy analytics here!
 
 # Want to talk to me?
 
-Do you want to hire me for a project? If you just have a question or want to talk I'll still answer (admittedly more slowly ^-^).
+I'm open to projects or just random questions! Feel free to reach out with any of the following or anything on [/verify](/verify)
 
 - Email: [me@dunkirk.sh](mailto:me@dunkirk.sh)
 - Hackclub Slack: [@krn](https://hackclub.slack.com/team/U062UG485EE) (only if you are a highschooler or younger; [join here](https://hackclub.com/slack/))
-- If you just want to know when I make a new post then you can subscribe to the [rss](rss.xml) feed ^-^
+- If you just want to know when I make a new post then you can subscribe to the [:rss:](rss.xml) feed
