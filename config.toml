@@ -18,6 +18,7 @@ smart_punctuation = true
 
 highlight_code = true
 highlight_theme = "css"
+extra_syntaxes_and_themes = ["syntaxes"]
 
 [slugify]
 paths = "on"
