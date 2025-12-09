@@ -38,6 +38,6 @@ this site has page hits (<code id="visits">0</code> and counting) via [abacus](h
 
 I'm open to projects or just random questions! Feel free to reach out with any of the following or anything on [/verify](/verify)
 
-- Email: [me@dunkirk.sh](mailto:me@dunkirk.sh)
+- Email: [kieran@dunkirk.sh](mailto:kieran@dunkirk.sh)
 - Hackclub Slack: [@krn](https://hackclub.slack.com/team/U062UG485EE) (only if you are a highschooler or younger; [join here](https://hackclub.com/slack/))
 - If you just want to know when I make a new post then you can subscribe to the [:rss:](rss.xml) feed
