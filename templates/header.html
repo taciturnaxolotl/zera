@@ -1,13 +1,19 @@
-{% if config.extra.header_nav %} {% if not current_url %} {% set current_url =
-"" %} {% endif %}
+{% if config.extra.header_nav %}
+{% if page %}
+{% set active_path = page.path | trim_end_matches(pat="/") %}
+{% elif section %}
+{% set active_path = section.path | trim_end_matches(pat="/") %}
+{% elif current_path %}
+{% set active_path = current_path | trim_end_matches(pat="/") %}
+{% else %}
+{% set active_path = "" %}
+{% endif %}
 <nav id="nav-bar">
-    {% for nav_item in config.extra.header_nav %}
-    <a
-        href="{{ nav_item.url }}"
-        class="{% if nav_item.url == current_url %}active{% endif %} text-glow"
-    >
-        {{ nav_item.name }}
-    </a>
-    {% endfor %}
+  {% for nav_item in config.extra.header_nav %}
+  <a href="{{ nav_item.url }}"
+    class="{% if nav_item.url == active_path or (nav_item.url == '/' and active_path == '') %}active{% endif %}">
+    {{ nav_item.name }}
+  </a>
+  {% endfor %}
 </nav>
 {% endif %}

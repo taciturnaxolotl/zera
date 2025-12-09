@@ -2,11 +2,31 @@
   padding: 0.625rem 0 0 0;
   display: flex;
   flex-direction: row;
-  gap: 0.25rem;
   flex-wrap: wrap;
   justify-content: flex-end;
   align-items: center;
   align-content: flex-end;
+}
+
+#nav-bar a {
+  text-decoration: none;
+  color: var(--link);
+  padding: 0 0.25rem;
+  border-radius: 0.25rem;
+  transition: all 120ms ease;
+  position: relative;
+  font-weight: 600;
+}
+
+#nav-bar a:hover {
+  color: var(--accent);
+  background-color: color-mix(in oklab, var(--accent) 15%, transparent);
+}
+
+#nav-bar a.active {
+  color: var(--link-visited);
+  background-color: color-mix(in oklab, var(--accent) 20%, transparent);
+  margin: 0 0.15rem;
 }
 
 #footer-container {
@@ -106,7 +126,7 @@
   float: left;
 }
 
-div > code,
+div>code,
 li code,
 p code {
   padding: 0.1em 0.3em 0.1em 0.3em;
@@ -269,6 +289,7 @@ cite a img.avatar {
     opacity: 0;
     transform: translateY(10px) scale(0.95);
   }
+
   100% {
     opacity: 1;
     transform: translateY(0) scale(1);
@@ -317,9 +338,9 @@ cite a img.avatar {
 :root {
   --nightshade-violet: oklch(0.27 0.0242 287.67);
   --purple-night: oklch(27.58% 0.0203 289.13);
-  --red-crushed-grape: oklch(0.656 0.1189 296.74);
+  --red-crushed-grape: oklch(0.6829 0.1189 296.74);
   --dark-crushed-grape: oklch(0.6261 0.1289 284.99);
-  --light-crushed-grape: oklch(73.48% 0.1008 284.99);
+  --light-crushed-grape: oklch(0.7727 0.094 296.74);
   --reseda-green: oklch(62.33% 0.0475 126.94);
   --earth-yellow: oklch(86.49% 0.018 73.05);
   --sunset: oklch(0.86 0.0213 73.05);
