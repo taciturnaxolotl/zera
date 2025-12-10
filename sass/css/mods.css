@@ -335,6 +335,21 @@ cite a img.avatar {
   align-items: center;
 }
 
+.img-group {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  max-width: 100%;
+}
+
+.img-group img {
+  flex: 1;
+  min-width: 0;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
 :root {
   --nightshade-violet: oklch(0.27 0.0242 287.67);
   --purple-night: oklch(27.58% 0.0203 289.13);
