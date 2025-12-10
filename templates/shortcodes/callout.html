@@ -1,0 +1,42 @@
+{%- set type = type | default(value="info") | lower -%}
+{%- set title = title | default(value="") -%}
+
+{%- if type == "info" -%}
+  {%- set icon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>' -%}
+  {%- set color = "blue" -%}
+  {%- set default_title = "Info" -%}
+{%- elif type == "warning" or type == "warn" -%}
+  {%- set icon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>' -%}
+  {%- set color = "yellow" -%}
+  {%- set default_title = "Warning" -%}
+{%- elif type == "danger" or type == "error" -%}
+  {%- set icon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>' -%}
+  {%- set color = "red" -%}
+  {%- set default_title = "Danger" -%}
+{%- elif type == "tip" or type == "hint" -%}
+  {%- set icon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"></path><path d="M9 18h6"></path><path d="M10 22h4"></path></svg>' -%}
+  {%- set color = "green" -%}
+  {%- set default_title = "Tip" -%}
+{%- elif type == "note" -%}
+  {%- set icon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"></path><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"></path></svg>' -%}
+  {%- set color = "gray" -%}
+  {%- set default_title = "Note" -%}
+{%- else -%}
+  {%- set icon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>' -%}
+  {%- set color = "blue" -%}
+  {%- set default_title = "Info" -%}
+{%- endif -%}
+
+{%- if title == "" -%}
+  {%- set title = default_title -%}
+{%- endif -%}
+
+<div class="callout callout-{{ color }}">
+  <div class="callout-title">
+    <span class="callout-icon">{{ icon | safe }}</span>
+    <strong>{{ title }}</strong>
+  </div>
+  <div class="callout-content">
+    {{ body | markdown | safe }}
+  </div>
+</div>
