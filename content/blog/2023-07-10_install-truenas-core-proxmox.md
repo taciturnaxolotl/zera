@@ -12,7 +12,7 @@ I have been using Proxmox for a while now but I've also wanted to make use of so
 
 <!-- more -->
 
-{{ img(id="https://hc-cdn.hel1.your-objectstorage.com/s/v3/81f100961a1c4033c0c50c9192b48521e968a8e8_0image.png" alt="screenshot of the vault vm in proxmox" caption="my active vault storing 1.8TB of old projects") }}
+![screenshot of the vault vm in proxmox](https://hc-cdn.hel1.your-objectstorage.com/s/v3/81f100961a1c4033c0c50c9192b48521e968a8e8_0image.png){caption="my active vault storing 1.8TB of old projects"}
 
 ## Introduction
 
@@ -28,15 +28,15 @@ To install [TrueNAS Core](https://www.truenas.com/download-truenas-core/#) on [P
 
 Sign-in to Proxmox and upload your ISO to the local storage or, download the file directly from the link using the built-in ISO fetcher.
 
-{{ img(id="https://hc-cdn.hel1.your-objectstorage.com/s/v3/45ce25b0bd1accf6a31004e0d71dc92783151266_Ww212rUDQ_Ms9P2WhJMwz.png" alt="download iso tool in proxmox") }}
+![download iso tool in proxmox](https://hc-cdn.hel1.your-objectstorage.com/s/v3/45ce25b0bd1accf6a31004e0d71dc92783151266_Ww212rUDQ_Ms9P2WhJMwz.png)
 
 Next to create the VM, the only thing that needs to be changed from the defaults is the memory, which I set to `8192 MB` (8 GB).
 
-{{ img(id="https://hc-cdn.hel1.your-objectstorage.com/s/v3/1e5d72e4a50907ad23fc1f24a7163cb4898f9bd2_bDT9VdIMMG1LWvv1RwNKl.png" alt="create a vm modal in proxmox") }}
+![create a vm modal in proxmox](https://hc-cdn.hel1.your-objectstorage.com/s/v3/1e5d72e4a50907ad23fc1f24a7163cb4898f9bd2_bDT9VdIMMG1LWvv1RwNKl.png)
 
 Now finish creating the VM and click on the VM after it is created. Go to options and enable start at boot.
 
-{{ img(id="https://hc-cdn.hel1.your-objectstorage.com/s/v3/81a9d9897274eaac53e0d2cc3ff7075cb4ba8cdd_ImxOHWJNuRL3yiF12cQfe.png" alt="start at boot checkbox") }}
+![start at boot checkbox](https://hc-cdn.hel1.your-objectstorage.com/s/v3/81a9d9897274eaac53e0d2cc3ff7075cb4ba8cdd_ImxOHWJNuRL3yiF12cQfe.png)
 
 Next, we need to pass through the physical drives to the VM. Open a terminal on the Proxmox server (use the built-in terminal or ssh in) and run the following command. Only run the part after the #.
 
@@ -119,7 +119,7 @@ In my case, the ID of the drives I want are `ata-ST3750330NS_9QK2GT8`, `ata-ST37
 
 Now find your VM_ID, mine is 102.
 
-{{ img(id="https://hc-cdn.hel1.your-objectstorage.com/s/v3/ac8724875dd07e84903cfe0004a435041a21c35c_gwjgFbI5IrnJSTLTB0PeX.png" alt="vm list in proxmox") }}
+![vm list in proxmox](https://hc-cdn.hel1.your-objectstorage.com/s/v3/ac8724875dd07e84903cfe0004a435041a21c35c_gwjgFbI5IrnJSTLTB0PeX.png)
 
 Run the following command, replacing the VM_ID and DISK_ID with yours.
 
@@ -135,45 +135,45 @@ update VM 102: -scsi3 /dev/disk/by-id/ata-ST3750640NS_3QD0BQ5G
 
 Here is how it appears in Proxmox:
 
-{{ img(id="https://hc-cdn.hel1.your-objectstorage.com/s/v3/c313b32c8c099ea8644663e3d796c12a861ac8e8_QBpmqflEHmPiUHbd8JVk2.png" alt="hardware page of the vm in proxmox") }}
+![hardware page of the vm in proxmox](https://hc-cdn.hel1.your-objectstorage.com/s/v3/c313b32c8c099ea8644663e3d796c12a861ac8e8_QBpmqflEHmPiUHbd8JVk2.png)
 
 If everything went well, then you can start your VM now. After it finishes booting up, you will get the screen below. Make sure Install/Upgrade is selected and hit enter.
 
-{{ img(id="https://hc-cdn.hel1.your-objectstorage.com/s/v3/0eb213f7699f79c389328cdc9f591bcde475e4fe_UFqhrRdD3GkP1_No5lWaj.png" alt="truenas startup screen") }}
+![truenas startup screen](https://hc-cdn.hel1.your-objectstorage.com/s/v3/0eb213f7699f79c389328cdc9f591bcde475e4fe_UFqhrRdD3GkP1_No5lWaj.png)
 
 You will then get this screen, use space to select the first drive and hit enter.
 
-{{ img(id="https://hc-cdn.hel1.your-objectstorage.com/s/v3/c53f8a58f746d0ae045882c9563d83219ab9f29f_xD5QxmFtHxw10p624FgwM.png" alt="destination media screen") }}
+![destination media screen](https://hc-cdn.hel1.your-objectstorage.com/s/v3/c53f8a58f746d0ae045882c9563d83219ab9f29f_xD5QxmFtHxw10p624FgwM.png)
 
 Hit enter one last time and enter your password.
 
-{{ img(id="https://hc-cdn.hel1.your-objectstorage.com/s/v3/a0f2b37568b394eaff15e1b487ab68bbc3736cd1_MZy3mN1cXBaicgVolVYs5.png" alt="confirm erase page") }}
-{{ img(id="https://hc-cdn.hel1.your-objectstorage.com/s/v3/0bccd9e726a027cf96ab98a8b313ea8c710b46f5_KWq2P7Iok9LThOF5Xoj6l.png" alt="repeat password page") }}
+![confirm erase page](https://hc-cdn.hel1.your-objectstorage.com/s/v3/a0f2b37568b394eaff15e1b487ab68bbc3736cd1_MZy3mN1cXBaicgVolVYs5.png)
+![repeat password page](https://hc-cdn.hel1.your-objectstorage.com/s/v3/0bccd9e726a027cf96ab98a8b313ea8c710b46f5_KWq2P7Iok9LThOF5Xoj6l.png)
 
 Select BIOS, as this is the default mode for Proxmox VMs.
 
-{{ img(id="https://hc-cdn.hel1.your-objectstorage.com/s/v3/7f52c721a7fcb2542552d997224f7d02c3ebba9b_RfXwEGx6oug1vVF3UZuCj.png" alt="boot via bios or via uefi screen") }}
+![boot via bios or via uefi screen](https://hc-cdn.hel1.your-objectstorage.com/s/v3/7f52c721a7fcb2542552d997224f7d02c3ebba9b_RfXwEGx6oug1vVF3UZuCj.png)
 
 After about five to ten minutes, the installation process will finish and the VM will ask you to remove installation media and reboot.
 
-{{ img(id="https://hc-cdn.hel1.your-objectstorage.com/s/v3/f28005427ff5ea328550a079dcb7a65d07f09c95_mFEH-FHY10H7NUAvYi0aE.png" alt="installation succeded message") }}
-{{ img(id="https://hc-cdn.hel1.your-objectstorage.com/s/v3/acd7be1e3ac4903269c9af7e808287a94eb96398_JPXkEQJgBmeATEE40HHpr.png" alt="hardware screen in proxmox") }}
+![installation succeded message](https://hc-cdn.hel1.your-objectstorage.com/s/v3/f28005427ff5ea328550a079dcb7a65d07f09c95_mFEH-FHY10H7NUAvYi0aE.png)
+![hardware screen in proxmox](https://hc-cdn.hel1.your-objectstorage.com/s/v3/acd7be1e3ac4903269c9af7e808287a94eb96398_JPXkEQJgBmeATEE40HHpr.png)
 
 Select the installation media and remove it with the top button, go back to the console and hit enter, which will take you back to the main menu. On the main menu, select reboot with the arrow keys and hit enter.
 
-{{ img(id="https://hc-cdn.hel1.your-objectstorage.com/s/v3/52eb8ec8c018c185d3a0361de58be8351b61fa79_IfvdMuF6AVU_f0-_rngqq.png" alt="power options screen in truenas") }}
+![power options screen in truenas](https://hc-cdn.hel1.your-objectstorage.com/s/v3/52eb8ec8c018c185d3a0361de58be8351b61fa79_IfvdMuF6AVU_f0-_rngqq.png)
 
 Once the machine restarts, it will display an IP address in the console.
 
-{{ img(id="https://hc-cdn.hel1.your-objectstorage.com/s/v3/80f56ad99e3e9fa8a997798096214dd5592c40ac_0image.png" alt="ip address displayed in proxmox console") }}
+![ip address displayed in proxmox console](https://hc-cdn.hel1.your-objectstorage.com/s/v3/80f56ad99e3e9fa8a997798096214dd5592c40ac_0image.png)
 
 Upon connecting to the IP address, you will get this screen. Use the root username and the password, previously configured, to login.
 
-{{ img(id="https://hc-cdn.hel1.your-objectstorage.com/s/v3/5211ac631426d7ffb4add091c4308f460b5ef746_ghvCsvwAJMudUCUGvcnCu.png" alt="truenas web ui signin page") }}
+![truenas web ui signin page](https://hc-cdn.hel1.your-objectstorage.com/s/v3/5211ac631426d7ffb4add091c4308f460b5ef746_ghvCsvwAJMudUCUGvcnCu.png)
 
 Once logged in, I updated the system using the button on the home screen.
 
-{{ img(id="https://hc-cdn.hel1.your-objectstorage.com/s/v3/392e592dd232096380a29f4e769b80eb290fee31_nrBop3a9ilvuc7h-0WPEG.png" alt="check for updates button in the truenas web ui") }}
+![check for updates button in the truenas web ui](https://hc-cdn.hel1.your-objectstorage.com/s/v3/392e592dd232096380a29f4e769b80eb290fee31_nrBop3a9ilvuc7h-0WPEG.png)
 
 I chose not to save the configuration file when prompted, proceeded to install the updates, and rebooted.
 

@@ -12,7 +12,7 @@ To install the Monaspace font on macOS (or windows or linux) with VS Code and en
 
 <!-- more -->
 
-{{ img(id="https://hc-cdn.hel1.your-objectstorage.com/s/v3/7abefc1fcefa49d2ab5aac9afbafa1da41259382_KuOAwCEm9ypWEemv60Qs7.png" alt="monaspace font in action" caption="This font is so pretty and has so many features its amazing. It's main downside is to work it takes to set it up.") }}
+![monaspace font in action](https://hc-cdn.hel1.your-objectstorage.com/s/v3/7abefc1fcefa49d2ab5aac9afbafa1da41259382_KuOAwCEm9ypWEemv60Qs7.png){caption="This font is so pretty and has so many features its amazing. It's main downside is to work it takes to set it up."}
 
 
 ## 1. Download and install the Monaspace font:
@@ -30,7 +30,7 @@ Set the font to one of the following options: `Monaspace Neon Var`, `Monaspace A
 
 - You will find this option under _Editor: Font Family_ in the user preferences
 
-{{ img(id="https://hc-cdn.hel1.your-objectstorage.com/s/v3/107040ab22c6ccfaa53c82bd5a328168f5d2d119_v0cMm5jcwHEgrvtBv4Syx.png" alt="the available varients of the font") }}
+![the available varients of the font](https://hc-cdn.hel1.your-objectstorage.com/s/v3/107040ab22c6ccfaa53c82bd5a328168f5d2d119_v0cMm5jcwHEgrvtBv4Syx.png)
 
 
 Next enable font ligatures in the settings.json with following snippet:

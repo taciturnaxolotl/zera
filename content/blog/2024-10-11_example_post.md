@@ -137,7 +137,7 @@ You can also add captions to images:
 {{/* img(id="https://url.com/image.png" alt="alt text" caption="this can be ommited if you want or added! It's optional :)") */}}
 ```
 
-{{ img(id="https://hc-cdn.hel1.your-objectstorage.com/s/v3/d294f113bf415a0d1c544fbf3c2d0f4286d892a6_0img_1846_1_.jpg" alt="MacBook proprietary blade SSD" caption="it really was a rather sleek design; shame that apple got rid of it in favor of soldered on storage") }}
+![MacBook proprietary blade SSD](https://hc-cdn.hel1.your-objectstorage.com/s/v3/d294f113bf415a0d1c544fbf3c2d0f4286d892a6_0img_1846_1_.jpg){caption="it really was a rather sleek design; shame that apple got rid of it in favor of soldered on storage"}
 
 You can also display multiple images side-by-side using the `imgs` shortcode with comma-separated URLs:
 
@@ -145,7 +145,7 @@ You can also display multiple images side-by-side using the `imgs` shortcode wit
 {{/* imgs(id="https://url.com/image1.png, https://url.com/image2.png" alt="alt text 1, alt text 2" caption="optional caption for both images") */}}
 ```
 
-{{ imgs(id="https://hc-cdn.hel1.your-objectstorage.com/s/v3/c509aeaac769c3e5b99d5a7d320cc4a759db4ff5_img_8880.jpeg, https://hc-cdn.hel1.your-objectstorage.com/s/v3/ed400c26ddfa37ab4a9ef4fd5a506f2dcc1bcfbb_img_8879.jpeg", alt="the copyright section, the ssh section", caption="side by side images from the remarkable tutorial") }}
+!![the copyright section](https://hc-cdn.hel1.your-objectstorage.com/s/v3/c509aeaac769c3e5b99d5a7d320cc4a759db4ff5_img_8880.jpeg)[the ssh section](https://hc-cdn.hel1.your-objectstorage.com/s/v3/ed400c26ddfa37ab4a9ef4fd5a506f2dcc1bcfbb_img_8879.jpeg){caption="side by side images from the remarkable tutorial"}
 
 ### Videos
 
@@ -175,33 +175,28 @@ Callouts are a great way to draw attention to important information. They come i
 
 ### Info Callout
 
-{% callout(type="info") %}
-This is an info callout! Use this for general information that readers should be aware of.
-{% end %}
+> [!INFO]
+> This is an info callout! Use this for general information that readers should be aware of.
 
 ### Warning Callout
 
-{% callout(type="warning") %}
-This is a warning callout! Use this to alert readers about potential issues or things to watch out for.
-{% end %}
+> [!WARNING]
+> This is a warning callout! Use this to alert readers about potential issues or things to watch out for.
 
 ### Danger Callout
 
-{% callout(type="danger") %}
-This is a danger callout! Use this for critical information that could cause problems if ignored.
-{% end %}
+> [!DANGER]
+> This is a danger callout! Use this for critical information that could cause problems if ignored.
 
 ### Tip Callout
 
-{% callout(type="tip") %}
-This is a tip callout! Use this to share helpful hints and best practices.
-{% end %}
+> [!TIP]
+> This is a tip callout! Use this to share helpful hints and best practices.
 
 ### Note Callout
 
-{% callout(type="note") %}
-This is a note callout! Use this for additional context or side information.
-{% end %}
+> [!NOTE]
+> This is a note callout! Use this for additional context or side information.
 
 ### Custom Title
 

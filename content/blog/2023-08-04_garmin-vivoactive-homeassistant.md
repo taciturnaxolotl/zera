@@ -12,7 +12,7 @@ This morning I saw a [Reddit post](https://libreddit.kieranklukas.com/r/flipperz
 
 <!-- more -->
 
-{{ img(id="https://hc-cdn.hel1.your-objectstorage.com/s/v3/3893acb0d518216e8051bb59f602748ffde69a68_0img_3051.jpg" alt="a garmin watch with the apicall app open to a spotify page" caption="I can control spotify from my watch via api hooks how bout you?") }}
+![a garmin watch with the apicall app open to a spotify page](https://hc-cdn.hel1.your-objectstorage.com/s/v3/3893acb0d518216e8051bb59f602748ffde69a68_0img_3051.jpg){caption="I can control spotify from my watch via api hooks how bout you?"}
 
 This widget interested me because it allowed me to call any webhook I wanted utilizing the onboard Wi-Fi as well as through the Connect IQ app. This was a very important feature for me because I can’t get the app to run on LineageOS as it keeps asking for the location permission even though it was already granted.
 
@@ -22,28 +22,28 @@ The setup was amazingly quick, using the [linuxserver/docker-homeassistant](http
 
 Now for the Google Assistant SDK / APICall / Home Assistant tutorial. The first thing you want to do is follow this guide, [Google Assistant SDK - Home Assistant](https://www.home-assistant.io/integrations/google_assistant_sdk#configuration), to install the Assistant SDK. Once you have completed that, go to Settings / Automations & Services.
 
-{{ img(id="https://hc-cdn.hel1.your-objectstorage.com/s/v3/24972b625b42a5348d22eebcd2116df317fa7a99_Yha1bUhOH_iuWK30QR0F1.png" alt="arrow pointing to settings in home assistant") }}
-{{ img(id="https://hc-cdn.hel1.your-objectstorage.com/s/v3/91729592f4a9cee25691c1e013244b5f3fb0d22b_RR0VzZqsU7uTxiNlqVGum.png" alt="arrow pointing to Automations & Services in home assistant") }}
+![arrow pointing to settings in home assistant](https://hc-cdn.hel1.your-objectstorage.com/s/v3/24972b625b42a5348d22eebcd2116df317fa7a99_Yha1bUhOH_iuWK30QR0F1.png)
+![arrow pointing to Automations & Services in home assistant](https://hc-cdn.hel1.your-objectstorage.com/s/v3/91729592f4a9cee25691c1e013244b5f3fb0d22b_RR0VzZqsU7uTxiNlqVGum.png)
 
 This is where you can create the action that you want to trigger with your smartwatch. The first thing you need to do is to create a new automation. Save and name the automation you just created. Now add a trigger, scroll to the bottom of the list and select webhook. If done successfully, it will look like the image below.
 
-{{ img(id="https://hc-cdn.hel1.your-objectstorage.com/s/v3/fe82d82d970e7560e285e4606b5f17d842ab4c6b_VqiM4d3wncM9BuoDR_FW7.png" alt="creating a new webhook in home assistant") }}
+![creating a new webhook in home assistant](https://hc-cdn.hel1.your-objectstorage.com/s/v3/fe82d82d970e7560e285e4606b5f17d842ab4c6b_VqiM4d3wncM9BuoDR_FW7.png)
 
 
 Now add an action. I decided to use the media player to play a song on Spotify. Also go back to the webhook section and click the settings icon next to the webhook ID. Change the settings to reflect below screenshot.
 
-{{ img(id="https://hc-cdn.hel1.your-objectstorage.com/s/v3/53c6ef6999ab4a636983cfcc879b75c4d7ba0375_Xh3BtyMxA1MhI0rHuo3WG.png" alt="editing the webook in home assistant to allow GET queries") }}
-{{ img(id="https://hc-cdn.hel1.your-objectstorage.com/s/v3/382d74c38d3323197636f0af125d3a5faff13e7f_rAbDGMrBS5fcGo7AzPT-O.png" alt="adding a play media block to the webhook") }}
+![editing the webook in home assistant to allow GET queries](https://hc-cdn.hel1.your-objectstorage.com/s/v3/53c6ef6999ab4a636983cfcc879b75c4d7ba0375_Xh3BtyMxA1MhI0rHuo3WG.png)
+![adding a play media block to the webhook](https://hc-cdn.hel1.your-objectstorage.com/s/v3/382d74c38d3323197636f0af125d3a5faff13e7f_rAbDGMrBS5fcGo7AzPT-O.png)
 
 Now for the fun part. Download [APICall](https://apps.garmin.com/en-US/apps/ac9a81ab-a52d-41b3-8c14-940a9de37544) onto your Garmin smartwatch and go to the configuration section for the app.
 
 > Note: I’ll be using Garmin Express on my MacBook, but you can also use the Garmin Connect app on a phone.
 
-{{ img(id="https://hc-cdn.hel1.your-objectstorage.com/s/v3/37f7a72276cc3c1bc2575833cb4f663ce23bbbd6_0image.png" alt="garmin express app homepage on desktop") }}
+![garmin express app homepage on desktop](https://hc-cdn.hel1.your-objectstorage.com/s/v3/37f7a72276cc3c1bc2575833cb4f663ce23bbbd6_0image.png)
 
 If you are using Garmin Express, then you can access the app settings by selecting the 3 dots next to the app. You will have 36 possible API calls that you can enter.
 
-{{ img(id="https://hc-cdn.hel1.your-objectstorage.com/s/v3/b98ab669cd8549519876b95d99af1d8edebb0f28_-lSqNObL3TGNk0VQc8xOq.png" alt="ApiCall settings page" caption="Yes that formatting is atrocious but it works at least!") }}
+![ApiCall settings page](https://hc-cdn.hel1.your-objectstorage.com/s/v3/b98ab669cd8549519876b95d99af1d8edebb0f28_-lSqNObL3TGNk0VQc8xOq.png){caption="Yes that formatting is atrocious but it works at least!"}
 
 > webhooks
 ```ts
@@ -58,7 +58,7 @@ If you are using Garmin Express, then you can access the app settings by selecti
 
 These are the actions that I configured for my watch so far. To customize for your API calls you need to change the `deviceName`, `actionName`, and `url` fields. The `method` and `headers` need to stay the same across all actions. If you want to add an icon to that action, then you can configure that with the `actionIcon` field. A table with the possible icons is included below, sourced from APICall’s [documentation](https://apicall.dumesnil.net/documentation_en.html).
 
-{{ img(id="https://hc-cdn.hel1.your-objectstorage.com/s/v3/e957a6b2b01133d35ccfe189e0466049a58da3bb_119m02PEgn6_wcNGtCnjM.png" alt="ApiCall icons") }}
+![ApiCall icons](https://hc-cdn.hel1.your-objectstorage.com/s/v3/e957a6b2b01133d35ccfe189e0466049a58da3bb_119m02PEgn6_wcNGtCnjM.png)
 
 In conclusion, you can use APICall to trigger actions in home assistant from your Garmin smartwatch. I hope this tutorial proved to be useful, and have a great rest of your day (or night).
 
