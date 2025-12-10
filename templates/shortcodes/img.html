@@ -1,5 +1,7 @@
 <figure {% if class %}class="{{class}}" {% else %}class="center" {% endif %}>
-    <img src="{{id}}" {% if alt %}alt="{{alt}}" {% endif %} />
+    <div class="img-container">
+        <img src="{{id}}" {% if alt %}alt="{{alt}}" {% endif %} />
+    </div>
     {% if caption %}
     <figcaption>{{caption | markdown | safe}}</figcaption>
     {% endif %}

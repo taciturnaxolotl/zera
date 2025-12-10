@@ -497,12 +497,19 @@ img,
 video,
 iframe[src^="https://www.youtube-nocookie.com"],
 iframe[src^="https://www.youtube.com"] {
-  max-width: 90%;
-  margin: 1rem;
+  max-width: 100%;
   height: auto;
-  border: dashed 2px var(--accent);
-  border-radius: 15px;
-  opacity: 0.95;
+  border-radius: 0.35rem;
+}
+
+.img-container {
+  background-color: var(--accent);
+  border-bottom: 4px solid var(--bg-light);
+  border-radius: 7px 7px 10px 10px;
+  padding: 0.35rem;
+  margin: 1rem;
+  display: inline-block;
+  max-width: 90%;
 }
 
 figure {

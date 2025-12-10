@@ -3,7 +3,9 @@
     {% set images = id | split(pat=",") %}
     {% set alts = alt | default(value="") | split(pat=",") %}
     {% for image in images %}
-        <img src="{{image | trim}}" {% if alts[loop.index0] %}alt="{{alts[loop.index0] | trim}}" {% endif %} />
+        <div class="img-container">
+            <img src="{{image | trim}}" {% if alts[loop.index0] %}alt="{{alts[loop.index0] | trim}}" {% endif %} />
+        </div>
     {% endfor %}
     </div>
     {% if caption %}
