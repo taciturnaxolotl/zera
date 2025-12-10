@@ -110,7 +110,6 @@
 }
 
 .center .img-container {
-  display: block;
   margin: 1rem auto;
 }
 
@@ -342,22 +341,21 @@ cite a img.avatar {
   gap: 1rem;
   max-width: 100%;
   justify-content: center;
+  align-items: flex-start;
 }
 
 .img-group .img-container {
-  flex: 1;
-  min-width: 0;
   background-color: var(--accent);
   border-bottom: 4px solid var(--bg-light);
   border-radius: 7px 7px 10px 10px;
   padding: 0.35rem;
   margin: 1rem 0;
+  line-height: 0;
 }
 
 .img-group img {
-  width: 100%;
+  max-width: 100%;
   height: auto;
-  object-fit: contain;
   border-radius: 0.35rem;
 }
 

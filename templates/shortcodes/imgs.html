@@ -1,9 +1,9 @@
 <figure {% if class %}class="{{class}}" {% else %}class="center" {% endif %}>
-    <div class="img-group">
+    <div class="img-group" data-images="{{id}}" data-alts="{{alt | default(value='')}}">
     {% set images = id | split(pat=",") %}
     {% set alts = alt | default(value="") | split(pat=",") %}
     {% for image in images %}
-        <div class="img-container">
+        <div class="img-container" onclick="openLightboxGroup(this)">
             <img src="{{image | trim}}" {% if alts[loop.index0] %}alt="{{alts[loop.index0] | trim}}" {% endif %} />
         </div>
     {% endfor %}

@@ -1,0 +1,109 @@
+#lightbox {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+}
+
+.lightbox-content {
+  position: relative;
+  max-width: 90%;
+  max-height: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#lightbox-img {
+  max-width: 100%;
+  max-height: 80vh;
+  object-fit: contain;
+  border: none;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  border-radius: 0;
+}
+
+.lightbox-controls {
+  display: flex;
+  gap: 2rem;
+  margin-top: 1rem;
+  align-items: center;
+}
+
+.lightbox-close {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  font-size: 40px;
+  color: var(--text);
+  background: transparent !important;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+  -webkit-tap-highlight-color: transparent;
+  transition: color 120ms ease, transform 300ms ease;
+}
+
+.lightbox-close:hover {
+  background: transparent !important;
+  color: var(--accent);
+  background-color: transparent !important;
+  transform: rotate(90deg);
+}
+
+.lightbox-close:focus {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+.lightbox-prev,
+.lightbox-next {
+  font-size: 30px;
+  color: var(--text);
+  background: transparent !important;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: color 120ms ease;
+}
+
+.lightbox-prev:hover,
+.lightbox-next:hover {
+  background: transparent !important;
+  color: var(--accent);
+  background-color: transparent !important;
+}
+
+.lightbox-prev:focus,
+.lightbox-next:focus {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+@media only screen and (max-width: 720px) {
+  .lightbox-close {
+    top: 10px;
+    right: 10px;
+  }
+}
+
+.img-container {
+  cursor: pointer;
+  transition: opacity 120ms ease;
+}
+
+.img-container:hover {
+  opacity: 0.9;
+}

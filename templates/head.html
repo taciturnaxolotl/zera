@@ -93,6 +93,13 @@ base64=true) %}
   defer
 ></script>
 
+{% set lightboxJsHash = get_hash(path="lightbox.js", sha_type=256,
+base64=true) %}
+<script
+  src="{{ get_url(path='lightbox.js?' ~ lightboxJsHash, trailing_slash=false) | safe }}"
+  defer
+></script>
+
 <script type="speculationrules">
 {
   "prerender": [
