@@ -134,19 +134,20 @@ blockquote:not(.pre-container blockquote):has(+ pre) {
     }
 }
 
-pre.z-code:not(.pre-container):not(.pre-container pre) {
+pre.z-code:not(.pre-container pre) {
     position: relative;
     border: none;
     background-color: var(--accent);
     padding: 0.4em;
     border-bottom: 5px solid var(--bg-light);
+    border-radius: 7px 7px 10px 10px;
 
     code {
         border-radius: 0.3rem;
         display: block;
         overflow-x: auto;
         padding: 1em;
-        background-color: var(--bg-light);
+        background-color: var(--nightshade-violet);
         margin: 0;
         border: none;
         box-shadow: none;
