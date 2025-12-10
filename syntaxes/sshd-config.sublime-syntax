@@ -1,0 +1,496 @@
+%YAML 1.2
+---
+# Standalone version of sshd-config.sublime-syntax
+# Merged with: ssh-common.sublime-syntax, ssh-crypto.sublime-syntax
+
+name: SSHD Config
+scope: source.sshd_config
+version: 2
+file_extensions:
+- sshd_config
+variables:
+  base64_char: '[a-zA-Z0-9+/]'
+  ssh_fingerprint: (?:AAAA(?:E2V|[BC]3N){{base64_char}}+={0,3})
+  zero_to_32: (?:3[0-2]|[12][0-9]|[0-9])
+  zero_to_128: (?:12[0-8]|1[01][0-9]|[1-9][0-9]|[0-9])
+  zero_to_255: (?:(?:25[0-5])|(?:2[0-4][0-9])|(?:1[0-9][0-9])|(?:[1-9][0-9])|[0-9])
+  zero_to_65535: (?:6553[0-5]|655[0-2][0-9]|65[0-4][0-9]{2}|6[0-4][0-9]{3}|[1-5][0-9]{4}|[1-9][0-9]{1,3}|[0-9])
+  ipv4: (?:(?:{{zero_to_255}}\.){3}{{zero_to_255}})
+  ipv6: "(?xi:\n  (?:::(?:ffff(?::0{1,4}){0,1}:){0,1}{{ipv4}})          # ::255.255.255.255\
+    \  ::ffff:255.255.255.255  ::ffff:0:255.255.255.255 (IPv4-mapped IPv6 addresses\
+    \ and IPv4-translated addresses)\n  |(?:(?:[0-9a-f]{1,4}:){1,4}:{{ipv4}})    \
+    \             # 2001:db8:3:4::192.0.2.33  64:ff9b::192.0.2.33                \
+    \       (IPv4-Embedded IPv6 Address)\n  |(?:fe80:(?::[0-9a-f]{1,4}){0,4}%[0-9a-z]{1,})\
+    \        # fe80::7:8%eth0     fe80::7:8%1                                    \
+    \  (link-local IPv6 addresses with zone index)\n  |(?:(?:[0-9a-f]{1,4}:){7,7}\
+    \    [0-9a-f]{1,4})         # 1:2:3:4:5:6:7:8\n  |   (?:[0-9a-f]{1,4}:      (?::[0-9a-f]{1,4}){1,6})\
+    \   # 1::3:4:5:6:7:8     1::3:4:5:6:7:8   1::8\n  |(?:(?:[0-9a-f]{1,4}:){1,2}(?::[0-9a-f]{1,4}){1,5})\
+    \   # 1::4:5:6:7:8       1:2::4:5:6:7:8   1:2::8\n  |(?:(?:[0-9a-f]{1,4}:){1,3}(?::[0-9a-f]{1,4}){1,4})\
+    \   # 1::5:6:7:8         1:2:3::5:6:7:8   1:2:3::8\n  |(?:(?:[0-9a-f]{1,4}:){1,4}(?::[0-9a-f]{1,4}){1,3})\
+    \   # 1::6:7:8           1:2:3:4::6:7:8   1:2:3:4::8\n  |(?:(?:[0-9a-f]{1,4}:){1,5}(?::[0-9a-f]{1,4}){1,2})\
+    \   # 1::7:8             1:2:3:4:5::7:8   1:2:3:4:5::8\n  |(?:(?:[0-9a-f]{1,4}:){1,6}\
+    \   :[0-9a-f]{1,4})         # 1::8               1:2:3:4:5:6::8   1:2:3:4:5:6::8\n\
+    \  |(?:(?:[0-9a-f]{1,4}:){1,7}   :)                      # 1::               \
+    \                  1:2:3:4:5:6:7::\n  |(?::(?:(?::[0-9a-f]{1,4}){1,7}|:))    \
+    \               # ::2:3:4:5:6:7:8    ::2:3:4:5:6:7:8  ::8       ::\n)"
+  all_parameters: "\\b(?xi:\n    AcceptEnv | AddressFamily\n  | Allow (?: AgentForwarding\
+    \ | Groups | StreamLocalForwarding\n          | TcpForwarding | Users)\n  | AuthenticationMethods\n\
+    \  | Authorized (?: Keys | Principals )(?: Command | CommandUser | File )\n  |\
+    \ Banner\n  | CASignatureAlgorithms | ChallengeResponseAuthentication\n  | ChannelTimeout\
+    \ | ChrootDirectory | Ciphers | ClientAliveCountMax\n  | ClientAliveInterval |\
+    \ Compression\n  | DenyGroups | DenyUsers | DisableForwarding\n  | ExposeAuthInfo\n\
+    \  | FingerprintHash | ForceCommand\n  | GatewayPorts | GSSAPIAuthentication |\
+    \ GSSAPICleanupCredentials\n  | GSSAPIStrictAcceptorCheck\n  | Hostbased (?: AcceptedAlgorithms\
+    \ | AcceptedKeyTypes | Authentication\n              | UsesNameFromPacketOnly\
+    \ )\n  | HostCertificate | HostKey | HostKeyAgent | HostKeyAlgorithms\n  | IgnoreRhosts\
+    \ | IgnoreUserKnownHosts | Include | IPQoS\n  | KbdInteractiveAuthentication\n\
+    \  | Kerberos (?: Authentication | GetAFSToken | OrLocalPasswd\n             |\
+    \ TicketCleanup )\n  | KexAlgorithms | KeyRegenerationInterval\n  | ListenAddress\
+    \ | LoginGraceTime | LogLevel | LogVerbose\n  | MACs | Match | MaxAuthTries |\
+    \ MaxSessions | MaxStartups | ModuliFile\n  | PasswordAuthentication | PAMServiceName\n\
+    \  | Permit (?: EmptyPasswords | Listen | Open | RootLogin | TTY | Tunnel\n  \
+    \         | UserEnvironment | UserRC )\n  | PerSource (?: MaxStartups | NetBlockSize\
+    \ | Penalties\n              | PenaltyExemptList )\n  | PidFile | Port | PrintLastLog\
+    \ | PrintMotd | Protocol\n  | Pubkey (?: AcceptedAlgorithms | AcceptedKeyTypes\
+    \ | AuthOptions\n           | Authentication )\n  | RefuseConnection | RekeyLimit\
+    \ | RequiredRSASize | RevokedKeys | RDomain\n  | RhostsRSAAuthentication | RSAAuthentication\n\
+    \  | SecurityKeyProvider | ServerKeyBits | SetEnv | ShowPatchLevel\n  # SshdAuthPath\
+    \ and SshSessionPath are just for tests\n  | StreamLocalBindMask | StreamLocalBindUnlink\n\
+    \  | StrictModes | Subsystem | SyslogFacility\n  | TCPKeepAlive | TrustedUserCAKeys\n\
+    \  | UnusedConnectionTimeout | UseDNS | UseLogin | UsePAM\n  | UsePrivilegeSeparation\n\
+    \  | VersionAddendum\n  | X11DisplayOffset | X11Forwarding | X11UseLocalhost |\
+    \ XAuthLocation\n)\\b"
+  parameters_boolean: "\\b(?xi:\n    AllowAgentForwarding\n  | ChallengeResponseAuthentication\
+    \ | Compression\n  | ExposeAuthInfo\n  | GSSAPIAuthentication | GSSAPICleanupCredentials\n\
+    \  | GSSAPIStrictAcceptorCheck\n  | HostbasedAuthentication | HostbasedUsesNameFromPacketOnly\n\
+    \  | IgnoreRhosts | IgnoreUserKnownHosts\n  | KbdInteractiveAuthentication | KerberosAuthentication\n\
+    \  | KerberosGetAFSToken | KerberosOrLocalPasswd\n  | KerberosTicketCleanup\n\
+    \  | PasswordAuthentication | PermitEmptyPasswords | PermitTTY\n  | PermitUserEnvironment\
+    \ | PermitUserRC | PrintLastLog | PrintMotd\n  | PubkeyAuthentication\n  | RefuseConnection\n\
+    \  | StreamLocalBindUnlink | StrictModes\n  | TCPKeepAlive\n  | UseDNS | UsePAM\n\
+    \  | X11Forwarding | X11UseLocalhost\n)\\b"
+contexts:
+  main:
+  - include: comments
+  - include: match
+  - include: parameters
+  comments:
+  - match: (#+)(?:\s*({{all_parameters}}))?
+    captures:
+      1: punctuation.definition.comment.sshd_config
+      2: meta.keyword.comment.sshd_config
+    push:
+    - meta_scope: comment.line.number-sign.sshd_config
+    - include: pop-nl
+  - match: (;+)(?:\s*({{all_parameters}}))?
+    captures:
+      1: punctuation.definition.comment.sshd_config
+      2: meta.keyword.comment.sshd_config
+    push:
+    - meta_scope: comment.line.semi-colon.sshd_config
+    - include: pop-nl
+  comments-number-sign:
+  - match: ^\s*(#+)
+    captures:
+      1: comment.line.number-sign.ssh.common punctuation.definition.comment.ssh.common
+    push:
+    - meta_content_scope: comment.line.number-sign.ssh.common
+    - match: \n
+      scope: comment.line.number-sign.ssh.common
+      pop: true
+  comments-semicolon:
+  - match: ^\s*(;+)
+    captures:
+      1: comment.line.semi-colon.ssh.common punctuation.definition.comment.ssh.common
+    push:
+    - meta_content_scope: comment.line.semi-colon.ssh.common
+    - include: pop-nl
+  operator-exclamation:
+  - match: '!'
+    scope: keyword.operator.logical.ssh.common
+  wildcards:
+  - match: \*
+    scope: constant.other.wildcard.asterisk.ssh.common
+  - match: \?
+    scope: constant.other.wildcard.questionmark.ssh.common
+  punctuation-comma-sequence:
+  - match: ','
+    scope: punctuation.separator.sequence.ssh.common
+  punctuation-dot-sequence:
+  - match: \.
+    scope: punctuation.separator.sequence.ssh.common
+  punctuation-at:
+  - match: '@'
+    scope: punctuation.separator.sequence.ssh.common
+  ssh-fingerprint:
+  - match: '{{ssh_fingerprint}}'
+    scope: variable.other.fingerprint.ssh.common
+  ssh-fingerprint-with-label:
+  - match: '{{ssh_fingerprint}}'
+    scope: variable.other.fingerprint.ssh.common
+    push: expect-fingerprint-label
+  expect-fingerprint-label:
+  - include: pop-before-nl
+  - match: (?=\S)
+    push:
+    - meta_scope: meta.annotation.identifier.ssh.common string.unquoted.ssh.common
+    - match: (?=[ \t]*$)
+      pop: 1
+    - include: punctuation-at
+  time-values:
+  - match: \b(?=[\dsmhdw]*\d[smhdw][\s,"])
+    push:
+    - meta_scope: meta.constant.time.ssh.common meta.number.integer.decimal.ssh.common
+    - match: (?=[\s,"])
+      pop: 1
+    - match: (\d+)([smhdw])
+      captures:
+        1: constant.numeric.value.ssh.common
+        2: constant.numeric.suffix.ssh.common
+  bytes-values:
+  - match: \b(\d+)([KMG])(?=[\s,"])
+    scope: meta.constant.bytes.ssh.common meta.number.integer.other.ssh.common
+    captures:
+      1: constant.numeric.value.ssh.common
+      2: constant.numeric.suffix.ssh.common
+  mac-addresses:
+  - match: (?:[0-9a-fA-F]{2}:){5}(?:[0-9a-fA-F]{2})
+    scope: entity.name.constant.mac-address.ssh.common
+  ipv4:
+  - match: \b{{ipv4}}\b
+    scope: meta.number.integer.other.ssh.common constant.numeric.ip-address.v4.ssh.common
+  ipv6:
+  - match: '{{ipv6}}'
+    scope: meta.number.integer.other.ssh.common constant.numeric.ip-address.v6.ssh.common
+  ipv6-square-bracket:
+  - match: (\[){{ipv6}}(\])
+    scope: meta.number.integer.other.ssh.common constant.numeric.ip-address.v6.ssh.common
+    captures:
+      1: punctuation.definition.constant.begin.ssh.common
+      2: punctuation.definition.constant.end.ssh.common
+  ip-addresses:
+  - include: ipv6
+  - include: ipv4
+  ipv4-with-cidr:
+  - match: \b({{ipv4}})(?:(/)({{zero_to_32}}))?\b
+    captures:
+      1: meta.number.integer.other.ssh.common constant.numeric.ip-address.v4.ssh.common
+      2: punctuation.separator.sequence.ssh.common
+      3: constant.other.range.ssh.common
+  ipv6-with-cidr:
+  - match: ({{ipv6}})(?:(/)({{zero_to_128}})\b)?
+    captures:
+      1: meta.number.integer.other.ssh.common constant.numeric.ip-address.v6.ssh.common
+      2: punctuation.separator.sequence.ssh.common
+      3: constant.other.range.ssh.common
+  ip-addresses-with-cidr:
+  - include: ipv6-with-cidr
+  - include: ipv4-with-cidr
+  port-numbers:
+  - match: \b{{zero_to_65535}}(?![\w:])
+    scope: meta.number.integer.decimal.ssh.common constant.numeric.port-number.ssh.common
+  match-all:
+  - match: '\b(?xi: all )\b'
+    scope: constant.language.boolean.true.ssh.common
+  none:
+  - match: \bnone\b
+    scope: constant.language.null.ssh.common
+  any:
+  - match: \bany\b
+    scope: constant.language.set.ssh.common
+  boolean:
+  - match: \byes\b
+    scope: constant.language.boolean.true.ssh.common
+  - match: \bno\b
+    scope: constant.language.boolean.false.ssh.common
+  boolean-with-typing:
+  - include: boolean
+  - match: \b(?:ye?|n)\b
+  log-level:
+  - match: '\b(?x: QUIET | FATAL | ERROR | INFO | DEBUG[1-3]? )\b'
+    scope: constant.language.log-level.ssh.common
+  possibly-quoted-value:
+  - meta_content_scope: meta.mapping.value.sshd_config
+  - match: '"'
+    scope: punctuation.definition.string.begin.sshd_config
+    push:
+    - meta_scope: string.quoted.double.sshd_config
+    - match: (")(?:\s*(\S.*))?
+      captures:
+        1: punctuation.definition.string.end.sshd_config
+        2: invalid.illegal.sshd_config
+      pop: 1
+    - match: \n|$
+      scope: invalid.illegal.unclosed-string.sshd_config
+      pop: 2
+  - match: (?=\S)
+    push:
+    - meta_content_scope: string.unquoted.sshd_config
+    - include: pop-before-nl
+  - include: pop-nl
+  string-patterns:
+  - include: punctuation-comma-sequence
+  - include: operator-exclamation
+  - match: '"'
+    scope: punctuation.definition.string.begin.ssh.common
+    push:
+    - meta_content_scope: string.quoted.double.ssh.common
+    - match: '"'
+      scope: punctuation.definition.string.end.ssh.common
+      pop: 1
+    - include: wildcards
+  - match: (?=\S)
+    push:
+    - meta_content_scope: string.unquoted.ssh.common
+    - match: (?=[,!\s])
+      pop: 1
+    - include: wildcards
+  paths:
+  - match: (?=~?[\w.\-?*${}%]*/[\w.\-?*${}%]?)
+    push:
+    - meta_scope: meta.path.ssh.common entity.name.ssh.common
+    - match: (?=[\s,"])
+      pop: 1
+    - match: ~[\w\-.]*
+      scope: variable.language.home.ssh.common
+    - match: (/)(?:(\.{1,2})(?=/)|\.(?!/))?
+      captures:
+        1: punctuation.separator.path.ssh.common
+        2: constant.other.placeholder.ssh.common
+    - match: \.(?=[\w*?%])
+      scope: punctuation.separator.sequence.ssh.common
+    - include: wildcards
+    - include: tokens
+    - include: environment-variables
+  none-command-values:
+  - match: \s*(none)\b[ \t]*$
+    captures:
+      1: constant.language.null.ssh.common
+  - match: \s*((")(none)("))[ \t]*$
+    captures:
+      1: string.quoted.double.ssh.common
+      2: punctuation.definition.string.begin.ssh.common
+      3: constant.language.null.ssh.common
+      4: punctuation.definition.string.end.ssh.common
+  tokens:
+  - match: '%%'
+    scope: constant.character.escape.sshd_config
+  - match: '%[hUu]'
+    scope: constant.other.placeholder.sshd_config
+  environment-variables: []
+  pop-nl:
+  - match: \n
+    pop: 1
+  pop-before-nl:
+  - match: (?=\n)
+    pop: 1
+  ssh-ciphers:
+  - match: \b(?:twofish256\-gcm@libassh\.org|twofish256\-ctr|twofish192\-ctr|twofish128\-gcm@libassh\.org|twofish128\-ctr|twofish\-ctr|crypticore128@ssh\.com|chacha20\-poly1305@openssh\.com|chacha20\-poly1305|camellia256\-ctr@openssh\.org|camellia256\-ctr|camellia192\-ctr@openssh\.org|camellia192\-ctr|camellia128\-ctr@openssh\.org|camellia128\-ctr|aes256\-gcm@openssh\.com|aes256\-gcm|aes256\-ctr|aes192\-gcm@openssh\.com|aes192\-ctr|aes128\-gcm@openssh\.com|aes128\-gcm|aes128\-ctr|AEAD_CAMELLIA_256_GCM|AEAD_CAMELLIA_128_GCM|AEAD_AES_256_GCM|AEAD_AES_128_GCM)(?=[,\s\"])
+    scope: support.function.cipher.ssh.crypto
+  - match: \b(?:twofish256\-cbc|twofish192\-cbc|twofish128\-cbc|twofish\-ofb|twofish\-ecb|twofish\-cfb|twofish\-cbc|serpent256\-gcm@libassh\.org|serpent256\-ctr|serpent256\-cbc|serpent192\-ctr|serpent192\-cbc|serpent128\-gcm@libassh\.org|serpent128\-ctr|serpent128\-cbc|seed\-ctr@ssh\.com|seed\-cbc@ssh\.com|rijndael256\-cbc|rijndael192\-cbc|rijndael128\-cbc|rijndael\-cbc@ssh\.com|rijndael\-cbc@lysator\.liu\.se|none|idea\-ofb|idea\-ecb|idea\-ctr|idea\-cfb|idea\-cbc|grasshopper\-ctr128|des\-ofb|des\-ecb|des\-cfb|des\-cbc@ssh\.com|des\-cbc\-ssh1|des\-cbc|des|cast128\-ofb|cast128\-ecb|cast128\-ctr|cast128\-cfb|cast128\-cbc|cast128\-12\-ofb|cast128\-12\-ecb|cast128\-12\-ctr|cast128\-12\-cfb|cast128\-12\-cbc|camellia256\-cbc@openssh\.org|camellia256\-cbc|camellia192\-cbc@openssh\.org|camellia192\-cbc|camellia128\-cbc@openssh\.org|camellia128\-cbc|blowfish\-ecb|blowfish\-ctr|blowfish\-cfb|blowfish\-cbc|blowfish|arcfour256|arcfour128|arcfour|aes256\-cbc|aes192\-cbc|aes128\-ocb@libassh\.org|aes128\-cbc|3des\-ofb|3des\-ecb|3des\-ctr|3des\-cfb|3des\-cbc|3des)(?=[,\s\"])
+    scope: invalid.deprecated.cipher.ssh.crypto
+  ssh-kex-algorithms:
+  - match: \b(?:x25519\-kyber512\-sha512@aws\.amazon\.com|x25519\-kyber\-512r3\-sha256\-d00@amazon\.com|sntrup761x25519\-sha512@openssh\.com|sntrup4591761x25519\-sha512@tinyssh\.org|sm2kep\-sha2\-nistp256|rsa2048\-sha256|mlkem768x25519\-sha256|mlkem768nistp256\-sha256|mlkem1024nistp384\-sha384|m511\-sha512@libassh\.org|m383\-sha384@libassh\.org|kexguess2@matt\.ucc\.asn\.au|kexAlgoECDH521|kexAlgoECDH384|kexAlgoECDH256|kexAlgoCurve25519SHA256|kex\-strict\-s\-v00@openssh\.com|kex\-strict\-c\-v00@openssh\.com|gss\-nistp521\-sha512\-|gss\-nistp384\-sha384\-|gss\-nistp384\-sha256\-|gss\-nistp256\-sha256\-|gss\-group18\-sha512\-|gss\-group17\-sha512\-|gss\-group16\-sha512\-|gss\-group15\-sha512\-toWM5Slw5Ew8Mqkay\+al2g==|gss\-group15\-sha512\-|gss\-group14\-sha256\-toWM5Slw5Ew8Mqkay\+al2g==|gss\-group14\-sha256\-|gss\-gex\-sha256\-|gss\-curve448\-sha512\-|gss\-curve25519\-sha256\-|gss\-13\.3\.132\.0\.10\-sha256\-|ext\-info\-s|ext\-info\-c|ecmqv\-sha2|ecdh\-sha2\-wiRIU8TKjMZ418sMqlqtvQ==|ecdh\-sha2\-qcFQaMAMGhTziMT0z\+Tuzw==|ecdh\-sha2\-nistt571|ecdh\-sha2\-nistp521|ecdh\-sha2\-nistp384|ecdh\-sha2\-nistp256|ecdh\-sha2\-nistp224|ecdh\-sha2\-nistp192|ecdh\-sha2\-nistk409|ecdh\-sha2\-nistk283|ecdh\-sha2\-nistb409|ecdh\-sha2\-mNVwCXAoS1HGmHpLvBC94w==|ecdh\-sha2\-m/FtSAmrV4j/Wy6RVUaK7A==|ecdh\-sha2\-h/SsxnLCtRBh7I9ATyeB3A==|ecdh\-sha2\-curve25519|ecdh\-sha2\-brainpoolp521r1@genua\.de|ecdh\-sha2\-brainpoolp384r1@genua\.de|ecdh\-sha2\-brainpoolp256r1@genua\.de|ecdh\-sha2\-D3FefCjYoJ/kfXgAyLddYA==|ecdh\-sha2\-9UzNcgwTlEnSCECZa7V1mw==|ecdh\-sha2\-1\.3\.132\.0\.38|ecdh\-sha2\-1\.3\.132\.0\.37|ecdh\-sha2\-1\.3\.132\.0\.36|ecdh\-sha2\-1\.3\.132\.0\.35|ecdh\-sha2\-1\.3\.132\.0\.34|ecdh\-sha2\-1\.3\.132\.0\.16|ecdh\-sha2\-1\.3\.132\.0\.10|ecdh\-sha2\-1\.2\.840\.10045\.3\.1\.7|ecdh\-nistp521\-kyber\-1024r3\-sha512\-d00@openquantumsafe\.org|ecdh\-nistp384\-kyber\-768r3\-sha384\-d00@openquantumsafe\.org|ecdh\-nistp256\-kyber\-512r3\-sha256\-d00@openquantumsafe\.org|diffie\-hellman_group17\-sha512|diffie\-hellman\-group18\-sha512@ssh\.com|diffie\-hellman\-group18\-sha512|diffie\-hellman\-group17\-sha512|diffie\-hellman\-group16\-sha512@ssh\.com|diffie\-hellman\-group16\-sha512|diffie\-hellman\-group16\-sha384@ssh\.com|diffie\-hellman\-group16\-sha256|diffie\-hellman\-group15\-sha512|diffie\-hellman\-group15\-sha384@ssh\.com|diffie\-hellman\-group15\-sha256@ssh\.com|diffie\-hellman\-group15\-sha256|diffie\-hellman\-group14\-sha256@ssh\.com|diffie\-hellman\-group14\-sha256|diffie\-hellman\-group14\-sha224@ssh\.com|diffie\-hellman\-group1\-sha256|diffie\-hellman\-group\-exchange\-sha512@ssh\.com|diffie\-hellman\-group\-exchange\-sha512@ssh\.com|diffie\-hellman\-group\-exchange\-sha384@ssh\.com|diffie\-hellman\-group\-exchange\-sha256@ssh\.com|diffie\-hellman\-group\-exchange\-sha256@ssh\.com|diffie\-hellman\-group\-exchange\-sha256|diffie\-hellman\-group\-exchange\-sha256|diffie\-hellman\-group\-exchange\-sha224@ssh\.com|curve448\-sha512@libssh\.org|curve448\-sha512|curve25519\-sha256@libssh\.org|curve25519\-sha256|Curve25519SHA256)(?=[,\s\"])
+    scope: support.function.kex-algorithm.ssh.crypto
+  - match: \b(?:rsa1024\-sha1|kexAlgoDH1SHA1|kexAlgoDH14SHA1|gss\-group14\-sha1\-toWM5Slw5Ew8Mqkay\+al2g==|gss\-group14\-sha1\-|gss\-group1\-sha1\-toWM5Slw5Ew8Mqkay\+al2g==|gss\-group1\-sha1\-|gss\-gex\-sha1\-toWM5Slw5Ew8Mqkay\+al2g==|gss\-gex\-sha1\-|ecdh\-sha2\-zD/b3hu/71952ArpUG4OjQ==|ecdh\-sha2\-qCbG5Cn/jjsZ7nBeR7EnOA==|ecdh\-sha2\-nistk233|ecdh\-sha2\-nistk163|ecdh\-sha2\-nistb233|ecdh\-sha2\-VqBg4QRPjxx1EXZdV0GdWQ==|ecdh\-sha2\-5pPrSUQtIaTjUSt5VZNBjg==|ecdh\-sha2\-4MHB\+NBt3AlaSRQ7MnB4cg==|ecdh\-sha2\-1\.3\.132\.0\.33|ecdh\-sha2\-1\.3\.132\.0\.27|ecdh\-sha2\-1\.3\.132\.0\.26|ecdh\-sha2\-1\.3\.132\.0\.1|ecdh\-sha2\-1\.2\.840\.10045\.3\.1\.1|diffie\-hellman\-group14\-sha1|diffie\-hellman\-group1\-sha1|diffie\-hellman\-group\-exchange\-sha1)(?=[,\s\"])
+    scope: invalid.deprecated.kex-algorithm.ssh.crypto
+  ssh-key-types:
+  - match: \b(?:x509v3\-sign\-rsa\-sha512@ssh\.com|x509v3\-sign\-rsa\-sha384@ssh\.com|x509v3\-sign\-rsa\-sha256@ssh\.com|x509v3\-sign\-rsa\-sha256@ssh\.com|x509v3\-sign\-rsa\-sha256|x509v3\-sign\-rsa\-sha224@ssh\.com|x509v3\-sign\-dss\-sha512@ssh\.com|x509v3\-sign\-dss\-sha384@ssh\.com|x509v3\-sign\-dss\-sha256@ssh\.com|x509v3\-sign\-dss\-sha224@ssh\.com|x509v3\-rsa2048\-sha256|x509v3\-ecdsa\-sha2\-nistp521|x509v3\-ecdsa\-sha2\-nistp384|x509v3\-ecdsa\-sha2\-nistp256|x509v3\-ecdsa\-sha2\-1\.3\.132\.0\.10|webauthn\-sk\-ecdsa\-sha2\-nistp256@openssh\.com|ssh\-rsa\-sha512@ssh\.com|ssh\-rsa\-sha384@ssh\.com|ssh\-rsa\-sha256@ssh\.com|ssh\-rsa\-sha256@ssh\.com|ssh\-rsa\-sha2\-512|ssh\-rsa\-sha2\-256|ssh\-rsa|ssh\-gost\-2012\-512|ssh\-gost\-2012\-256|ssh\-gost\-2001|ssh\-ed448|ssh\-ed25519\-cert\-v01@openssh\.com|ssh\-ed25519|spi\-sign\-rsa|sk\-ecdsa\-sha2\-nistp256@openssh\.com|sk\-ecdsa\-sha2\-nistp256\-cert\-v01@openssh\.com|rsa\-sha2\-512\-cert\-v01@openssh\.com|rsa\-sha2\-512|rsa\-sha2\-256\-cert\-v01@openssh\.com|rsa\-sha2\-256|eddsa\-e521\-shake256@libassh\.org|eddsa\-e382\-shake256@libassh\.org|ecdsa\-sha2\-nistt571|ecdsa\-sha2\-nistp521\-cert\-v01@openssh\.com|ecdsa\-sha2\-nistp521|ecdsa\-sha2\-nistp384\-cert\-v01@openssh\.com|ecdsa\-sha2\-nistp384|ecdsa\-sha2\-nistp256\-cert\-v01@openssh\.com|ecdsa\-sha2\-nistp256|ecdsa\-sha2\-nistk409|ecdsa\-sha2\-nistk283|ecdsa\-sha2\-nistk233|ecdsa\-sha2\-nistk163|ecdsa\-sha2\-nistb409|ecdsa\-sha2\-curve25519|ecdsa\-sha2\-1\.3\.132\.0\.10\-cert\-v01@openssh\.com|ecdsa\-sha2\-1\.3\.132\.0\.10|dsa3072\-sha256@libassh\.org|dsa2048\-sha256@libassh\.org|dsa2048\-sha224@libassh\.org)(?=[,\s\"])
+    scope: support.type.key-type.ssh.crypto
+  - match: \b(?:x509v3\-ssh\-rsa|x509v3\-ssh\-dss|x509v3\-sign\-rsa\-sha1|x509v3\-sign\-rsa|x509v3\-sign\-dss\-sha1|x509v3\-sign\-dss|ssh\-xmss@openssh\.com|ssh\-xmss\-cert\-v01@openssh\.com|ssh\-rsa1|ssh\-rsa\-cert\-v01@openssh\.com|ssh\-rsa\-cert\-v00@openssh\.com|ssh\-dss\-sha512@ssh\.com|ssh\-dss\-sha384@ssh\.com|ssh\-dss\-sha256@ssh\.com|ssh\-dss\-sha224@ssh\.com|ssh\-dss\-cert\-v01@openssh\.com|ssh\-dss\-cert\-v00@openssh\.com|ssh\-dss|ssh\-dsa|spki\-sign\-rsa|spki\-sign\-dss|pgp\-sign\-rsa|pgp\-sign\-dss|null|ecdsa\-sha2\-nistp224|ecdsa\-sha2\-nistp192|ecdsa\-sha2\-nistb233)(?=[,\s\"])
+    scope: invalid.deprecated.key-type.ssh.crypto
+  ssh-mac-algorithms:
+  - match: \b(?:umac\-96@openssh\.com|umac\-64@openssh\.com|umac\-64\-etm@openssh\.com|umac\-32@openssh\.com|umac\-128@openssh\.com|umac\-128\-etm@openssh\.com|umac\-128|hmac\-sha512@ssh\.com|hmac\-sha512|hmac\-sha3\-512|hmac\-sha3\-384|hmac\-sha3\-256|hmac\-sha3\-224|hmac\-sha256@ssh\.com|hmac\-sha256\-96@ssh\.com|hmac\-sha256|hmac\-sha2\-56|hmac\-sha2\-512\-etm@openssh\.com|hmac\-sha2\-512\-96\-etm@openssh\.com|hmac\-sha2\-512|hmac\-sha2\-384|hmac\-sha2\-256\-etm@openssh\.com|hmac\-sha2\-256\-96\-etm@openssh\.com|hmac\-sha2\-256|hmac\-sha2\-224|crypticore\-mac@ssh\.com|chacha20\-poly1305@openssh\.com|cbcmac\-twofish|cbcmac\-aes|aes256\-gcm|aes128\-gcm|AEAD_AES_256_GCM|AEAD_AES_128_GCM)(?=[,\s\"])
+    scope: support.function.mac-algorithm.ssh.crypto
+  - match: \b(?:sha1\-8|sha1|ripemd160\-8|ripemd160|none|md5\-8|md5|hmac\-sha2\-512\-96|hmac\-sha2\-256\-96|hmac\-sha1\-etm@openssh\.com|hmac\-sha1\-96\-etm@openssh\.com|hmac\-sha1\-96|hmac\-sha1|hmac\-ripemd160@openssh\.com|hmac\-ripemd160\-etm@openssh\.com|hmac\-ripemd160\-96|hmac\-ripemd160|hmac\-ripemd|hmac\-md5\-etm@openssh\.com|hmac\-md5\-96\-etm@openssh\.com|hmac\-md5\-96|hmac\-md5|cbcmac\-rijndael|cbcmac\-des|cbcmac\-blowfish|cbcmac\-3des)(?=[,\s\"])
+    scope: invalid.deprecated.mac-algorithm.ssh.crypto
+  parameters:
+  - include: comments
+  - include: parameter-forcecommand
+  - include: parameter-authorizedkeyscommand
+  - include: parameter-authorizedprincipalscommand
+  - include: parameter-path-with-tokens
+  - include: parameter-routingdomain
+  - include: parameter-with-boolean-values
+  - include: parameter-generic
+  pop-before-match-option:
+  - include: pop-before-nl
+  - match: '(?=\s*(?xi: all | user | group | host | (?:local)? address | localport
+      )\b)'
+    pop: 1
+  pop-before-next-match:
+  - match: (?=^\s*(?i:Match)\b)
+    pop: 1
+  match:
+  - match: ^\s*((?i:Match))\b
+    captures:
+      1: keyword.control.conditional.sshd_config
+    set: match-conditions
+  match-conditions:
+  - meta_scope: meta.block.match.sshd_config
+  - meta_content_scope: meta.statement.conditional.sshd_config
+  - match: \n
+    set: match-body
+  - include: operator-exclamation
+  - include: match-all
+  - match: '\b(?xi: invalid-user )\b'
+    scope: constant.language.null.sshd_config
+  - match: '\b(?xi: host )\b'
+    scope: meta.mapping.key.sshd_config keyword.other.sshd_config
+    with_prototype:
+    - include: punctuation-dot-sequence
+    push:
+    - meta_content_scope: meta.mapping.value.sshd_config
+    - include: pop-before-match-option
+    - include: string-patterns
+  - match: '\b(?xi: user | group )\b'
+    scope: meta.mapping.key.sshd_config keyword.other.sshd_config
+    push:
+    - meta_content_scope: meta.mapping.value.sshd_config
+    - include: pop-before-match-option
+    - include: string-patterns
+  - match: '\b(?xi: (?:local)? address )\b'
+    scope: meta.mapping.key.sshd_config keyword.other.sshd_config
+    push:
+    - meta_content_scope: meta.mapping.value.sshd_config
+    - include: pop-before-match-option
+    - include: operator-exclamation
+    - include: wildcards
+    - include: punctuation-comma-sequence
+    - include: ip-addresses-with-cidr
+  - match: '\b(?xi: localport )\b'
+    scope: meta.mapping.key.sshd_config keyword.other.sshd_config
+    push:
+    - meta_content_scope: meta.mapping.value.sshd_config
+    - include: pop-before-match-option
+    - include: port-numbers
+  - match: '\b(?xi: rdomain )\b'
+    scope: meta.mapping.key.sshd_config keyword.other.sshd_config
+    push:
+    - meta_content_scope: meta.mapping.value.sshd_config
+    - include: pop-before-match-option
+    - match: \b{{zero_to_255}}\b
+      scope: meta.number.integer.decimal.sshd_config constant.numeric.value.sshd_config
+  match-body:
+  - meta_content_scope: meta.block.match.sshd_config
+  - include: pop-before-next-match
+  - include: parameters
+  parameter-forcecommand:
+  - match: ^\s*((?i:ForceCommand))\b\s*(=)?
+    captures:
+      1: meta.mapping.key.sshd_config keyword.other.sshd_config
+      2: keyword.operator.assignment.sshd_config
+    push:
+    - meta_content_scope: meta.mapping.value.sshd_config
+    - include: pop-nl
+    - include: none-command-values
+    - match: '"'
+      scope: string.quoted.double.sshd_config punctuation.definition.string.begin.sshd_config
+      escape: (")|(?=$)
+      escape_captures:
+        1: meta.mapping.value.sshd_config string.quoted.double.sshd_config punctuation.definition.string.end.sshd_config
+      embed_scope: string.quoted.double.sshd_config
+      embed: scope:source.shell
+    - match: (?=\S)
+      escape: (?=$)
+      embed: scope:source.shell
+  parameter-authorizedkeyscommand:
+  - match: ^\s*((?i:AuthorizedKeysCommand))\b\s*(=)?
+    captures:
+      1: meta.mapping.key.sshd_config keyword.other.sshd_config
+      2: keyword.operator.assignment.sshd_config
+    push:
+    - meta_content_scope: meta.mapping.value.sshd_config
+    - include: pop-nl
+    - match: '"'
+      scope: string.quoted.double.sshd_config punctuation.definition.string.begin.sshd_config
+      escape: (")|(?=$)
+      escape_captures:
+        1: meta.mapping.value.sshd_config string.quoted.double.sshd_config punctuation.definition.string.end.sshd_config
+      embed_scope: string.quoted.double.ssh_config source.shell.embedded.ssh.authorizedkeyscommand
+      embed: scope:source.shell.embedded.ssh.authorizedkeyscommand
+    - match: (?=\S)
+      escape: (?=$)
+      embed: scope:source.shell.embedded.ssh.authorizedkeyscommand
+  parameter-authorizedprincipalscommand:
+  - match: ^\s*((?i:AuthorizedPrincipalsCommand))\b\s*(=)?
+    captures:
+      1: meta.mapping.key.sshd_config keyword.other.sshd_config
+      2: keyword.operator.assignment.sshd_config
+    push:
+    - meta_content_scope: meta.mapping.value.sshd_config
+    - include: pop-nl
+    - match: '"'
+      scope: string.quoted.double.sshd_config punctuation.definition.string.begin.sshd_config
+      escape: (")|(?=$)
+      escape_captures:
+        1: meta.mapping.value.sshd_config string.quoted.double.sshd_config punctuation.definition.string.end.sshd_config
+      embed_scope: string.quoted.double.ssh_config source.shell.embedded.ssh.authorizedprincipalscommand
+      embed: scope:source.shell.embedded.ssh.authorizedprincipalscommand
+    - match: (?=\S)
+      escape: (?=$)
+      embed: scope:source.shell.embedded.ssh.authorizedprincipalscommand
+  parameter-path-with-tokens:
+  - match: '^\s*((?ix: AuthorizedKeysFile | AuthorizedPrincipalsFile | ChrootDirectory
+      ))\b\s*(=)?'
+    captures:
+      1: meta.mapping.key.sshd_config keyword.other.sshd_config
+      2: keyword.operator.assignment.sshd_config
+    with_prototype:
+    - include: tokens
+    - include: none
+    - include: paths
+    push: possibly-quoted-value
+  parameter-routingdomain:
+  - match: ^\s*((?i:RoutingDomain))\b\s*(=)?
+    captures:
+      1: meta.mapping.key.sshd_config keyword.other.sshd_config
+      2: keyword.operator.assignment.sshd_config
+    with_prototype:
+    - match: '%D'
+      scope: constant.other.placeholder.sshd_config
+    - include: numeric-values
+    push: possibly-quoted-value
+  parameter-with-boolean-values:
+  - match: ^\s*({{parameters_boolean}})\s*(=)?
+    captures:
+      1: meta.mapping.key.sshd_config keyword.other.sshd_config
+      2: keyword.operator.assignment.sshd_config
+    with_prototype:
+    - include: boolean-with-typing
+    - match: '[^"\s]+'
+      scope: invalid.illegal.sshd_config
+    push: possibly-quoted-value
+  parameter-generic:
+  - match: ^\s*([a-zA-Z1]+)\b\s*(=)?
+    captures:
+      1: meta.mapping.key.sshd_config keyword.other.sshd_config
+      2: keyword.operator.assignment.sshd_config
+    with_prototype:
+    - include: generic-parameter-values
+    push: possibly-quoted-value
+  generic-parameter-values:
+  - include: boolean
+  - include: none
+  - include: any
+  - match: '\b(?xi: default )\b'
+    scope: constant.language.default.sshd_config
+  - include: ssh-key-types
+  - include: ssh-ciphers
+  - include: ssh-kex-algorithms
+  - include: ssh-mac-algorithms
+  - include: ipv6-square-bracket
+  - include: ip-addresses-with-cidr
+  - include: time-values
+  - include: bytes-values
+  - include: operator-exclamation
+  - include: wildcards
+  - include: punctuation-comma-sequence
+  - include: log-level
+  - include: paths
+  - include: numeric-values
+  - match: ':'
+    scope: punctuation.separator.sequence.sshd_config
+  numeric-values:
+  - match: \b\d+(?=[\s,:"])
+    scope: constant.numeric.sshd_config

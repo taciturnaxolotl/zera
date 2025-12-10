@@ -564,6 +564,14 @@ pre {
   font-style: monospace;
 }
 
+/* Allow wrapping for specific code blocks (e.g., SSH keys) */
+pre[data-lang="pub"],
+pre.wrap {
+  white-space: pre-wrap;
+  word-break: break-all;
+  overflow-x: visible;
+}
+
 p code,
 li code,
 div code {
