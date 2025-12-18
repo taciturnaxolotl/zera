@@ -3,12 +3,7 @@
 <meta content="text/html; charset=UTF-8" http-equiv="content-type" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="robots" content="index, follow" />
-<link
-  rel="sitemap"
-  type="application/xml"
-  title="Sitemap"
-  href="/sitemap.xml"
-/>
+<link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
 {% if page.title %} {% set title = page.title %} {% elif section.title %} {% set
 title = section.title %} {% elif term %} {% set title = "|" ~ term.name ~ "|" %}
 {% elif current_path and "tags" in current_path %} {% set title = "Root Index"
@@ -67,38 +62,27 @@ default(value=true) %} {% if twitter_card != false %}
 <meta name="apple-mobile-web-app-title" content="site@zera" />
 <link rel="manifest" href="/favicon/site.webmanifest" />
 {% endblock metatags %} {% if config.generate_feeds %} {% block
-feed%} <link rel="alternate" type="application/atom+xml" title="Kieran Klukas' Atom feed" href="{{
-get_url(path="atom.xml", trailing_slash=false) }}"> <link rel="alternate"
-type="application/rss+xml" title="Kieran Klukas' RSS feed" href="{{ get_url(path="rss.xml",
-trailing_slash=false) }}"> {% endblock feed %} {% endif%} {% block css %} {% set
+feed%}
+<link rel="alternate" type="application/atom+xml" title="Kieran Klukas' Atom feed" href="{{
+get_url(path=" atom.xml", trailing_slash=false) }}">
+<link rel="alternate" type="application/rss+xml" title="Kieran Klukas' RSS feed" href="{{ get_url(path=" rss.xml",
+  trailing_slash=false) }}"> {% endblock feed %} {% endif%} {% block css %} {% set
 cssHash = get_hash(path="css/main.css", sha_type=256, base64=true) %}
-<link
-  rel="stylesheet"
-  type="text/css"
-  href="{{ get_url(path='css/main.css?' ~ cssHash, trailing_slash=false) | safe }}"
-/>
+<link rel="stylesheet" type="text/css"
+  href="{{ get_url(path='css/main.css?' ~ cssHash, trailing_slash=false) | safe }}" />
 {% endblock css %}
 
 {% set jsHash = get_hash(path="js/copy-button.js", sha_type=256,
 base64=true) %}
-<script
-  src="{{ get_url(path='js/copy-button.js?' ~ jsHash, trailing_slash=false) | safe }}"
-  defer
-></script>
+<script src="{{ get_url(path='js/copy-button.js?' ~ jsHash, trailing_slash=false) | safe }}" defer></script>
 
 {% set emojiJsHash = get_hash(path="js/emoji-replace.js", sha_type=256,
 base64=true) %}
-<script
-  src="{{ get_url(path='js/emoji-replace.js?' ~ emojiJsHash, trailing_slash=false) | safe }}"
-  defer
-></script>
+<script src="{{ get_url(path='js/emoji-replace.js?' ~ emojiJsHash, trailing_slash=false) | safe }}" defer></script>
 
 {% set lightboxJsHash = get_hash(path="lightbox.js", sha_type=256,
 base64=true) %}
-<script
-  src="{{ get_url(path='lightbox.js?' ~ lightboxJsHash, trailing_slash=false) | safe }}"
-  defer
-></script>
+<script src="{{ get_url(path='lightbox.js?' ~ lightboxJsHash, trailing_slash=false) | safe }}" defer></script>
 
 <script type="speculationrules">
 {
@@ -113,16 +97,17 @@ base64=true) %}
 </script>
 
 <script>
-    function cb(res) {
-        const fmt = new Intl.NumberFormat('en', { notation: 'compact' });
-        const elements = document.querySelectorAll("[id='visits']");
-        elements.forEach(el => {
-            el.innerText = fmt.format(res.value);
-            el.title = res.value + " visits";
-        });
-    }
+  function cb(res) {
+    const fmt = new Intl.NumberFormat('en', {notation: 'compact'});
+    const elements = document.querySelectorAll("[id='visits']");
+    elements.forEach(el => {
+      el.innerText = fmt.format(res.value);
+      el.title = res.value + " visits";
+    });
+  }
 </script>
-<script async src="https://abacus.jasoncameron.dev/hit/dunkirk.sh/counter{%- if url | split(pat='/') | slice(start=3) | join != '' -%}-{{url | split(pat='/') | slice(start=3) | join(sep=' ') | slugify}}{%- endif -%}?callback=cb"></script>
+<script async
+  src="https://abacus.jasoncameron.dev/hit/dunkirk.sh/counter{%- if url | split(pat='/') | slice(start=3) | join != '' -%}-{{url | split(pat='/') | slice(start=3) | join(sep=' ') | slugify}}{%- endif -%}?callback=cb"></script>
 
 <link rel="me" href="https://social.dino.icu/@taciturnaxoltol" />
 <link rel="me" href="https://github.com/taciturnaxolotl" />
@@ -131,6 +116,10 @@ base64=true) %}
 <link rel="me" href="https://keyoxide.org/aspe:keyoxide.org:QMHCMT55EODYTEBQ5C7QOAFN6A" />
 <link rel="me" href="https://serif.blue" />
 <meta name="fediverse:creator" content="@taciturnaxoltol@social.dino.icu" />
+
+<link rel="authorization_endpoint" href="https://indiko.dunkirk.sh/auth/authorize" />
+<link rel="token_endpoint" href="https://indiko.dunkirk.sh/auth/token" />
+<link rel="me" href="https://indiko.dunkirk.sh/u/tacy" />
 
 <div class="h-card" style="display:none">
   <a class="u-url" rel="me home" href="https://dunkirk.sh">
@@ -141,11 +130,13 @@ base64=true) %}
   <p class="dt-bday">2008-04-27</p>
   <p class="p-sex">male</p>
   <p class="p-note">
-      {% set time = now() | date(format="%s") | int - 1209254400 %}{{ time / 31536000 | round(method="floor") }}, typescript nerd, videographer, frc programmer, semi retired fpv pilot
+    {% set time = now() | date(format="%s") | int - 1209254400 %}{{ time / 31536000 | round(method="floor") }},
+    typescript nerd, videographer, frc programmer, semi retired fpv pilot
   </p>
   <a class="u-email" href="mailto:me@dunkirk.sh" rel="me">me@dunkirk.sh</a>
   <div class="p-adr h-adr">
     <span class="p-country-name">United States of America</span>
   </div>
-  <img class="u-photo" src="/pfps/fall.jpg" alt="kieran wearing a robotics sweatshirt and standing in front of a tree with fall leaves" />
+  <img class="u-photo" src="/pfps/fall.jpg"
+    alt="kieran wearing a robotics sweatshirt and standing in front of a tree with fall leaves" />
 </div>
