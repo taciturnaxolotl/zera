@@ -73,10 +73,11 @@ function transformImages(content: string): string {
           params.push(`class="${classes.join(' ')}"`);
         }
         
-        const keyValueMatches = attrs.matchAll(/([a-zA-Z]+)=["']?([^"'\s}]+)["']?/g);
-        for (const [, key, value] of keyValueMatches) {
+        const keyValueMatches = attrs.matchAll(/([a-zA-Z]+)=(?:"([^"]*)"|'([^']*)'|([^\s}]+))/g);
+        for (const [, key, doubleQuoted, singleQuoted, unquoted] of keyValueMatches) {
           if (key !== 'class') {
-            params.push(`${key}="${value.replace(/["']/g, '')}"`);
+            const value = doubleQuoted || singleQuoted || unquoted;
+            params.push(`${key}="${value}"`);
           }
         }
       }
@@ -101,10 +102,11 @@ function transformImages(content: string): string {
           params.push(`class="${classes.join(' ')}"`);
         }
         
-        const keyValueMatches = attrs.matchAll(/([a-zA-Z]+)=["']?([^"'\s}]+)["']?/g);
-        for (const [, key, value] of keyValueMatches) {
+        const keyValueMatches = attrs.matchAll(/([a-zA-Z]+)=(?:"([^"]*)"|'([^']*)'|([^\s}]+))/g);
+        for (const [, key, doubleQuoted, singleQuoted, unquoted] of keyValueMatches) {
           if (key !== 'class') {
-            params.push(`${key}="${value.replace(/["']/g, '')}"`);
+            const value = doubleQuoted || singleQuoted || unquoted;
+            params.push(`${key}="${value}"`);
           }
         }
       }

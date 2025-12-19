@@ -9,8 +9,11 @@
     "gen-og": "bun run scripts/genOG.ts"
   },
   "dependencies": {
+    "@types/cli-progress": "^3.11.6",
+    "cli-progress": "^3.12.0",
     "dotenv": "^16.4.7",
-    "glob": "^13.0.0"
+    "glob": "^13.0.0",
+    "sharp": "^0.34.5"
   },
   "devDependencies": {
     "@types/bun": "latest",
