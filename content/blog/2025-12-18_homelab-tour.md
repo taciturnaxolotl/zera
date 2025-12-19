@@ -12,7 +12,7 @@ Well this is a post I somehow have procrastinated on. I originally got the idea 
 
 <!-- more -->
 
-![me with my trusty server](https://hc-cdn.hel1.your-objectstorage.com/s/v3/356e7ff9b4b77874_img_8918.jpeg){caption="This is my server ember, say hi!"}
+![me with my trusty server](https://l4.dunkirk.sh/i/6PXIFV4xl2Ye.webp){caption="This is my server ember, say hi!"}
 
 I have a few main machines. In order of when I first got them they are:
 
@@ -30,7 +30,7 @@ As many of my machines as I can are running :nix: in some flavor. `moonlark` and
 
 ### Ember
 
-![neofetch on ember](https://hc-cdn.hel1.your-objectstorage.com/s/v3/d006d95c0b52dd51_89195.png)
+![neofetch on ember](https://l4.dunkirk.sh/i/6z4tVvS9eGt2.webp)
 
 This used to run all of my services up till a month ago when I setup my oracle cloud instance and switched all of my main hosted services over. It currently runs my jellyfin / arr stack and any random workloads I want to throw somewhere without setting up a nix config for it. It in the very near future is probably going to become a quick deploy server in lieu of railway and similar services. The plan is to have a simple cli that will just throw everything on the server from a local repo and just run it with a domain.
 
@@ -38,15 +38,15 @@ For jellyfin the best way I have found to interact with it is via `Ruddar` on my
 
 ### Terebithia
 
-![neofetch on terebithia](https://hc-cdn.hel1.your-objectstorage.com/s/v3/67d585e64f1cc89d_72075.png)
+![neofetch on terebithia](https://l4.dunkirk.sh/i/5qwQ7HP0nm4e.webp)
 
 This has really been a rock solid machine for me. I have it setup with my nix config and it auto deploys with `deploy-rs` from github actions over tailscale. It is running my [tangled.org](https://tangled.org/@dunkirk.sh) knot so it hosts all of my git repos and I have a fancy little automation that sets up git hooks in the repos as they are created to auto mirror to github. It is also running [cachet](https://cachet.dunkirk.sh) which is a slack profile picture and emoji proxy (thats where all the emojis in this blog are pulled from) that I built to work at extremely high scale. It was running on `ember` for a while but I swapped it over to here to be a bit more reliable since so many people in Hackclub rely on it now. I'm also running a few slack bots and [battleship-arena](https://battle.dunkirk.sh) again through their own nix services.
 
-![bore screenshot](https://hc-cdn.hel1.your-objectstorage.com/s/v3/739c6e57bbe29ec1_186.png){caption="bore in all it's glory"}
+![bore screenshot](https://l4.dunkirk.sh/i/TTbQriehUJDb.webp){caption="bore in all it's glory"}
 
 My most exciting services hosted on here though are [bore](https://bore.dunkirk.sh) and [indiko](https://indiko.dunkirk.sh/docs). Bore is a little wrapper I made around [frp](https://github.com/fatedier/frp) which allows me to easily deploy and view my tunnels. It is essentially an ngrok replacement and super slick to use. I made a custom cli for it with `gum` and nix which you can find along with setup instructions on the [tangled repo](https://tangled.org/dunkirk.sh/dots/tree/main/modules/nixos/services/bore).
 
-!![oauth screenshot](https://hc-cdn.hel1.your-objectstorage.com/s/v3/99b0455299379c79_89893.png)[users managment](https://hc-cdn.hel1.your-objectstorage.com/s/v3/b99ed9edc508619a_95016.png){caption="the indiko admin ui and oauth consent screen"}
+!![oauth screenshot](https://l4.dunkirk.sh/i/K-GWKS8Lh-CQ.webp)[users managment](https://l4.dunkirk.sh/i/N8I51AOs-va7.webp){caption="the indiko admin ui and oauth consent screen"}
 
 My newest project is [Indiko](https://tangled.org/dunkirk.sh/indiko/). It is a selfhosted IndieAuth / OAuth 2.0 compatible auth server somewhat like Authelia or Authentik but mine! I can defined custom clients and then use it to authorize with my own apps. I'm planning to add support to bore for using indiko as an authentication middleware on protected tunnels probably tomorrow. I'm currently using this to authenticate my shortlinks service [hop](https://hop.dunkirk.sh) ([repo](https://tangled.org/dunkirk.sh/hop)) which allows me to add new viewers and admins on the fly!
 
@@ -83,7 +83,7 @@ github actions over tailscale.
 
 ### Thespia
 
-!![the harddrives falling out of the case](https://hc-cdn.hel1.your-objectstorage.com/s/v3/ac4e27a48b9f9521_img_8923_2.jpeg)[harddrives in the front](https://hc-cdn.hel1.your-objectstorage.com/s/v3/9a4f28db04c7f170_img_8922.jpeg){caption="I have been blessed with ~5tb of HDD storage but I currently have no place to put it so this is only about 1.5 TB and it is truely attrocious"}
+!![the harddrives falling out of the case](https://l4.dunkirk.sh/i/PRp924X_rorV.webp)[harddrives in the front](https://l4.dunkirk.sh/i/tBkhMjYzfH-K.webp){caption="I have been blessed with ~5tb of HDD storage but I currently have no place to put it so this is only about 1.5 TB and it is truely attrocious"}
 
 This is the most jank part of the whole lab. It is one of my oldest dedicated machines and it is kind of showing it's age. I really don't do much with it anymore but the harddrives are still somehow kicking. I inherited a large cardboard box of drives from my great uncle (I also got ember from him) and they all have about 10-15% of life left but are in 500 GB and 750 GB sizes which is a wee bit annoying. I'm most likely going to get a beelink or something else that is small and power efficent and just shove a ridiculous amount of m.2 SSDs in there.
 
@@ -105,7 +105,7 @@ As far as special stuff on this machine there isn't a ton to tell. I'm doing som
 
 ### Network stack
 
-!![router and switch](https://hc-cdn.hel1.your-objectstorage.com/s/v3/713ff3a349e74e18_img_8919.jpeg)[the access point](https://hc-cdn.hel1.your-objectstorage.com/s/v3/7b89b9c74e49ff08_img_8920.jpeg)[rpi](https://hc-cdn.hel1.your-objectstorage.com/s/v3/5522f23f39c5482c_img_8921.jpeg){caption="it is fairly basic but it does work"}
+!![router and switch](https://l4.dunkirk.sh/i/JC13Aar6VPg2.webp)[the access point](https://l4.dunkirk.sh/i/PYMlcqfBHHnD.webp)[rpi](https://l4.dunkirk.sh/i/gygT3oV7R8LH.webp){caption="it is fairly basic but it does work"}
 
 Everything is based on tplink stuff which I rather hate. Their access points are fine but the router and switch are despicable to work with. Their app is even worse if that is even possible. I really love my old setup of using an old workstation to run pfSense with two NICs. It was clean and reliable and the ui was okay to work with. I had to switch it over for my parents so that ostensibly it would be simpler and easier for them to use which as time has proven was very much not true. If money was no object I would love to get a founders edition [Gateway](https://mono.si/) router. You can really tell that it has had heart and soul poured into it and it looks soooooo good as a result.
 
@@ -113,7 +113,7 @@ As far as routing and port forwarding go I generally try to avoid it as much as 
 
 ### Nest
 
-![my static site on nest](https://hc-cdn.hel1.your-objectstorage.com/s/v3/06a4a340138c58a7_95128.png){caption="rendered from my github readme and served by caddy on nest"}
+![my static site on nest](https://l4.dunkirk.sh/i/bO5ra0U14_Vh.webp){caption="rendered from my github readme and served by caddy on nest"}
 
 This is where I used to host most of my throwaway services and slackbots. I still do host a fair amount here but it has got increasingly slower as the user count just keeps going up. It definetly isn't the fault of the admins though. I'm friends with almost all of them and they have done a wonderful job trying to keep it online while it tries to explode itself constantly. It has quite litterally been upgraded at least 4 times now with more and more compute and storage and we keep running out.
 

@@ -126,7 +126,7 @@ Images can be embedded using the usual markdown syntax:
 ![alt text](/path/to/image.png)
 ```
 
-![NOISE1 screenshot](https://img.itch.zone/aW1hZ2UvNTU2NDU0LzI5MTYzNzgucG5n/original/6GRlJM.png)
+![NOISE1 screenshot](https://l4.dunkirk.sh/i/MZp-ye7LclCx.webp)
 
 When there are multiple paragraphs of text in a row (usually 3-4), and nothing else to break
 them up, images can be interspersed to help prevent text-wall fatique.
@@ -137,7 +137,7 @@ You can also add captions to images:
 {{/* img(id="https://url.com/image.png" alt="alt text" caption="this can be ommited if you want or added! It's optional :)") */}}
 ```
 
-![MacBook proprietary blade SSD](https://hc-cdn.hel1.your-objectstorage.com/s/v3/d294f113bf415a0d1c544fbf3c2d0f4286d892a6_0img_1846_1_.jpg){caption="it really was a rather sleek design; shame that apple got rid of it in favor of soldered on storage"}
+![MacBook proprietary blade SSD](https://l4.dunkirk.sh/i/REmc3Tnp43hn.webp){caption="it really was a rather sleek design; shame that apple got rid of it in favor of soldered on storage"}
 
 You can also display multiple images side-by-side using the `imgs` shortcode with comma-separated URLs:
 
@@ -145,7 +145,7 @@ You can also display multiple images side-by-side using the `imgs` shortcode wit
 {{/* imgs(id="https://url.com/image1.png, https://url.com/image2.png" alt="alt text 1, alt text 2" caption="optional caption for both images") */}}
 ```
 
-!![the copyright section](https://hc-cdn.hel1.your-objectstorage.com/s/v3/c509aeaac769c3e5b99d5a7d320cc4a759db4ff5_img_8880.jpeg)[the ssh section](https://hc-cdn.hel1.your-objectstorage.com/s/v3/ed400c26ddfa37ab4a9ef4fd5a506f2dcc1bcfbb_img_8879.jpeg){caption="side by side images from the remarkable tutorial"}
+!![the copyright section](https://l4.dunkirk.sh/i/FPBdusjL9oIZ.webp)[the ssh section](https://l4.dunkirk.sh/i/FCjVs9QyX8jd.webp){caption="side by side images from the remarkable tutorial"}
 
 ### Videos
 

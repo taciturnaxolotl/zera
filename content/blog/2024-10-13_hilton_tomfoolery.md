@@ -16,7 +16,7 @@ I'm at a Hilton at the time of writing this, and I'm decently bored. Currently, 
 
 I'm connecting over WireGuard, so I fired up mitmproxy with `mitmweb --mode wireguard` on my laptop. Connecting via WireGuard theoretically is pretty simple; all I need to do is to scan a qr code and connect. Unfortunately, the hotel Wi-Fi seems to be oddly segmented, and I can't access the WireGuard server or ping my laptop from my phone. I'm going to try firing up a hot spot on my dad's phone and see if that allows me to talk to my phone.
 
-![screenshot of the root certificate install process](https://hc-cdn.hel1.your-objectstorage.com/s/v3/29c856921e88c31bfc2e2d73d09d287ce4aa149a_2install_profile.png){caption="You have to dig through several menus to trust it"}
+![screenshot of the root certificate install process](https://l4.dunkirk.sh/i/iYaDaVPYV1Lc.webp){caption="You have to dig through several menus to trust it"}
 
 I messed with getting my laptop to connect to my dad's phone, but it kept refusing for some reason. My next idea is to ngrok the WireGuard tunnel, which ended up failing because ngrok doesn't support UDP. Finally, after an embarrassingly long time, I realized that I could simply use `ngrok tcp 8080` and the HTTP proxy server built into mitmproxy instead. After installing the root certificate and trusting it in the iPhone settings, we were good to go!
 
@@ -758,7 +758,7 @@ It appears that Hilton relies very heavily on GraphQL, which is interesting. I w
 
 ## Locks
 
-![screenshot of the hotel digital key](https://hc-cdn.hel1.your-objectstorage.com/s/v3/06dcbd4c5166d7f17e31027b687f32539d68aa44_0hotel-key.png){caption="What it looks like in the app"}
+![screenshot of the hotel digital key](https://l4.dunkirk.sh/i/JfDm-stHm3hH.webp){caption="What it looks like in the app"}
 
 When using the unlock button, it made a request to this URL: `https://smetric.hilton.com/b/ss/hiltonglobalprod/10/IOSN030200030900/s65425920` with a payload of a URL encoded form.
 
@@ -943,4 +943,4 @@ By the time I'm writing this it's 6:41, and I need to eat breakfast, so I'll pro
 
 Taking inspiration from the [LOW←TECH MAGAZINE](https://solar.lowtechmagazine.com/) I will be taking any questions / comments about this article via email and then posting them here to my site! If you have a question or comment, feel free to email me at [me@dunkirk.sh](mailto://me@dunkirk.sh). Now to go eat breakfast :)
 
-![image of my hotel breakfast](https://hc-cdn.hel1.your-objectstorage.com/s/v3/c974178c62fc836657a1c5e61cac90596c13a3bd_3img_2777.jpg){caption="A delicious waffle, mildy warm bacon, and under seasoned potatoes."}
+![image of my hotel breakfast](https://l4.dunkirk.sh/i/CNEMtC8HNWRs.webp){caption="A delicious waffle, mildy warm bacon, and under seasoned potatoes."}
