@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "bun run scripts/dev.ts",
     "serve": "bun run scripts/dev.ts",
-    "build": "bun run scripts/build.ts",
+    "build": "rm -rf .zola-build && bun run scripts/build.ts",
     "preprocess": "bun run scripts/preprocess.ts",
     "gen-og": "bun run scripts/genOG.ts"
   },
@@ -20,3 +20,4 @@
     "puppeteer": "^23.6.0"
   }
 }
+
