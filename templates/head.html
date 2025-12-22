@@ -80,9 +80,9 @@ base64=true) %}
 base64=true) %}
 <script src="{{ get_url(path='js/emoji-replace.js?' ~ emojiJsHash, trailing_slash=false) | safe }}" defer></script>
 
-{% set lightboxJsHash = get_hash(path="lightbox.js", sha_type=256,
+{% set lightboxJsHash = get_hash(path="js/lightbox.js", sha_type=256,
 base64=true) %}
-<script src="{{ get_url(path='lightbox.js?' ~ lightboxJsHash, trailing_slash=false) | safe }}" defer></script>
+<script src="{{ get_url(path='js/lightbox.js?' ~ lightboxJsHash, trailing_slash=false) | safe }}" defer></script>
 
 {% set relativeTimeJsHash = get_hash(path="js/relative-time.js", sha_type=256,
 base64=true) %}
