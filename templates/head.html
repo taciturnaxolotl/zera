@@ -86,7 +86,8 @@ base64=true) %}
 
 {% set relativeTimeJsHash = get_hash(path="js/relative-time.js", sha_type=256,
 base64=true) %}
-<script src="{{ get_url(path='js/relative-time.js?' ~ relativeTimeJsHash, trailing_slash=false) | safe }}" defer></script>
+<script src="{{ get_url(path='js/relative-time.js?' ~ relativeTimeJsHash, trailing_slash=false) | safe }}"
+  defer></script>
 
 <script type="speculationrules">
 {
@@ -121,6 +122,7 @@ base64=true) %}
 <link rel="me" href="https://serif.blue" />
 <meta name="fediverse:creator" content="@taciturnaxoltol@social.dino.icu" />
 
+<link rel="indieauth-metadata" href="https://indiko.dunkirk.sh/.well-known/oauth-authorization-server" />
 <link rel="authorization_endpoint" href="https://indiko.dunkirk.sh/auth/authorize" />
 <link rel="token_endpoint" href="https://indiko.dunkirk.sh/auth/token" />
 <link rel="me" href="https://indiko.dunkirk.sh/u/tacy" />
