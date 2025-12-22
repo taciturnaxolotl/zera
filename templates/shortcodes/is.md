@@ -1,5 +1,5 @@
 <div class="bubble" style="visibility: hidden; opacity: 0;">
-  <span><a href="https://bsky.app/@doing.dunkirk.sh" id="verb-link">Kieran is</a> <i id="status-text"></i><span id="time-ago-wrap"><span class="time-dash"> - </span><time id="time-ago" datetime="" data-max-age="43200"></time></span></span>
+  <span><span id="status-wrap"><a href="https://bsky.app/@doing.dunkirk.sh" id="verb-link">Kieran is</a> <i id="status-text"></i></span><span id="time-ago-wrap"><span class="time-dash"> - </span><relative-time id="time-ago" datetime="" threshold="P30D"></relative-time></span></span>
 </div>
 
 <script>
@@ -31,12 +31,6 @@
             document.getElementById("status-text").textContent = latestStatus;
             const timeEl = document.getElementById("time-ago");
             timeEl.setAttribute("datetime", createdAt);
-            timeEl.textContent = new Intl.DateTimeFormat(navigator.language, {
-              month: 'short',
-              day: 'numeric',
-              hour: 'numeric',
-              minute: 'numeric'
-            }).format(createdDate);
             const verbLink = document.getElementById("verb-link");
             if (diffInMins > 30) {
               verbLink.textContent = "Kieran was";
