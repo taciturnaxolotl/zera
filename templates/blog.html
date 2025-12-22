@@ -11,7 +11,7 @@
     {% for page in section.pages %} {% if "archival" not in page.taxonomies.tags
     %}
     <li>
-        {{ page.date | split(pat="T") | first }} &mdash;
+        <relative-time datetime="{{ page.date | date(format='%Y-%m-%dT%H:%M:%S%z') }}" threshold="P30D">{{ page.date | split(pat="T") | first }}</relative-time> &mdash;
         <a href="{{ page.permalink | safe }}" class="text-glow"
             >{{ page.title }}</a
         >
@@ -26,7 +26,7 @@
 <ul>
     {% for page in section.pages %} {% if "archival" in page.taxonomies.tags %}
     <li>
-        {{ page.date }} &mdash;
+        <relative-time datetime="{{ page.date | date(format='%Y-%m-%dT%H:%M:%S%z') }}" threshold="P30D">{{ page.date | split(pat="T") | first }}</relative-time> &mdash;
         <a href="{{ page.permalink | safe }}" class="text-glow"
             >{{ page.title }}</a
         >

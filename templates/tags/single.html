@@ -6,7 +6,7 @@ term.pages %} {% endif %}
     {% for page in pages %}
     <li>
         <a href="{{ page.permalink | safe }}"
-            >{% if page.date %}{{ page.date }} - {% endif %}{{ page.title }}</a
+            >{% if page.date %}<relative-time datetime="{{ page.date | date(format='%Y-%m-%dT%H:%M:%S%z') }}" threshold="P30D">{{ page.date | split(pat="T") | first }}</relative-time> - {% endif %}{{ page.title }}</a
         >
     </li>
     {% endfor %}

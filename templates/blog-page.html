@@ -2,14 +2,7 @@
 <div><a href="..">..</a>/<span class="accent-data">{{ page.slug }}</span></div>
 <article class="h-entry">
     <a class="u-url" href="{{ page.permalink }}" style="display: none"> </a>
-    <time
-        datetime="{{ page.date | date(format='%Y-%m-%d %H:%M:%S%z') }}"
-        class="dt-published"
-        >Published on:
-        <span class="accent-data"
-            >{{ page.date | split(pat="T") | first }}</span
-        ></time
-    >
+    <span class="dt-published">Published <relative-time datetime="{{ page.date | date(format='%Y-%m-%dT%H:%M:%S%z') }}" threshold="P30D" class="accent-data">{{ page.date | split(pat="T") | first }}</relative-time></span>
     {% if config.extra.author and config.extra.display_author == true %}
     <address rel="author">
         By
