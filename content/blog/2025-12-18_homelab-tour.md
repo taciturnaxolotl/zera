@@ -8,7 +8,7 @@ description = "what lives in my homelab in 2025"
 tags = ["homelab"] 
 +++
 
-Well this is a post I somehow have procrastinated on. I originally got the idea to write this up for the [LUP holiday homelab special](https://linuxunplugged.com/oldfart) but before I knew it the submission due date was upon me and I hadn't started so here goes a speedrun tour of my lab.
+Well this is a post I somehow have procrastinated on. I originally got the idea to write this up for the [LUP holiday homelab special](https://linuxunplugged.com/646) but before I knew it the submission due date was upon me and I hadn't started so here goes a speedrun tour of my lab.
 
 <!-- more -->
 
