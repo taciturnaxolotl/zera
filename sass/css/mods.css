@@ -13,6 +13,21 @@ header {
 #now-playing:not(:empty) {
   font-size: 0.85rem;
   color: var(--text-light);
+  display: flex;
+  align-items: center;
+  max-width: 50vw;
+}
+
+#now-playing .track-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+}
+
+#now-playing .artist-name {
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 #now-playing a {

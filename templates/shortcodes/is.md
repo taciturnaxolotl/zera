@@ -3,7 +3,7 @@
 </div>
 
 <script>
-  document.addEventListener("DOMContentLoaded", () => {
+  function fetchStatus() {
     fetch(
       "https://bsky.social/xrpc/com.atproto.repo.listRecords?repo=dunkirk.sh&collection=a.status.update",
     )
@@ -14,6 +14,7 @@
         return response.json();
       })
       .then((statusData) => {
+        const bubble = document.querySelector(".bubble");
         if (statusData.records && statusData.records.length > 0) {
           if (statusData.records[0].value.createdAt) {
             const createdAt = statusData.records[0].value.createdAt;
@@ -23,6 +24,7 @@
             const diffInMins = Math.floor(diffInMs / (1000 * 60));
             const diffInHours = Math.floor(diffInMs / (1000 * 60 * 60));
             if (diffInHours > 12) {
+              bubble.style.visibility = "hidden";
               return;
             }
             const latestStatus = `"${statusData.records[0].value.text}"`;
@@ -38,8 +40,9 @@
             const verbLink = document.getElementById("verb-link");
             if (diffInMins > 30) {
               verbLink.textContent = "Kieran was";
+            } else {
+              verbLink.textContent = "Kieran is";
             }
-            const bubble = document.querySelector(".bubble");
             bubble.style.visibility = "visible";
             bubble.classList.add("animate-in");
             if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
@@ -52,5 +55,7 @@
       .catch((error) => {
         console.error("Error fetching status update:", error);
       });
-  });
+  }
+  document.addEventListener("DOMContentLoaded", fetchStatus);
+  setInterval(fetchStatus, 3600000);
 </script>

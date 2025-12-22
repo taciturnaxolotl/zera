@@ -20,18 +20,34 @@
   </nav>
 </div>
 <script>
-  document.addEventListener("DOMContentLoaded", () => {
+  let nowPlayingTimeout = null;
+  function fetchNowPlaying() {
+    if (nowPlayingTimeout) clearTimeout(nowPlayingTimeout);
     fetch("https://bsky.social/xrpc/com.atproto.repo.getRecord?repo=did:plc:krxbvxvis5skq7jj6eot23ul&collection=fm.teal.alpha.actor.status&rkey=self")
       .then((response) => response.ok ? response.json() : null)
       .then((data) => {
-        if (!data?.value?.item) return;
+        const el = document.getElementById("now-playing");
+        if (!data?.value?.item) {
+          el.innerHTML = "";
+          nowPlayingTimeout = setTimeout(fetchNowPlaying, 60000);
+          return;
+        }
         const item = data.value.item;
         const expiry = parseInt(data.value.expiry, 10) * 1000;
-        if (Date.now() > expiry) return;
-        const el = document.getElementById("now-playing");
-        el.innerHTML = `🎵 <a href="${item.originUrl || '#'}" target="_blank" rel="noopener">${item.trackName}</a> - ${item.artists?.[0]?.artistName || 'Unknown'}`;
+        const now = Date.now();
+        if (now > expiry) {
+          el.innerHTML = "";
+          nowPlayingTimeout = setTimeout(fetchNowPlaying, 60000);
+          return;
+        }
+        el.innerHTML = `🎵&nbsp;<a href="${item.originUrl || '#'}" target="_blank" rel="noopener"><span class="track-name">${item.trackName}</span></a>&nbsp;-&nbsp;<span class="artist-name">${item.artists?.[0]?.artistName || 'Unknown'}</span>`;
+        const timeUntilExpiry = expiry - now + 1000;
+        nowPlayingTimeout = setTimeout(fetchNowPlaying, timeUntilExpiry);
       })
-      .catch(() => {});
-  });
+      .catch(() => {
+        nowPlayingTimeout = setTimeout(fetchNowPlaying, 60000);
+      });
+  }
+  document.addEventListener("DOMContentLoaded", fetchNowPlaying);
 </script>
 {% endif %}
