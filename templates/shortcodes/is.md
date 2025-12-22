@@ -1,5 +1,5 @@
 <div class="bubble" style="visibility: hidden; opacity: 0;">
-  <span><a href="https://bsky.app/@doing.dunkirk.sh" id="verb-link">Kieran is</a> <i id="status-text"></i> - <time id="time-ago" datetime="" data-max-age="43200"></time></span>
+  <span><a href="https://bsky.app/@doing.dunkirk.sh" id="verb-link">Kieran is</a> <i id="status-text"></i><span id="time-ago-wrap"><span class="time-dash"> - </span><time id="time-ago" datetime="" data-max-age="43200"></time></span></span>
 </div>
 
 <script>
@@ -49,6 +49,7 @@
               bubble.style.transform = "none";
               bubble.style.opacity = "1";
             }
+            checkTimeWrap();
           }
         }
       })
@@ -56,6 +57,16 @@
         console.error("Error fetching status update:", error);
       });
   }
+  function checkTimeWrap() {
+    const wrap = document.getElementById("time-ago-wrap");
+    const statusText = document.getElementById("status-text");
+    if (wrap && statusText) {
+      const wrapTop = wrap.getBoundingClientRect().top;
+      const statusTop = statusText.getBoundingClientRect().top;
+      wrap.classList.toggle("wrapped", wrapTop > statusTop);
+    }
+  }
   document.addEventListener("DOMContentLoaded", fetchStatus);
+  window.addEventListener("resize", checkTimeWrap);
   setInterval(fetchStatus, 3600000);
 </script>

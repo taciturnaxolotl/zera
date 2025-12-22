@@ -345,6 +345,21 @@ cite a img.avatar {
   text-decoration: none;
 }
 
+.bubble > span {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0 0.3em;
+}
+
+#time-ago-wrap {
+  white-space: nowrap;
+}
+
+#time-ago-wrap.wrapped .time-dash {
+  display: none;
+}
+
 #time-ago {
   font-weight: normal;
   font-size: 0.8rem;
