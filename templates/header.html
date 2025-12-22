@@ -8,12 +8,30 @@
 {% else %}
 {% set active_path = "" %}
 {% endif %}
-<nav id="nav-bar">
-  {% for nav_item in config.extra.header_nav %}
-  <a href="{{ nav_item.url }}"
-    class="{% if nav_item.url == active_path or (nav_item.url == '/' and active_path == '') %}active{% endif %}">
-    {{ nav_item.name }}
-  </a>
-  {% endfor %}
-</nav>
+<div id="header-container">
+  <span id="now-playing"></span>
+  <nav id="nav-bar">
+    {% for nav_item in config.extra.header_nav %}
+    <a href="{{ nav_item.url }}"
+      class="{% if nav_item.url == active_path or (nav_item.url == '/' and active_path == '') %}active{% endif %}">
+      {{ nav_item.name }}
+    </a>
+    {% endfor %}
+  </nav>
+</div>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    fetch("https://bsky.social/xrpc/com.atproto.repo.getRecord?repo=did:plc:krxbvxvis5skq7jj6eot23ul&collection=fm.teal.alpha.actor.status&rkey=self")
+      .then((response) => response.ok ? response.json() : null)
+      .then((data) => {
+        if (!data?.value?.item) return;
+        const item = data.value.item;
+        const expiry = parseInt(data.value.expiry, 10) * 1000;
+        if (Date.now() > expiry) return;
+        const el = document.getElementById("now-playing");
+        el.innerHTML = `🎵 <a href="${item.originUrl || '#'}" target="_blank" rel="noopener">${item.trackName}</a> - ${item.artists?.[0]?.artistName || 'Unknown'}`;
+      })
+      .catch(() => {});
+  });
+</script>
 {% endif %}
