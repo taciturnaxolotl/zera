@@ -51,6 +51,7 @@
         console.error("Error fetching status update:", error);
       });
   }
+  let resizeTimeout;
   function checkTimeWrap() {
     const wrap = document.getElementById("time-ago-wrap");
     const statusText = document.getElementById("status-text");
@@ -60,7 +61,11 @@
       wrap.classList.toggle("wrapped", wrapTop > statusTop);
     }
   }
+  function debouncedCheckWrap() {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(checkTimeWrap, 100);
+  }
   document.addEventListener("DOMContentLoaded", fetchStatus);
-  window.addEventListener("resize", checkTimeWrap);
+  window.addEventListener("resize", debouncedCheckWrap);
   setInterval(fetchStatus, 3600000);
 </script>
