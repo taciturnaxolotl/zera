@@ -14,8 +14,17 @@ header {
   font-size: 0.85rem;
   color: var(--text-light);
   display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  flex: 1;
+  min-width: 0;
+}
+
+#now-playing .now-playing-line {
+  display: flex;
   align-items: center;
-  max-width: 50vw;
+  gap: 0.25rem;
+  min-width: 0;
 }
 
 #now-playing .track-name {
@@ -25,18 +34,28 @@ header {
   min-width: 0;
 }
 
-#now-playing .artist-name {
+#now-playing .artist-line {
+  overflow: hidden;
+  text-overflow: ellipsis;
   white-space: nowrap;
-  flex-shrink: 0;
 }
 
 #now-playing a {
   color: var(--link);
   text-decoration: none;
+  min-width: 0;
+  overflow: hidden;
 }
 
 #now-playing a:hover {
   text-decoration: underline;
+}
+
+/* Hide music widget on very small screens */
+@media (max-width: 640px) {
+  #now-playing {
+    display: none !important;
+  }
 }
 
 #nav-bar {

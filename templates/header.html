@@ -40,7 +40,11 @@
           nowPlayingTimeout = setTimeout(fetchNowPlaying, 60000);
           return;
         }
-        el.innerHTML = `🎵&nbsp;<a href="${item.originUrl || '#'}" target="_blank" rel="noopener"><span class="track-name">${item.trackName}</span></a>&nbsp;-&nbsp;<span class="artist-name">${item.artists?.[0]?.artistName || 'Unknown'}</span>&nbsp;<relative-time datetime="${item.playedTime}" threshold="P1D"></relative-time>`;
+        el.innerHTML = `
+          <div class="now-playing-line"><span>🎵</span><a href="${item.originUrl || '#'}" target="_blank" rel="noopener"><span class="track-name">${item.trackName}</span></a></div>
+          <div class="now-playing-line artist-line">${item.artists?.[0]?.artistName || 'Unknown'}</div>
+          <div class="now-playing-line"><relative-time datetime="${item.playedTime}" threshold="P1D"></relative-time></div>
+        `;
         const timeUntilExpiry = expiry - now + 5000;
         nowPlayingTimeout = setTimeout(fetchNowPlaying, timeUntilExpiry);
       })
