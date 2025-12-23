@@ -24,7 +24,7 @@
             const diffInMins = Math.floor(diffInMs / (1000 * 60));
             const diffInHours = Math.floor(diffInMs / (1000 * 60 * 60));
             if (diffInHours > 12) {
-              bubble.style.visibility = "hidden";
+              bubble.style.display = "none";
               return;
             }
             const latestStatus = `"${statusData.records[0].value.text}"`;
@@ -37,7 +37,7 @@
             } else {
               verbLink.textContent = "Kieran is";
             }
-            bubble.style.visibility = "visible";
+            bubble.style.display = "block";
             bubble.classList.add("animate-in");
             if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
               bubble.style.transform = "none";
