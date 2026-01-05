@@ -3,17 +3,33 @@
 </div>
 
 <script>
+  async function resolveDidToPds(did) {
+    if (did.startsWith("did:plc:")) {
+      const res = await fetch(`https://plc.directory/${did}`);
+      const doc = await res.json();
+      return doc.service?.find(s => s.id === "#atproto_pds")?.serviceEndpoint;
+    } else if (did.startsWith("did:web:")) {
+      const domain = did.slice(8);
+      const res = await fetch(`https://${domain}/.well-known/did.json`);
+      const doc = await res.json();
+      return doc.service?.find(s => s.id === "#atproto_pds")?.serviceEndpoint;
+    }
+    return null;
+  }
+  async function fetchAtUriListRecords(atUri) {
+    const match = atUri.match(/^at:\/\/([^/]+)\/([^/]+)$/);
+    if (!match) return null;
+    const [, repo, collection] = match;
+    const pds = await resolveDidToPds(repo);
+    if (!pds) return null;
+    const url = `${pds}/xrpc/com.atproto.repo.listRecords?repo=${encodeURIComponent(repo)}&collection=${encodeURIComponent(collection)}`;
+    const res = await fetch(url);
+    return res.ok ? res.json() : null;
+  }
   function fetchStatus() {
-    fetch(
-      "https://bsky.social/xrpc/com.atproto.repo.listRecords?repo=dunkirk.sh&collection=a.status.update",
-    )
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.json();
-      })
+    fetchAtUriListRecords("at://did:plc:krxbvxvis5skq7jj6eot23ul/a.status.update")
       .then((statusData) => {
+        if (!statusData) return;
         const bubble = document.querySelector(".bubble");
         if (statusData.records && statusData.records.length > 0) {
           if (statusData.records[0].value.createdAt) {

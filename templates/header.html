@@ -20,11 +20,33 @@
   </nav>
 </div>
 <script>
+  async function resolveDidToPds(did) {
+    if (did.startsWith("did:plc:")) {
+      const res = await fetch(`https://plc.directory/${did}`);
+      const doc = await res.json();
+      return doc.service?.find(s => s.id === "#atproto_pds")?.serviceEndpoint;
+    } else if (did.startsWith("did:web:")) {
+      const domain = did.slice(8);
+      const res = await fetch(`https://${domain}/.well-known/did.json`);
+      const doc = await res.json();
+      return doc.service?.find(s => s.id === "#atproto_pds")?.serviceEndpoint;
+    }
+    return null;
+  }
+  async function fetchAtUriRecord(atUri) {
+    const match = atUri.match(/^at:\/\/([^/]+)\/([^/]+)\/([^/]+)$/);
+    if (!match) return null;
+    const [, repo, collection, rkey] = match;
+    const pds = await resolveDidToPds(repo);
+    if (!pds) return null;
+    const url = `${pds}/xrpc/com.atproto.repo.getRecord?repo=${encodeURIComponent(repo)}&collection=${encodeURIComponent(collection)}&rkey=${encodeURIComponent(rkey)}`;
+    const res = await fetch(url);
+    return res.ok ? res.json() : null;
+  }
   let nowPlayingTimeout = null;
   function fetchNowPlaying() {
     if (nowPlayingTimeout) clearTimeout(nowPlayingTimeout);
-    fetch("https://bsky.social/xrpc/com.atproto.repo.getRecord?repo=did:plc:krxbvxvis5skq7jj6eot23ul&collection=fm.teal.alpha.actor.status&rkey=self")
-      .then((response) => response.ok ? response.json() : null)
+    fetchAtUriRecord("at://did:plc:krxbvxvis5skq7jj6eot23ul/fm.teal.alpha.actor.status/self")
       .then((data) => {
         const el = document.getElementById("now-playing");
         if (!data?.value?.item) {
