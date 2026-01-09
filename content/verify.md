@@ -1,5 +1,5 @@
 +++
-title = "/Verify"
+title = "slash verify"
 +++
 
 Inspired by [@Molly White](https://www.mollywhite.net/verify/) and [@Rob Knight](https://rknight.me/verify) this page serves as verification of my various accounts.
