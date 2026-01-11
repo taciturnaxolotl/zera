@@ -1,0 +1,1275 @@
+<div id="frc-calculator" class="frc-calculator">
+  <div class="frc-calculator-inner">
+    <div class="calc-section">
+      <h3>Robot Parameters</h3>
+
+    <div class="input-group">
+      <label for="ballCapacity">Ball Capacity:</label>
+      <input type="number" id="ballCapacity" value="8" min="1" max="10">
+      <span class="unit">balls</span>
+    </div>
+
+    <div class="input-group">
+      <label for="reloadTime">Reload Time:</label>
+      <input type="number" id="reloadTime" value="3" min="0" step="0.5">
+      <span class="unit">seconds</span>
+    </div>
+
+    <div class="input-group">
+      <label for="shooterBPS">Shooter BPS (max):</label>
+      <input type="number" id="shooterBPS" value="4" min="0.1" step="0.1">
+      <span class="unit">balls/s</span>
+    </div>
+
+    <div class="input-group">
+      <label for="numRobots">Number of Robots:</label>
+      <input type="number" id="numRobots" value="3" min="1" max="3">
+      <span class="unit">robots</span>
+    </div>
+
+    <div class="input-group">
+      <label for="graceTime">Hub Grace Period:</label>
+      <input type="number" id="graceTime" value="3" min="0" max="10" step="0.5">
+      <span class="unit">seconds</span>
+    </div>
+  </div>
+
+  <div class="calc-section">
+    <h3>Match Strategy</h3>
+
+    <div class="input-group checkbox-group">
+      <input type="checkbox" id="includeAuto" checked>
+      <label for="includeAuto">Include Autonomous Period</label>
+    </div>
+
+    <div class="input-group indent-group" id="autoTimeGroup">
+      <label for="autoShootTime">Auto Shooting Time:</label>
+      <input type="number" id="autoShootTime" value="20" min="0" max="20" step="0.5">
+      <span class="unit">seconds</span>
+    </div>
+
+    <div class="input-group checkbox-group">
+      <input type="checkbox" id="includeEndgame" checked>
+      <label for="includeEndgame">Include Endgame Period</label>
+    </div>
+
+    <div class="input-group indent-group" id="endgameTimeGroup">
+      <label for="endgameShootTime">Endgame Shooting Time:</label>
+      <input type="number" id="endgameShootTime" value="30" min="0" max="30" step="0.5">
+      <span class="unit">seconds</span>
+    </div>
+
+    <div class="input-group checkbox-group">
+      <input type="checkbox" id="wonAuto">
+      <label for="wonAuto">Won Autonomous Period</label>
+    </div>
+  </div>
+
+  <div class="calc-section">
+    <h3>Ranking Point Thresholds</h3>
+
+    <div class="input-group">
+      <label for="energizedThreshold">Energized Threshold:</label>
+      <input type="number" id="energizedThreshold" value="100" min="1" max="500">
+      <span class="unit">fuel</span>
+    </div>
+
+    <div class="input-group">
+      <label for="superchargedThreshold">Supercharged Threshold:</label>
+      <input type="number" id="superchargedThreshold" value="360" min="1" max="1000">
+      <span class="unit">fuel</span>
+    </div>
+  </div>
+
+  <div class="calc-section animation">
+    <h3>Match Simulation</h3>
+
+    <div class="simulation-container">
+      <div class="simulation-header">
+        <div class="sim-stat">
+          <span class="sim-label">Time:</span>
+          <span class="sim-value" id="simTime">0.0s</span>
+        </div>
+        <div class="sim-stat">
+          <span class="sim-label">Balls in Hopper:</span>
+          <span class="sim-value" id="simBalls">0</span>
+        </div>
+        <div class="sim-stat">
+          <span class="sim-label">Total Scored:</span>
+          <span class="sim-value" id="simScored">0</span>
+        </div>
+        <div class="sim-stat">
+          <span class="sim-label">Status:</span>
+          <span class="sim-value" id="simStatus">Ready</span>
+        </div>
+      </div>
+
+      <canvas id="matchCanvas" width="800" height="200"></canvas>
+
+      <div class="timeline-container">
+        <div class="timeline-labels" id="timelineLabels"></div>
+        <input type="range" id="timelineScrubber" min="0" max="168" value="0" step="0.1" class="timeline-scrubber">
+      </div>
+
+      <div class="simulation-controls">
+        <button id="playPauseBtn" class="sim-button">Play</button>
+        <button id="resetBtn" class="sim-button">Reset</button>
+        <div class="speed-controls">
+          <label for="speedSelect">Speed:</label>
+          <select id="speedSelect">
+            <option value="0.5">0.5x</option>
+            <option value="1" selected>1x</option>
+            <option value="2">2x</option>
+            <option value="4">4x</option>
+            <option value="8">8x</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="calc-section results">
+    <h3>Results</h3>
+
+    <div class="result-box">
+      <div class="result-label">Total Active Scoring Time:</div>
+      <div class="result-value" id="totalTime">-</div>
+    </div>
+
+    <div class="result-box">
+      <div class="result-label">Effective Cycle Time:</div>
+      <div class="result-value" id="cycleTime">-</div>
+    </div>
+
+    <div class="result-box highlight">
+      <div class="result-label">Alliance BPS for Energized RP:</div>
+      <div class="result-value" id="energizedAllianceBPS">-</div>
+    </div>
+
+    <div class="result-box">
+      <div class="result-label">Per Robot BPS for Energized RP:</div>
+      <div class="result-value" id="energizedRobotBPS">-</div>
+    </div>
+
+    <div class="result-box highlight">
+      <div class="result-label">Alliance BPS for Supercharged RP:</div>
+      <div class="result-value" id="superchargedAllianceBPS">-</div>
+    </div>
+
+    <div class="result-box">
+      <div class="result-label">Per Robot BPS for Supercharged RP:</div>
+      <div class="result-value" id="superchargedRobotBPS">-</div>
+    </div>
+  </div>
+  </div>
+</div>
+
+<style>
+.frc-calculator {
+  background-color: var(--accent);
+  border-bottom: 5px solid var(--bg-light);
+  border-radius: 7px 7px 10px 10px;
+  padding: 0.75rem;
+  margin: 2rem 0;
+}
+
+.frc-calculator-inner {
+  background-color: var(--nightshade-violet);
+  border-radius: 0.3rem;
+  padding: 1rem;
+}
+
+.calc-section {
+  margin-bottom: 1.5rem;
+}
+
+.calc-section:last-child {
+  margin-bottom: 0;
+}
+
+.calc-section h3 {
+  margin: 0 0 1rem 0;
+  padding: 0.22em 0.4em 0.22em 0.4em;
+  font-size: 1.25rem;
+  background-color: var(--accent);
+  border-bottom: 5px solid var(--bg-light);
+  border-radius: 0.2em 0.2em 0.27em 0.27em;
+  color: var(--accent-text);
+  width: fit-content;
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.input-group label {
+  flex: 1;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.input-group input[type="number"] {
+  width: 100px;
+  padding: 0.5rem;
+  border: 2px solid var(--ultra-violet);
+  border-radius: var(--standard-border-radius);
+  background-color: var(--bg);
+  color: var(--text);
+  font-size: 1rem;
+  font-family: inherit;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  transition: border-color 120ms ease, box-shadow 120ms ease;
+}
+
+.input-group input[type="number"]:focus {
+  outline: none;
+  border-color: var(--rose-quartz);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.input-group .unit {
+  color: var(--text-light);
+  font-size: 0.875rem;
+  min-width: 60px;
+}
+
+.checkbox-group {
+  margin-bottom: 0.5rem;
+}
+
+.checkbox-group input[type="checkbox"] {
+  vertical-align: middle;
+  position: relative;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  margin: 0;
+  margin-right: 0.5rem;
+  border: 2px solid var(--ultra-violet);
+  border-radius: var(--standard-border-radius);
+  background-color: var(--bg);
+  transition: all 120ms ease;
+}
+
+.checkbox-group input[type="checkbox"]:checked {
+  background-color: var(--rose-quartz);
+  border-color: var(--rose-quartz);
+}
+
+.checkbox-group input[type="checkbox"]:hover {
+  border-color: var(--pink-puree);
+}
+
+.checkbox-group label {
+  cursor: pointer;
+  user-select: none;
+  display: inline-block;
+}
+
+.indent-group {
+  margin-left: 2rem;
+  margin-bottom: 1rem;
+}
+
+.results {
+  background-color: var(--purple-night);
+  padding: 1rem;
+  border-radius: 0.3rem;
+  border: 2px solid var(--ultra-violet);
+}
+
+.result-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem;
+  margin-bottom: 0.5rem;
+  background-color: var(--bg);
+  border-radius: var(--standard-border-radius);
+}
+
+.result-box:last-child {
+  margin-bottom: 0;
+}
+
+.result-box.highlight {
+  background-color: var(--ultra-violet);
+  border: 1px solid var(--rose-quartz);
+}
+
+.result-label {
+  font-weight: 500;
+  color: var(--text);
+}
+
+.result-value {
+  font-weight: 700;
+  font-size: 1.125rem;
+  color: var(--pink-puree);
+  font-family: var(--mono-font);
+}
+
+@media (max-width: 640px) {
+  .input-group {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .input-group label {
+    margin-bottom: 0.25rem;
+  }
+
+  .input-group input[type="number"] {
+    width: 100%;
+  }
+
+  .result-box {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  #matchCanvas {
+    width: 100%;
+    height: auto;
+  }
+}
+
+.simulation-container {
+  margin-top: 1rem;
+}
+
+.simulation-header {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  padding: 0.75rem;
+  background-color: var(--bg);
+  border-radius: var(--standard-border-radius);
+  border: 2px solid var(--ultra-violet);
+}
+
+.sim-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.sim-label {
+  font-size: 0.75rem;
+  color: var(--text-light);
+  font-weight: 600;
+}
+
+.sim-value {
+  font-size: 1rem;
+  color: var(--pink-puree);
+  font-family: var(--mono-font);
+  font-weight: 700;
+}
+
+#matchCanvas {
+  width: 100%;
+  height: 200px;
+  background-color: var(--nightshade-violet);
+  border-radius: var(--standard-border-radius);
+  border: 2px solid var(--ultra-violet);
+  display: block;
+}
+
+.timeline-container {
+  margin-top: 1rem;
+  position: relative;
+}
+
+.timeline-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  font-size: 0.75rem;
+  color: var(--text-light);
+  padding: 0 0.5rem;
+}
+
+.timeline-scrubber {
+  width: 100%;
+  height: 8px;
+  border-radius: 4px;
+  background: var(--bg);
+  border: 2px solid var(--ultra-violet);
+  outline: none;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.timeline-scrubber::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--rose-quartz);
+  cursor: pointer;
+  border: 2px solid var(--pink-puree);
+}
+
+.timeline-scrubber::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--rose-quartz);
+  cursor: pointer;
+  border: 2px solid var(--pink-puree);
+}
+
+.simulation-controls {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+.sim-button {
+  padding: 0.5rem 1rem;
+  background-color: var(--accent);
+  color: var(--accent-text);
+  border: 2px solid var(--ultra-violet);
+  border-radius: var(--standard-border-radius);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 120ms ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.sim-button:hover {
+  background-color: var(--rose-quartz);
+  border-color: var(--pink-puree);
+}
+
+.sim-button:active {
+  transform: translateY(1px);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.speed-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-left: auto;
+}
+
+.speed-controls label {
+  font-size: 0.875rem;
+  color: var(--text);
+  font-weight: 600;
+}
+
+.speed-controls select {
+  padding: 0.5rem;
+  background-color: var(--bg);
+  color: var(--text);
+  border: 2px solid var(--ultra-violet);
+  border-radius: var(--standard-border-radius);
+  font-family: inherit;
+  cursor: pointer;
+}
+</style>
+
+<script>
+(function() {
+  // Wait for DOM to be ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initCalculator);
+  } else {
+    initCalculator();
+  }
+
+  function initCalculator() {
+    const calculator = document.getElementById("frc-calculator");
+    if (!calculator) return;
+
+    // Get all input elements
+    const inputs = {
+      ballCapacity: document.getElementById("ballCapacity"),
+      reloadTime: document.getElementById("reloadTime"),
+      shooterBPS: document.getElementById("shooterBPS"),
+      numRobots: document.getElementById("numRobots"),
+      graceTime: document.getElementById("graceTime"),
+      includeAuto: document.getElementById("includeAuto"),
+      autoShootTime: document.getElementById("autoShootTime"),
+      includeEndgame: document.getElementById("includeEndgame"),
+      endgameShootTime: document.getElementById("endgameShootTime"),
+      wonAuto: document.getElementById("wonAuto"),
+      energizedThreshold: document.getElementById("energizedThreshold"),
+      superchargedThreshold: document.getElementById("superchargedThreshold"),
+    };
+
+    // Get all result elements
+    const results = {
+      totalTime: document.getElementById("totalTime"),
+      cycleTime: document.getElementById("cycleTime"),
+      energizedAllianceBPS: document.getElementById("energizedAllianceBPS"),
+      energizedRobotBPS: document.getElementById("energizedRobotBPS"),
+      superchargedAllianceBPS: document.getElementById("superchargedAllianceBPS"),
+      superchargedRobotBPS: document.getElementById("superchargedRobotBPS"),
+    };
+
+    // Toggle visibility of conditional inputs
+    const autoTimeGroup = document.getElementById("autoTimeGroup");
+    const endgameTimeGroup = document.getElementById("endgameTimeGroup");
+
+    inputs.includeAuto.addEventListener("change", () => {
+      autoTimeGroup.style.display = inputs.includeAuto.checked ? "flex" : "none";
+      calculate();
+    });
+
+    inputs.includeEndgame.addEventListener("change", () => {
+      endgameTimeGroup.style.display = inputs.includeEndgame.checked ? "flex" : "none";
+      calculate();
+    });
+
+    // Add event listeners to all inputs
+    Object.values(inputs).forEach((input) => {
+      input.addEventListener("input", calculate);
+      input.addEventListener("change", calculate);
+    });
+
+    function calculate() {
+      // Get input values
+      const ballCapacity = parseFloat(inputs.ballCapacity.value) || 0;
+      const reloadTime = parseFloat(inputs.reloadTime.value) || 0;
+      const shooterBPS = parseFloat(inputs.shooterBPS.value) || 4;
+      const numRobots = parseFloat(inputs.numRobots.value) || 1;
+      const includeAuto = inputs.includeAuto.checked;
+      const autoShootTime = parseFloat(inputs.autoShootTime.value) || 0;
+      const includeEndgame = inputs.includeEndgame.checked;
+      const endgameShootTime = parseFloat(inputs.endgameShootTime.value) || 0;
+      const wonAuto = inputs.wonAuto.checked;
+      const energizedThreshold = parseFloat(inputs.energizedThreshold.value) || 0;
+      const superchargedThreshold = parseFloat(inputs.superchargedThreshold.value) || 0;
+
+      // Calculate total active scoring time
+      let totalTime = 0;
+
+      // Auto period (if included)
+      if (includeAuto) {
+        totalTime += autoShootTime;
+      }
+
+      // Transition period (always active, now 10s)
+      totalTime += 10;
+
+      // Shifts - 2 active shifts of 25s each
+      // If won auto: Shifts 2 & 4 are active
+      // If lost auto: Shifts 1 & 3 are active
+      totalTime += 50; // 2 shifts × 25s
+
+      // Endgame period (if included, now 30s)
+      if (includeEndgame) {
+        totalTime += endgameShootTime;
+      }
+
+      // Calculate free reloads during inactive hub time
+      // There are 58 seconds of inactive time (8s break + 2 shifts × 25s)
+      // This is the ONLY time we can reload without losing active scoring time
+      const inactiveTime = 58;
+      const freeReloads = reloadTime > 0 ? Math.floor(inactiveTime / reloadTime) : 0;
+
+      // BPS calculation accounting for reload time during auto/endgame
+      function calculateBPSForThreshold(threshold) {
+        if (totalTime <= 0 || threshold <= 0 || ballCapacity <= 0) return 0;
+
+        // Calculate cycles needed to reach threshold
+        const cyclesNeeded = Math.ceil(threshold / ballCapacity);
+        const reloadsNeeded = Math.max(0, cyclesNeeded - 1);
+
+        // Reloads during inactive time are free
+        // Remaining reloads consume active time
+        const paidReloads = Math.max(0, reloadsNeeded - freeReloads);
+
+        // Available shooting time = total active time - paid reload time
+        const shootingTime = totalTime - (paidReloads * reloadTime);
+
+        // BPS = threshold / available shooting time
+        return shootingTime > 0 ? threshold / shootingTime : 0;
+      }
+      
+      // Calculate max balls achievable by simulating full match
+      function calculateMaxBalls() {
+        if (shooterBPS <= 0 || ballCapacity <= 0) return 0;
+        
+        // Run simulation to completion (t=168s) with current settings
+        let totalScored = 0;
+        let cyclePosition = 0; // 0 = ready to shoot, 1 = reloading
+        let reloadProgress = 0;
+        let ballsInHopper = Math.min(ballCapacity, 8); // Preload
+        
+        const includeAuto = inputs.includeAuto.checked;
+        const autoShootTime = parseFloat(inputs.autoShootTime.value) || 0;
+        const includeEndgame = inputs.includeEndgame.checked;
+        const endgameShootTime = parseFloat(inputs.endgameShootTime.value) || 0;
+        
+        for (let periodIndex = 0; periodIndex < periods.length; periodIndex++) {
+          const period = periods[periodIndex];
+          
+          // Skip BREAK period
+          if (period.name === "BREAK") continue;
+          
+          // Check if hub is active for this period
+          let periodActive = period.active;
+          if (period.name === "S1" || period.name === "S3") {
+            periodActive = !wonAuto;
+          } else if (period.name === "S2" || period.name === "S4") {
+            periodActive = wonAuto;
+          }
+          
+          // Determine effective time and if shooting is allowed
+          const timeInPeriod = period.end - period.start;
+          let effectiveTimeInPeriod = timeInPeriod;
+          let canShootInPeriod = true;
+          
+          if (period.name === "AUTO") {
+            if (!includeAuto) {
+              canShootInPeriod = false;
+            } else {
+              effectiveTimeInPeriod = Math.min(timeInPeriod, autoShootTime);
+            }
+          } else if (period.name === "END") {
+            if (!includeEndgame) {
+              canShootInPeriod = false;
+            } else {
+              effectiveTimeInPeriod = Math.min(timeInPeriod, endgameShootTime);
+            }
+          }
+          
+          let timeRemaining = effectiveTimeInPeriod;
+          
+          // Check grace period eligibility
+          let allowGraceShoot = false;
+          if (!periodActive && periodIndex > 0 && period.name !== "BREAK") {
+            const prevPeriod = periods[periodIndex - 1];
+            let prevActive = prevPeriod.active;
+            if (prevPeriod.name === "S1" || prevPeriod.name === "S3") {
+              prevActive = !wonAuto;
+            } else if (prevPeriod.name === "S2" || prevPeriod.name === "S4") {
+              prevActive = wonAuto;
+            }
+            if (prevActive) {
+              allowGraceShoot = true;
+            }
+          }
+          
+          // Simulate this period
+          let timeIntoPeriod = 0;
+          while (timeRemaining > 0) {
+            const canShootWithGrace = periodActive || (allowGraceShoot && timeIntoPeriod < graceTime);
+            
+            if (cyclePosition === 0) {
+              // Ready to shoot
+              if (canShootWithGrace && canShootInPeriod) {
+                const ballsToShoot = ballsInHopper;
+                const timeToShootAll = ballsToShoot / shooterBPS;
+                const timeToShoot = Math.min(timeToShootAll, timeRemaining);
+                
+                const ballsActuallyShot = Math.floor(timeToShoot * shooterBPS);
+                totalScored += ballsActuallyShot * numRobots;
+                ballsInHopper -= ballsActuallyShot;
+                timeRemaining -= timeToShoot;
+                timeIntoPeriod += timeToShoot;
+                
+                if (ballsInHopper <= 0) {
+                  ballsInHopper = 0;
+                  cyclePosition = 1;
+                  reloadProgress = 0;
+                } else {
+                  break; // Still have balls but out of time
+                }
+              } else {
+                break; // Can't shoot, wait
+              }
+            } else if (cyclePosition === 1) {
+              // Reloading
+              const timeToReload = Math.min(reloadTime - reloadProgress, timeRemaining);
+              timeRemaining -= timeToReload;
+              timeIntoPeriod += timeToReload;
+              reloadProgress += timeToReload;
+              
+              if (reloadProgress >= reloadTime) {
+                ballsInHopper = ballCapacity;
+                cyclePosition = 0;
+                reloadProgress = 0;
+              } else {
+                break; // Still reloading
+              }
+            }
+          }
+        }
+        
+        return totalScored;
+      }
+
+      const energizedAllianceBPS = calculateBPSForThreshold(energizedThreshold);
+      const superchargedAllianceBPS = calculateBPSForThreshold(superchargedThreshold);
+      const maxBalls = calculateMaxBalls();
+
+      // Calculate per robot BPS
+      const energizedRobotBPS = numRobots > 0 ? energizedAllianceBPS / numRobots : 0;
+      const superchargedRobotBPS = numRobots > 0 ? superchargedAllianceBPS / numRobots : 0;
+
+      // Cycle time is the time to shoot all balls in the hopper plus reload time
+      // Based on physical shooter speed (not target BPS)
+      const shootingTimePerCycle = ballCapacity > 0 && shooterBPS > 0 ? ballCapacity / shooterBPS : 0;
+      const avgCycleTime = shootingTimePerCycle + reloadTime;
+
+      // Update results
+      results.totalTime.textContent = `${totalTime.toFixed(1)}s`;
+      results.cycleTime.textContent = avgCycleTime > 0 ? `${avgCycleTime.toFixed(2)}s` : "N/A";
+      
+      // Show BPS or "N/A (max X balls)" if unreachable
+      if (energizedAllianceBPS > 0 && maxBalls >= energizedThreshold) {
+        results.energizedAllianceBPS.textContent = `${energizedAllianceBPS.toFixed(2)} balls/s`;
+        results.energizedRobotBPS.textContent = `${energizedRobotBPS.toFixed(2)} balls/s`;
+      } else {
+        results.energizedAllianceBPS.textContent = `N/A (max ${maxBalls} balls)`;
+        results.energizedRobotBPS.textContent = `N/A (max ${maxBalls} balls)`;
+      }
+      
+      if (superchargedAllianceBPS > 0 && maxBalls >= superchargedThreshold) {
+        results.superchargedAllianceBPS.textContent = `${superchargedAllianceBPS.toFixed(2)} balls/s`;
+        results.superchargedRobotBPS.textContent = `${superchargedRobotBPS.toFixed(2)} balls/s`;
+      } else {
+        results.superchargedAllianceBPS.textContent = `N/A (max ${maxBalls} balls)`;
+        results.superchargedRobotBPS.textContent = `N/A (max ${maxBalls} balls)`;
+      }
+    }
+
+    // Match Simulation
+    const canvas = document.getElementById("matchCanvas");
+    const ctx = canvas ? canvas.getContext("2d") : null;
+    const timelineScrubber = document.getElementById("timelineScrubber");
+    const playPauseBtn = document.getElementById("playPauseBtn");
+    const resetBtn = document.getElementById("resetBtn");
+    const speedSelect = document.getElementById("speedSelect");
+    const simTime = document.getElementById("simTime");
+    const simBalls = document.getElementById("simBalls");
+    const simScored = document.getElementById("simScored");
+    const simStatus = document.getElementById("simStatus");
+    const timelineLabels = document.getElementById("timelineLabels");
+
+    let isPlaying = false;
+    let currentTime = 0;
+    let animationFrame = null;
+    let lastTimestamp = 0;
+
+    // Match timeline periods
+    const periods = [
+      { name: "AUTO", start: 0, end: 20, active: true },
+      { name: "BREAK", start: 20, end: 28, active: false },
+      { name: "TRANS", start: 28, end: 38, active: true },
+      { name: "S1", start: 38, end: 63, active: false },
+      { name: "S2", start: 63, end: 88, active: true },
+      { name: "S3", start: 88, end: 113, active: false },
+      { name: "S4", start: 113, end: 138, active: true },
+      { name: "END", start: 138, end: 168, active: true }
+    ];
+
+    function setupTimeline() {
+      if (!timelineLabels) return;
+
+      timelineLabels.innerHTML = periods.map(p => `<span>${p.name}</span>`).join('');
+    }
+
+    function drawCanvas() {
+      if (!ctx || !canvas) return;
+
+      const width = canvas.width;
+      const height = canvas.height;
+      const ballCapacity = parseFloat(inputs.ballCapacity.value) || 3;
+      const reloadTime = parseFloat(inputs.reloadTime.value) || 5;
+      const shooterBPS = parseFloat(inputs.shooterBPS.value) || 4;
+
+      // Clear canvas
+      ctx.fillStyle = '#1e1e2e'; // nightshade-violet
+      ctx.fillRect(0, 0, width, height);
+
+      // Determine current period
+      const wonAuto = inputs.wonAuto.checked;
+      let currentPeriod = periods.find(p => currentTime >= p.start && currentTime < p.end);
+      if (!currentPeriod) currentPeriod = periods[periods.length - 1];
+
+      // Draw timeline periods
+      periods.forEach(period => {
+        const x = (period.start / 168) * width;
+        const w = ((period.end - period.start) / 168) * width;
+
+        // Determine if hub is active based on wonAuto
+        let isActive = period.active;
+
+        if (period.name === "S1" || period.name === "S3") {
+          isActive = !wonAuto;
+        } else if (period.name === "S2" || period.name === "S4") {
+          isActive = wonAuto;
+        }
+
+        // Check if this is the current period
+        const isCurrent = period === currentPeriod;
+
+        // Background color - brighter if current period
+        if (isCurrent) {
+          ctx.fillStyle = isActive ? 'rgba(166, 218, 149, 0.4)' : 'rgba(237, 135, 150, 0.4)';
+        } else {
+          ctx.fillStyle = isActive ? 'rgba(166, 218, 149, 0.15)' : 'rgba(237, 135, 150, 0.15)';
+        }
+        ctx.fillRect(x, 0, w, height);
+
+        // Draw period border - thicker if current
+        ctx.strokeStyle = isCurrent ? '#8aadf4' : 'rgba(138, 173, 244, 0.3)';
+        ctx.lineWidth = isCurrent ? 2 : 1;
+        ctx.strokeRect(x, 0, w, height);
+
+        // Draw period label - bold if current
+        ctx.fillStyle = '#cad3f5';
+        ctx.font = isCurrent ? 'bold 14px monospace' : '12px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText(period.name, x + w / 2, isCurrent ? 22 : 20);
+      });
+
+      // Simulate robot state at current time
+      let ballsInHopper = 0;
+      let totalScored = 0;
+      let status = "Idle";
+      let timeInCycle = 0;
+      const numRobots = Math.min(3, parseFloat(inputs.numRobots.value) || 1);
+      const graceTime = parseFloat(inputs.graceTime.value) || 0;
+
+      // Helper function to check if we're in grace period after hub goes inactive
+      function isInGracePeriod(time) {
+        // Find which period we're in
+        const currentPeriodIndex = periods.findIndex(p => time >= p.start && time < p.end);
+        if (currentPeriodIndex === -1) return false;
+        
+        const currentPer = periods[currentPeriodIndex];
+        
+        // Check if previous period was active and current is inactive
+        if (currentPeriodIndex > 0) {
+          const prevPeriod = periods[currentPeriodIndex - 1];
+          
+          let prevActive = prevPeriod.active;
+          let currActive = currentPer.active;
+          
+          if (prevPeriod.name === "S1" || prevPeriod.name === "S3") {
+            prevActive = !wonAuto;
+          } else if (prevPeriod.name === "S2" || prevPeriod.name === "S4") {
+            prevActive = wonAuto;
+          }
+          
+          if (currentPer.name === "S1" || currentPer.name === "S3") {
+            currActive = !wonAuto;
+          } else if (currentPer.name === "S2" || currentPer.name === "S4") {
+            currActive = wonAuto;
+          }
+          
+          // If we went from active to inactive
+          if (prevActive && !currActive) {
+            const timeSinceTransition = time - currentPer.start;
+            return timeSinceTransition <= graceTime;
+          }
+        }
+        return false;
+      }
+
+      // Check if hub is active (including grace period)
+      let isHubActive = currentPeriod.active;
+      if (currentPeriod.name === "S1" || currentPeriod.name === "S3") {
+        isHubActive = !wonAuto;
+      } else if (currentPeriod.name === "S2" || currentPeriod.name === "S4") {
+        isHubActive = wonAuto;
+      }
+      
+      // Check grace period
+      if (!isHubActive && isInGracePeriod(currentTime)) {
+        isHubActive = true;
+      }
+
+      if (shooterBPS > 0) {
+        const shootingTimePerCycle = ballCapacity / shooterBPS;
+        const includeAuto = inputs.includeAuto.checked;
+        const autoShootTime = parseFloat(inputs.autoShootTime.value) || 0;
+        const includeEndgame = inputs.includeEndgame.checked;
+        const endgameShootTime = parseFloat(inputs.endgameShootTime.value) || 0;
+
+        // Simulate through all periods up to current time
+        let timeAccumulator = 0;
+        let cyclePosition = 0; // 0 = ready to shoot, 1 = reloading
+        let reloadProgress = 0; // Track partial reload progress (0 to reloadTime)
+        
+        // Start with preloaded balls (max 8)
+        ballsInHopper = Math.min(ballCapacity, 8);
+
+        for (let periodIndex = 0; periodIndex < periods.length; periodIndex++) {
+          const period = periods[periodIndex];
+          if (currentTime < period.start) break;
+
+          const periodEnd = Math.min(period.end, currentTime);
+          const timeInPeriod = periodEnd - period.start;
+
+          // Check if hub is active for this period
+          let periodActive = period.active;
+          if (period.name === "S1" || period.name === "S3") {
+            periodActive = !wonAuto;
+          } else if (period.name === "S2" || period.name === "S4") {
+            periodActive = wonAuto;
+          }
+
+          // Limit time in period based on user settings for auto/endgame
+          let effectiveTimeInPeriod = timeInPeriod;
+          let canShootInPeriod = true;
+
+          if (period.name === "AUTO") {
+            if (!includeAuto) {
+              canShootInPeriod = false;
+            } else {
+              // Limit to autoShootTime
+              effectiveTimeInPeriod = Math.min(timeInPeriod, autoShootTime);
+            }
+          } else if (period.name === "END") {
+            if (!includeEndgame) {
+              canShootInPeriod = false;
+            } else {
+              // Limit to endgameShootTime
+              effectiveTimeInPeriod = Math.min(timeInPeriod, endgameShootTime);
+            }
+          } else if (period.name === "BREAK") {
+            // No activity during break - skip this period entirely
+            if (currentTime >= period.start && currentTime <= periodEnd) {
+              status = "Break";
+            }
+            continue; // Skip to next period
+          }
+
+          let timeRemaining = effectiveTimeInPeriod;
+          
+          // Check if we should allow shooting in grace period
+          let allowGraceShoot = false;
+          if (!periodActive && periodIndex > 0 && period.name !== "BREAK") {
+            const prevPeriod = periods[periodIndex - 1];
+            let prevActive = prevPeriod.active;
+            if (prevPeriod.name === "S1" || prevPeriod.name === "S3") {
+              prevActive = !wonAuto;
+            } else if (prevPeriod.name === "S2" || prevPeriod.name === "S4") {
+              prevActive = wonAuto;
+            }
+            
+            // Previous period was active, current is inactive - allow grace period
+            if (prevActive) {
+              allowGraceShoot = true;
+            }
+          }
+
+          while (timeRemaining > 0) {
+            // Check if we're still in grace period
+            const timeIntoPeriod = effectiveTimeInPeriod - timeRemaining;
+            const canShootWithGrace = periodActive || (allowGraceShoot && timeIntoPeriod < graceTime);
+            
+            if (cyclePosition === 0) {
+              // Ready to shoot (have balls loaded)
+              if (canShootWithGrace && canShootInPeriod) {
+                // Calculate how many balls we actually have to shoot
+                const ballsToShoot = ballsInHopper;
+                const timeToShootAll = ballsToShoot / shooterBPS;
+                const timeToShoot = Math.min(timeToShootAll, timeRemaining);
+                timeRemaining -= timeToShoot;
+
+                const ballsActuallyShot = Math.floor(timeToShoot * shooterBPS);
+                totalScored += ballsActuallyShot * numRobots;
+                ballsInHopper -= ballsActuallyShot;
+
+                if (ballsInHopper <= 0) {
+                  // Finished shooting all balls - start reload
+                  ballsInHopper = 0;
+                  cyclePosition = 1;
+                  reloadProgress = 0;
+
+                  if (currentTime >= period.start && currentTime <= periodEnd && timeRemaining === 0) {
+                    status = "Reloading";
+                  }
+                } else {
+                  // Still shooting
+                  if (currentTime >= period.start && currentTime <= periodEnd && timeRemaining === 0) {
+                    status = "Shooting";
+                  }
+                  break;
+                }
+              } else {
+                // Hub inactive, can't shoot - maintain current balls
+                if (currentTime >= period.start && currentTime <= periodEnd) {
+                  status = allowGraceShoot && timeIntoPeriod < graceTime ? "Grace Period" : "Idle";
+                }
+                break;
+              }
+            } else if (cyclePosition === 1) {
+              // Reloading
+              const timeToReload = Math.min(reloadTime - reloadProgress, timeRemaining);
+              timeRemaining -= timeToReload;
+              reloadProgress += timeToReload;
+
+              if (reloadProgress >= reloadTime) {
+                // Finished reloading
+                ballsInHopper = ballCapacity;
+                cyclePosition = 0;
+                reloadProgress = 0;
+
+                if (currentTime >= period.start && currentTime <= periodEnd && timeRemaining === 0) {
+                  status = canShootWithGrace ? "Ready" : "Idle";
+                }
+              } else {
+                // Still reloading - show partial progress
+                if (currentTime >= period.start && currentTime <= periodEnd && timeRemaining === 0) {
+                  const reloadPercent = reloadProgress / reloadTime;
+                  ballsInHopper = Math.floor(ballCapacity * reloadPercent);
+                  status = "Reloading";
+                }
+                break;
+              }
+            }
+          }
+
+          // Check if we're past the shooting time in auto/endgame
+          if (currentTime >= period.start && currentTime <= periodEnd) {
+            if (period.name === "AUTO" && includeAuto) {
+              const timeIntoPeriod = currentTime - period.start;
+              if (timeIntoPeriod >= autoShootTime) {
+                status = "Idle";
+                // Keep current balls loaded
+              }
+            } else if (period.name === "END" && includeEndgame) {
+              const timeIntoPeriod = currentTime - period.start;
+              if (timeIntoPeriod >= endgameShootTime) {
+                status = "Idle";
+                // Keep current balls loaded
+              }
+            }
+          }
+        }
+      }
+
+      // Draw progress bar
+      const progressX = (currentTime / 168) * width;
+      ctx.strokeStyle = '#f5bde6';
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      ctx.moveTo(progressX, 0);
+      ctx.lineTo(progressX, height);
+      ctx.stroke();
+
+      // Draw robot visualizations (one per robot, max 3)
+      const robotWidth = 50;
+      const robotHeight = 40;
+      const robotSpacing = 80;
+      const startX = 40;
+      const robotY = height - 60;
+
+      for (let robotIndex = 0; robotIndex < numRobots; robotIndex++) {
+        const robotX = startX + (robotIndex * robotSpacing);
+
+        // Robot body - color based on status
+        let robotColor;
+        if (status === "Shooting") {
+          robotColor = '#a6da95'; // Green - shooting
+        } else if (status === "Reloading") {
+          robotColor = '#eed49f'; // Yellow - reloading
+        } else {
+          robotColor = '#ed8796'; // Red - idle/waiting
+        }
+
+        ctx.fillStyle = robotColor;
+        ctx.fillRect(robotX, robotY, robotWidth, robotHeight);
+        ctx.strokeStyle = '#8aadf4';
+        ctx.lineWidth = 2;
+        ctx.strokeRect(robotX, robotY, robotWidth, robotHeight);
+
+        // Draw balls in hopper
+        if (status === "Reloading") {
+          // During reload, show balls filling up from bottom to top
+          // ballsInHopper already contains the partial reload count
+          if (ballCapacity <= 16) {
+            const ballRadius = 4;
+            const ballsPerRow = 4;
+            for (let i = 0; i < ballsInHopper; i++) {
+              const row = Math.floor(i / ballsPerRow);
+              const col = i % ballsPerRow;
+              const ballX = robotX + 6 + col * 10;
+              const ballY = robotY + robotHeight - 6 - row * 10;
+
+              ctx.fillStyle = '#f5a97f';
+              ctx.beginPath();
+              ctx.arc(ballX, ballY, ballRadius, 0, Math.PI * 2);
+              ctx.fill();
+            }
+          } else {
+            // For large capacities, show count and progress
+            const reloadProgress = ballsInHopper / ballCapacity;
+            ctx.fillStyle = '#f5a97f';
+            ctx.font = 'bold 20px monospace';
+            ctx.textAlign = 'center';
+            ctx.fillText(ballsInHopper, robotX + 25, robotY + 25);
+            
+            // Progress bar
+            ctx.fillStyle = 'rgba(245, 169, 127, 0.3)';
+            ctx.fillRect(robotX + 5, robotY + robotHeight - 8, robotWidth - 10, 4);
+            ctx.fillStyle = '#f5a97f';
+            ctx.fillRect(robotX + 5, robotY + robotHeight - 8, (robotWidth - 10) * reloadProgress, 4);
+          }
+        } else if (ballCapacity <= 16) {
+          // Draw individual balls for small capacities (up to 16)
+          const ballRadius = 4;
+          const ballsPerRow = 4;
+          for (let i = 0; i < ballsInHopper; i++) {
+            const row = Math.floor(i / ballsPerRow);
+            const col = i % ballsPerRow;
+            const ballX = robotX + 6 + col * 10;
+            const ballY = robotY + 6 + row * 10;
+
+            ctx.fillStyle = '#f5a97f';
+            ctx.beginPath();
+            ctx.arc(ballX, ballY, ballRadius, 0, Math.PI * 2);
+            ctx.fill();
+          }
+        } else {
+          // For large capacities, just show the count
+          ctx.fillStyle = '#f5a97f';
+          ctx.font = 'bold 24px monospace';
+          ctx.textAlign = 'center';
+          ctx.fillText(ballsInHopper, robotX + 25, robotY + 28);
+        }
+
+        // Robot number label
+        ctx.fillStyle = '#8aadf4';
+        ctx.font = 'bold 10px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText(`R${robotIndex + 1}`, robotX + 25, robotY - 4);
+      }
+
+      // Status text (shared for all robots)
+      const statusX = startX + (numRobots * robotSpacing);
+      ctx.fillStyle = '#cad3f5';
+      ctx.font = 'bold 14px monospace';
+      ctx.textAlign = 'left';
+      ctx.fillText(status, statusX, robotY + 20);
+      ctx.fillText(`Balls: ${ballsInHopper}/${ballCapacity}`, statusX, robotY + 40);
+
+      // Update stats
+      // Timer display logic: countdown in AUTO, pause at 0 during BREAK, count up in teleop
+      // Match time is 160s (game time) but simulation runs 168s (includes 8s break)
+      let displayTime;
+      let matchTime; // Actual match time shown to drivers
+      
+      if (currentTime <= 20) {
+        // AUTO period: countdown from 15 to 0
+        matchTime = 20 - currentTime;
+        displayTime = matchTime.toFixed(1);
+      } else if (currentTime <= 28) {
+        // BREAK period: stays at 0 (doesn't count toward match time)
+        matchTime = 0;
+        displayTime = "0.0";
+      } else {
+        // Teleop: count up from 0 to 140 (subtract the 8s break)
+        matchTime = currentTime - 8; // Remove the break time
+        displayTime = (matchTime - 20).toFixed(1); // Show time since auto ended
+      }
+      
+      if (simTime) simTime.textContent = `${displayTime}s`;
+      if (simBalls) simBalls.textContent = ballsInHopper;
+      if (simScored) simScored.textContent = totalScored;
+      if (simStatus) simStatus.textContent = status;
+    }
+
+    function animate(timestamp) {
+      if (!isPlaying) return;
+
+      if (lastTimestamp === 0) lastTimestamp = timestamp;
+      const deltaTime = (timestamp - lastTimestamp) / 1000; // Convert to seconds
+      lastTimestamp = timestamp;
+
+      const speed = parseFloat(speedSelect.value) || 1;
+      currentTime += deltaTime * speed;
+
+      if (currentTime >= 168) {
+        currentTime = 168;
+        pause();
+      }
+
+      if (timelineScrubber) timelineScrubber.value = currentTime;
+      drawCanvas();
+
+      if (isPlaying) {
+        animationFrame = requestAnimationFrame(animate);
+      }
+    }
+
+    function play() {
+      if (currentTime >= 160) currentTime = 0;
+      isPlaying = true;
+      lastTimestamp = 0;
+      if (playPauseBtn) playPauseBtn.textContent = "Pause";
+      animationFrame = requestAnimationFrame(animate);
+    }
+
+    function pause() {
+      isPlaying = false;
+      if (playPauseBtn) playPauseBtn.textContent = "Play";
+      if (animationFrame) cancelAnimationFrame(animationFrame);
+    }
+
+    function reset() {
+      pause();
+      currentTime = 0;
+      if (timelineScrubber) timelineScrubber.value = 0;
+      drawCanvas();
+    }
+
+    // Event listeners
+    if (playPauseBtn) {
+      playPauseBtn.addEventListener("click", () => {
+        if (isPlaying) pause();
+        else play();
+      });
+    }
+
+    if (resetBtn) {
+      resetBtn.addEventListener("click", reset);
+    }
+
+    if (timelineScrubber) {
+      timelineScrubber.addEventListener("input", (e) => {
+        currentTime = parseFloat(e.target.value);
+        drawCanvas();
+      });
+
+      timelineScrubber.addEventListener("mousedown", () => {
+        if (isPlaying) pause();
+      });
+    }
+
+    // Redraw on parameter changes
+    Object.values(inputs).forEach((input) => {
+      input.addEventListener("input", () => {
+        if (!isPlaying) drawCanvas();
+      });
+    });
+
+    // Initialize
+    setupTimeline();
+    drawCanvas();
+
+    // Initial calculation
+    calculate();
+  }
+})();
+</script>
