@@ -3,6 +3,7 @@ base_url = "https://dunkirk.sh"
 
 title = "site@zera"
 description = "The home site of kieran klukas"
+author = "kieran@dunkirk.sh (Kieran Klukas)"
 compile_sass = true
 minify_html = true
 generate_feeds = true
