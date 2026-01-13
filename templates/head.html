@@ -71,6 +71,9 @@ cssHash = get_hash(path="css/main.css", sha_type=256, base64=true) %}
 <link rel="stylesheet" type="text/css"
   href="{{ get_url(path='css/main.css?' ~ cssHash, trailing_slash=false) | safe }}" />
 {% endblock css %}
+{% set cssNakedDayJsHash = get_hash(path="js/css-naked-day.js", sha_type=256,
+base64=true) %}
+<script src="{{ get_url(path='js/css-naked-day.js?' ~ cssNakedDayJsHash, trailing_slash=false) | safe }}"></script>
 
 {% set jsHash = get_hash(path="js/copy-button.js", sha_type=256,
 base64=true) %}
