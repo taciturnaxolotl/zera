@@ -73,6 +73,7 @@ header {
   transition: all 120ms ease;
   position: relative;
   font-weight: 600;
+  font-style: italic;
 }
 
 #nav-bar a:hover {
@@ -202,7 +203,7 @@ blockquote {
 blockquote:has(+ pre) {
   display: inline-block;
   border: none;
-  font-family: "code", monospace !important;
+  font-family: var(--mono-font) !important;
   font-size: 0.8rem;
   font-weight: 600;
   margin: 0;

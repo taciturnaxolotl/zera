@@ -1,3 +1,35 @@
+@font-face {
+  font-family: "Maple Mono";
+  src: url("/fonts/maple-mono-latin-400-normal.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Maple Mono";
+  src: url("/fonts/maple-mono-latin-400-italic.woff2") format("woff2");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Maple Mono";
+  src: url("/fonts/maple-mono-latin-700-normal.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Maple Mono";
+  src: url("/fonts/maple-mono-latin-700-italic.woff2") format("woff2");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
 :root,
 ::backdrop {
   /* set sans-serif & mono fonts */
@@ -9,8 +41,8 @@
     Superclarendon, "Bookman Old Style", "URW Bookman", "URW Bookman L",
     "Georgia Pro", Georgia, serif;
   --mono-font:
-    ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, Consolas,
-    "DejaVu Sans Mono", monospace;
+    "Maple Mono", ui-monospace, "Cascadia Code", "Source Code Pro", Menlo,
+    Consolas, "DejaVu Sans Mono", monospace;
   --standard-border-radius: 5px;
 
   /* default colors */
@@ -123,6 +155,7 @@ h6 {
   border-radius: 0.2em 0.2em 0.27em 0.27em;
   color: var(--accent-text);
   width: fit-content;
+  font-style: italic;
 }
 
 /* Fix line height when title wraps */
@@ -167,6 +200,7 @@ a {
   color: var(--link);
   text-decoration: none;
   font-weight: 600;
+  font-style: italic;
   transition: color 120ms ease;
 }
 
