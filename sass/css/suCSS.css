@@ -677,7 +677,7 @@ pre {
   border: 1px solid var(--accent);
   max-height: 30rem;
   padding: 0.625rem;
-  overflow-x: auto;
+  overflow: auto;
   font-style: monospace;
 }
 

@@ -114,6 +114,14 @@ i.icon {
         box-shadow: none;
         border-radius: 0.3rem;
         border: none;
+        overflow: hidden;
+        max-height: none;
+
+        code {
+            display: block;
+            overflow: auto;
+            max-height: 28rem;
+        }
     }
 }
 
@@ -141,11 +149,14 @@ pre.z-code:not(.pre-container pre) {
     padding: 0.4em;
     border-bottom: 5px solid var(--bg-light);
     border-radius: 7px 7px 10px 10px;
+    overflow: hidden;
+    max-height: none;
 
     code {
         border-radius: 0.3rem;
         display: block;
-        overflow-x: auto;
+        overflow: auto;
+        max-height: 28rem;
         padding: 1em;
         background-color: var(--nightshade-violet);
         margin: 0;
