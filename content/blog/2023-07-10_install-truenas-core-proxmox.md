@@ -16,7 +16,8 @@ I have been using Proxmox for a while now but I've also wanted to make use of so
 
 ## Introduction
 
-> Note: I have since found out that running TrueNAS in a VM passing through the drives may not be a very good solution as it essentially just creates a large virtual disk that is the size of the drive you are passing through. Because of this I will not be using this setup in my homelab and will instead create a large ZFS pool on Proxmox. However if you are fine with those downsides, then have fun and enjoy the tutorial.
+> [!NOTE]
+> I have since found out that running TrueNAS in a VM passing through the drives may not be a very good solution as it essentially just creates a large virtual disk that is the size of the drive you are passing through. Because of this I will not be using this setup in my homelab and will instead create a large ZFS pool on Proxmox. However if you are fine with those downsides, then have fun and enjoy the tutorial.
 
 To install [TrueNAS Core](https://www.truenas.com/download-truenas-core/#) on [Proxmox](https://www.proxmox.com/en/proxmox-ve) you need three things:
 
