@@ -20,6 +20,7 @@ smart_punctuation = true
 [markdown.highlighting]
 style = "class"
 theme = "catppuccin-mocha"
+extra_syntaxes_and_themes = ["syntaxes"]
 
 [slugify]
 paths = "on"
