@@ -3,7 +3,7 @@
     {% set images = id | split(pat=",") %}
     {% set alts = alt | default(value="") | split(pat=",") %}
     {% for image in images %}
-        <div class="img-container" onclick="openLightboxGroup(this)">
+        <div class="img-container" data-lightbox data-lightbox-group="group-{{ id | slugify }}">
             <img src="{{image | trim}}" {% if alts[loop.index0] %}alt="{{alts[loop.index0] | trim}}" {% endif %} />
         </div>
     {% endfor %}
