@@ -4,9 +4,13 @@ title = "pfp hall of fame"
 
 All my profile pictures over the years
 
+# 2026
+
+![pixelated version of the fall leaves picture below with a redacted head and white eye circles](/pfps/redacted.png)
+
 # 2025
 
-November 11th till present
+November 11th till March 2nd 2026
 
 ![kieran with a robotics sweatshirt and fall leaves behind](/pfps/fall.webp)
 

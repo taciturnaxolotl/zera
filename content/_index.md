@@ -2,7 +2,7 @@
 +++
 
 <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 2rem;">
-    <img src="/pfps/fall.jpg" alt="kieran wearing a robotics sweatshirt and standing in front of a tree with fall leaves" width="512" height="512" class="u-photo"/>
+    <img src="/pfps/redacted.png" alt="A pixelated, low-resolution image of a person wearing a black square mask over their face with two white circular eyes, dressed in dark clothing, set against a chaotic, mosaic-like background of orange, blue, brown, and black pixels." width="512" height="512" class="u-photo"/>
     {{ is() }}
 </div>
 
