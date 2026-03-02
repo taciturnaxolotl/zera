@@ -1,7 +1,7 @@
 # The URL the site will be built for
 base_url = "https://dunkirk.sh"
 
-title = "site@zera"
+title = "zera"
 description = "The home site of kieran klukas"
 author = "kieran@dunkirk.sh (Kieran Klukas)"
 compile_sass = true
