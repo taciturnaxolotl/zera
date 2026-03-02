@@ -55,7 +55,7 @@
           return;
         }
         const item = data.value.item;
-        const expiry = parseInt(data.value.expiry, 10) * 1000;
+        const expiry = new Date(data.value.expiry).getTime();
         const now = Date.now();
         if (now > expiry) {
           el.innerHTML = "";
