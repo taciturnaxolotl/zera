@@ -6,7 +6,7 @@ All my profile pictures over the years
 
 # 2026
 
-![pixelated version of the fall leaves picture below with a redacted head and white eye circles](/pfps/redacted.png)
+![A photo of kieran wearing a black hoodie set against chaotic, mosaic-like background of orange, blue, brown, and black pixels.](/pfps/dithered-fall.webp)
 
 # 2025
 
