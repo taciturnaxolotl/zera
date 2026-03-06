@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="{{ lang }}">
+  <title>{{ config.title }}{% if section.title %} – {{ section.title }}{% endif %}</title>
+  <link rel="self" type="application/atom+xml" href="{{ feed_url | safe }}"/>
+  <link rel="alternate" type="text/html" href="{% if section %}{{ section.permalink | safe }}{% else %}{{ config.base_url | safe }}{% endif %}"/>
+  <id>{% if section %}{{ section.permalink | safe }}{% else %}{{ config.base_url | safe }}{% endif %}</id>
+  <updated>{{ last_updated | date(format="%+") }}</updated>
+  <subtitle>{{ config.description }}</subtitle>
+  {% if config.extra.author %}
+  <author><name>{{ config.extra.author }}</name></author>
+  {% endif %}
+  {% for page in pages %}
+  <entry>
+    <title>{{ page.title }}</title>
+    <link rel="alternate" type="text/html" href="{{ page.permalink | safe }}"/>
+    <id>{{ page.permalink | safe }}</id>
+    <published>{{ page.date | date(format="%+") }}</published>
+    <updated>{{ page.updated | default(value=page.date) | date(format="%+") }}</updated>
+    {% if page.taxonomies.tags %}
+      {% for tag in page.taxonomies.tags %}
+    <category term="{{ tag }}"/>
+      {% endfor %}
+    {% endif %}
+    {% if page.summary %}
+    <summary type="html"><![CDATA[{{ page.summary | safe }}]]></summary>
+    {% endif %}
+    <content type="html"><![CDATA[{{ page.content | safe }}]]></content>
+  </entry>
+  {% endfor %}
+</feed>
