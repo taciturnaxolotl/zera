@@ -12,7 +12,7 @@ All my profile pictures over the years
 
 November 11th till March 2nd 2026
 
-![kieran with a robotics sweatshirt and fall leaves behind](/pfps/fall.webp)
+![kieran with a robotics sweatshirt and fall leaves behind](/pfps/fall.jpg)
 
 September 13th till November 11th
 
