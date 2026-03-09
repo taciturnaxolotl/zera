@@ -52,7 +52,7 @@
   --bg-light: var(--ultra-violet);
   --text: var(--lavendar-breeze);
   --text-light: var(--pink-puree);
-  --text-dark: oklch(80.28% 0.0111 204.11);
+  --text-dark: oklch(0.8497 0.0345 290.76);
   --accent: var(--rose-quartz);
   --accent-dark: var(--dark-crushed-grape);
   --accent-text: var(--purple-gray);
@@ -326,9 +326,7 @@ details[open]> :last-child {
 table {
   border-collapse: collapse;
   margin: 1.5rem 0;
-  display: block;
-  overflow-x: auto;
-  white-space: nowrap;
+  width: 100%;
 }
 
 td,
@@ -696,6 +694,18 @@ div code {
   border-radius: 3px;
   color: var(--bg);
   background-color: var(--text);
+}
+
+td code,
+th code {
+  padding: 0 0.125rem 0 0.125rem;
+  border-radius: 3px;
+  color: var(--text-light);
+  background-color: var(--bg-light);
+}
+
+tr:nth-child(even) td code {
+  background-color: var(--bg);
 }
 
 pre code {
