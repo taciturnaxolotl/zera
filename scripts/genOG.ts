@@ -1,7 +1,7 @@
 import puppeteer from "puppeteer";
-import { readdir, mkdir } from "node:fs/promises";
+import { readdir, mkdir, access } from "node:fs/promises";
 
-const template = await Bun.file("tools/og.html").text();
+const template = await Bun.file("scripts/og.html").text();
 
 const browser = await puppeteer.launch({
   args: ["--no-sandbox"],
@@ -31,11 +31,11 @@ async function og(
 	await page.screenshot({ path: outputPath });
 }
 
-async function fileExists(path: string): Promise<boolean> {
+async function pathExists(path: string): Promise<boolean> {
 	try {
-		await Bun.file(path);
+		await access(path);
 		return true;
-	} catch (e) {
+	} catch {
 		return false;
 	}
 }
@@ -45,7 +45,7 @@ try {
 	// if not exit
 	// if it does, get all the folders and then get the title tag from the index.html
 
-	if (!(await fileExists("public/"))) {
+	if (!(await pathExists("public/"))) {
 		console.error("public/ does not exist");
 		process.exit(1);
 	}
