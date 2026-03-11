@@ -32,7 +32,7 @@ class RelativeTimeElement extends HTMLElement {
   }
 
   get threshold() {
-    return this.getAttribute('threshold') || 'P30D';
+    return this.getAttribute('threshold') || 'P14D';
   }
 
   get prefix() {
@@ -70,7 +70,8 @@ class RelativeTimeElement extends HTMLElement {
       this.scheduleUpdate(3600000);
     } else {
       this.textContent = this.formatRelative(diff);
-      this.scheduleUpdate(this.getNextUpdateDelay(absDiff));
+      const delay = this.getNextUpdateDelay(absDiff);
+      if (delay !== null) this.scheduleUpdate(delay);
     }
   }
 
@@ -88,16 +89,26 @@ class RelativeTimeElement extends HTMLElement {
       return 60000 * 5;
     } else if (days < 7) {
       return 3600000;
-    } else {
+    } else if (days < 30) {
       return 3600000 * 6;
+    } else {
+      return null;
     }
   }
 
+  getRtf() {
+    if (!this._rtf || this._rtfLang !== navigator.language) {
+      this._rtfLang = navigator.language;
+      this._rtf = new Intl.RelativeTimeFormat(navigator.language, {
+        numeric: 'auto',
+        style: 'long'
+      });
+    }
+    return this._rtf;
+  }
+
   formatRelative(diff) {
-    const rtf = new Intl.RelativeTimeFormat(navigator.language, {
-      numeric: 'auto',
-      style: 'long'
-    });
+    const rtf = this.getRtf();
 
     const absDiff = Math.abs(diff);
     const sign = diff > 0 ? -1 : 1;
@@ -105,8 +116,10 @@ class RelativeTimeElement extends HTMLElement {
     const minutes = Math.floor(seconds / 60);
     const hours = Math.floor(minutes / 60);
     const days = Math.floor(hours / 24);
-    const months = Math.floor(days / 30);
-    const years = Math.floor(days / 365);
+    const date = new Date(Date.now() - diff);
+    const now = new Date();
+    const months = (now.getFullYear() - date.getFullYear()) * 12 + (now.getMonth() - date.getMonth());
+    const years = Math.floor(Math.abs(months) / 12) * sign;
 
     if (seconds < 60) {
       return rtf.format(sign * seconds, 'second');
@@ -116,10 +129,10 @@ class RelativeTimeElement extends HTMLElement {
       return rtf.format(sign * hours, 'hour');
     } else if (days < 30) {
       return rtf.format(sign * days, 'day');
-    } else if (months < 12) {
-      return rtf.format(sign * months, 'month');
+    } else if (Math.abs(months) < 12) {
+      return rtf.format(months, 'month');
     } else {
-      return rtf.format(sign * years, 'year');
+      return rtf.format(years, 'year');
     }
   }
 
