@@ -55,7 +55,7 @@ i.icon {
                 );
             }
 
-            &:focus {
+            &:focus-visible {
                 background-color: color-mix(
                     in oklab,
                     var(--accent) 80%,

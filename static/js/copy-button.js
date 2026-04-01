@@ -1,13 +1,13 @@
 // Based on https://www.roboleary.net/2022/01/13/copy-code-to-clipboard-blog.html
 
 function initCopyButtons() {
-  const blocks = document.querySelectorAll("pre[class^='language-']");
-  
+  const blocks = document.querySelectorAll("pre.z-code");
+
   for (const block of blocks) {
     // Code block header title
     const title = document.createElement("span");
     title.style.color = "var(--accent-text)";
-    const lang = block.getAttribute("data-lang");
+    const lang = block.querySelector("code[data-lang]")?.getAttribute("data-lang") ?? "";
     const comment =
       block.previousElementSibling &&
       (block.previousElementSibling.tagName === "blockquote" ||
@@ -56,6 +56,7 @@ function initCopyButtons() {
     if (navigator.clipboard) {
       try {
         await navigator.clipboard.writeText(text);
+        button.blur();
         header.classList.add("active");
         button.setAttribute("disabled", true);
 
