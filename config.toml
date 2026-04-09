@@ -31,6 +31,7 @@ anchors = "on"
 internal_level = "warn"
 
 [extra]
+greetings = ["erlo", "hello", "hi", "hej", "oi", "tja", "howdy", "hey", "heya", "g'day", "salut"]
 author = "Kieran Klukas"
 display_author = true
 

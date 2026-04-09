@@ -5,9 +5,9 @@
 <meta name="robots" content="index, follow" />
 <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
 {% if page.title %} {% set title = page.title %} {% elif section.title %} {% set
-title = section.title %} {% elif term %} {% set title = "|" ~ term.name ~ "|" %}
-{% elif current_path and "tags" in current_path %} {% set title = "Root Index"
-%} {% elif config.title %} {% set title = config.title %} {% endif %} {% if
+title = section.title %} {% elif term %} {% set title = term.name %}
+{% elif current_path and "tags" in current_path %} {% set title = "index of /tags"
+%} {% elif config.extra.greeting %} {% set title = config.extra.greeting ~ " :: zera" %} {% endif %} {% if
 page.extra.author %} {% set author = page.extra.author %} {% elif
 section.extra.author %} {% set author = section.extra.author %} {% elif
 config.extra.author %} {% set author = config.extra.author %} {% endif %} {% if
