@@ -40,7 +40,7 @@
 			const hr1 = document.createElement("hr");
 			const aside = document.createElement("aside");
 			aside.innerHTML =
-				'<h2>the website is broke!!! freak out!!!!!</h2> <p>just kidding lol. today is <a href="https://css-naked-day.org/">css naked day</a> know to the rest of the world as april 9th! this was created as a fun way to promote web standards and remind ourselves of the earlier days of the web! everything should be still functional on my site but in case not you can find my email somewhere on here and let me know :)</p><p><sub>* technicallllly there is still a wee bit of css to make sure stuff isn\'t completely out of control but everything else gets stripped so i say it counts</sub></p>';
+				'<h2>the website is broken!!! freak out!!!!!</h2> <p>just kidding lol. today is <a href="https://css-naked-day.org/">css naked day</a> know to the rest of the world as april 9th! this was created as a fun way to promote web standards and remind ourselves of the earlier days of the web! everything should be still functional on my site but in case not you can find my email somewhere on here and let me know :)</p><p><sub>* technicallllly there is still a wee bit of css to make sure stuff isn\'t completely out of control but everything else gets stripped so i say it counts</sub></p>';
 			const hr2 = document.createElement("hr");
 
 			body.insertBefore(hr1, body.firstChild);
