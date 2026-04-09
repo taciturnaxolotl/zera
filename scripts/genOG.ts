@@ -1,7 +1,12 @@
 import puppeteer from "puppeteer";
 import { readdir, mkdir, access } from "node:fs/promises";
+import { resolve } from "node:path";
 
-const template = await Bun.file("scripts/og.html").text();
+const fontsPath = `file://${resolve("static/fonts")}`;
+const template = (await Bun.file("scripts/og.html").text()).replace(
+	/\{\{fontsPath\}\}/g,
+	fontsPath,
+);
 
 const browser = await puppeteer.launch({
   args: ["--no-sandbox"],
@@ -11,7 +16,6 @@ const browser = await puppeteer.launch({
 async function og(
 	postname: string,
 	type: string,
-	by: string | undefined,
 	outputPath: string,
 	width = 1200,
 	height = 630,
@@ -24,8 +28,8 @@ async function og(
 		template
 			.toString()
 			.replace("{{postname}}", postname)
-			.replace("{{type}}", type)
-			.replace("{{by}}", by || ""),
+			.replace("{{type}}", type),
+		{ waitUntil: "load" },
 	);
 
 	await page.screenshot({ path: outputPath });
@@ -41,16 +45,11 @@ async function pathExists(path: string): Promise<boolean> {
 }
 
 try {
-	// check if the public/blog folder exists
-	// if not exit
-	// if it does, get all the folders and then get the title tag from the index.html
-
 	if (!(await pathExists("public/"))) {
 		console.error("public/ does not exist");
 		process.exit(1);
 	}
 
-	// read all the files in the current directory filtering for index.htmls
 	const files = (await readdir("public/", { recursive: true })).filter((file) =>
 		file.endsWith("index.html"),
 	);
@@ -63,7 +62,6 @@ try {
 		directories.has(file),
 	);
 
-	// create not existing
 	for (const dir of directories) {
 		if (!existing.includes(dir)) {
 			await mkdir(`static/${dir.split("/").slice(0, -1).join("/")}`, {
@@ -74,46 +72,34 @@ try {
 
 	console.log("Generating OG images for", files.length, "files");
 
-	// for each file, get the title tag from the index.html
-	for (const file of files) {
+	const tasks = files.map((file) => async () => {
 		const index = await Bun.file(`public/${file}`).text();
 		const title = index.match(/<title>(.*?)<\/title>/)[1];
 		let type = "Page";
-		let by: string | undefined;
 		switch (file.split("/")[0]) {
 			case "blog":
-				type = "Blog";
-				if (file.split("/")[1] !== "index.html") {
-					by = "<p>A post ... yeah thats about it</p>";
-				} else {
-					by = "<p>All authored by me ... or are they???</p>";
-				}
+				type = file.split("/")[1] !== "index.html" ? "Blog" : "Blog Index";
 				break;
 			case "verify":
 				type = "Slash Page";
-				by = "<p>So you can stalk me 💀</p>";
 				break;
 			case "pfp":
 				type = "Slash Page";
-				by = "<p>Want to stare at my pretty face?</p>";
 				break;
 			case "tags":
-				if (file.split("/")[1] === "index.html") {
-					type = "Tags";
-					by = "<p>A total archive!</p>";
-				} else {
-					type = "Tag";
-					by = "<p>Find more posts like this!</p>";
-				}
+				type = file.split("/")[1] === "index.html" ? "Tags" : "Tag";
 				break;
 			case "index.html":
 				type = "Root";
-				by = "<p>Where it all begins</p>";
 				break;
 		}
 
 		console.log("Generating OG for", file, "title:", title, "with type:", type);
-		await og(title, type, by, `static/${file.replace("index.html", "og.png")}`);
+		await og(title, type, `static/${file.replace("index.html", "og.png")}`);
+	});
+
+	for (let i = 0; i < tasks.length; i += 10) {
+		await Promise.all(tasks.slice(i, i + 10).map((t) => t()));
 	}
 } catch (e) {
 	console.error(e);

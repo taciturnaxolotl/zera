@@ -2,110 +2,110 @@
 <html>
   <head>
     <style>
-      :root,
-      ::backdrop {
+      @font-face {
+        font-family: "Maple Mono";
+        src: url("{{fontsPath}}/maple-mono-latin-400-normal.woff2") format("woff2");
+        font-weight: 400;
+        font-style: normal;
+      }
+      @font-face {
+        font-family: "Maple Mono";
+        src: url("{{fontsPath}}/maple-mono-latin-400-italic.woff2") format("woff2");
+        font-weight: 400;
+        font-style: italic;
+      }
+      @font-face {
+        font-family: "Maple Mono";
+        src: url("{{fontsPath}}/maple-mono-latin-700-normal.woff2") format("woff2");
+        font-weight: 700;
+        font-style: normal;
+      }
+      @font-face {
+        font-family: "Maple Mono";
+        src: url("{{fontsPath}}/maple-mono-latin-700-italic.woff2") format("woff2");
+        font-weight: 700;
+        font-style: italic;
+      }
+
+      :root {
         color-scheme: dark;
-        --bg: #222529;
-        --bg-light: #464949;
-        --text: #d6d6d6;
-        --text-light: #c5c0b7;
-        --accent: #78b6ad;
-        --accent-light: #87c9e5;
-        --accent-text: var(--bg);
-        --border: #dbd5bc;
-        --link: #e2c8a2;
-        --gradient-average-light: oklch(86.49% 0.018 73.05);
-        --gradient-average-dark: oklch(27.58% 0.0203 289.13);
-        --nightshade-violet: oklch(22.96% 0.0242 287.67);
         --purple-night: oklch(18.96% 0.0242 287.67);
-        --dark-crushed-grape: oklch(74.02% 0.0756 311.96);
-        --light-crushed-grape: oklch(73.48% 0.1008 284.99);
-        --reseda-green: oklch(62.33% 0.0475 126.94);
-        --earth-yellow: oklch(87.45% 0.0203 74.93);
-        --sunset: oklch(87.45% 0.0334 74.93);
         --ultra-violet: oklch(42.21% 0.0676 297.45);
         --rose-quartz: oklch(65.32% 0.0585 311.96);
         --pink-puree: oklch(75.65% 0.0555 290.76);
         --lavendar-breeze: oklch(91.06% 0.0223 290.76);
         --purple-gray: oklch(25.63% 0.0002 290.76);
-        --alice-blue: oklch(95.38% 0.0118 239.91);
+
+        --bg: var(--purple-night);
+        --bg-light: var(--ultra-violet);
+        --text: var(--lavendar-breeze);
+        --text-light: var(--pink-puree);
+        --accent: var(--rose-quartz);
+        --accent-text: var(--purple-gray);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
       }
 
       body {
+        width: 1200px;
+        height: 630px;
+        background-color: var(--bg);
+        font-family: "Maple Mono", ui-monospace, "Cascadia Code", Menlo, Consolas, monospace;
         font-weight: 600;
-        color: var(--lavendar-breeze);
-        background-color: var(--purple-night);
-        font-family: Consolas, Menlo, Monaco, "Andale Mono", "Ubuntu Mono",
-          monospace;
-        display: flex;
-        flex-direction: column;
-        text-align: center;
+        color: var(--text);
+        position: relative;
       }
 
-      div {
-        margin: 0;
+      .container {
+        width: 100%;
+        height: 100%;
+        padding: 3rem;
         display: flex;
-        flex-direction: column;
         align-items: center;
         justify-content: center;
-        height: 90vh; /* 90% of viewport height */
-        width: 90vw; /* 90% of viewport width */
-        padding: 5vh 5vw; /* 5% border on all sides */
-        box-sizing: border-box;
-        align-self: center;
+        position: relative;
       }
 
-      h1 {
-        font-size: calc(2 * 2vw);
-      }
-      h2 {
-        font-size: calc(1.75 * 2vw);
-      }
-      h3 {
-        font-size: calc(1.5 * 2vw);
-      }
-      h4 {
-        font-size: calc(1.25 * 2vw);
-      }
-      h5 {
-        font-size: calc(1 * 2vw);
-      }
-      h6 {
-        font-size: calc(0.75 * 2vw);
+      .type {
+        position: absolute;
+        top: 3rem;
+        left: 3rem;
+        font-size: 1.1rem;
+        color: var(--text-light);
       }
 
-      h1,
-      h2,
-      h3,
-      h4,
-      h5,
-      h6 {
-        margin: 0.5em 0 0.5em 0;
-        padding: 0.22em 0.4em 0.22em 0.4em;
-        border-radius: 0.1em;
-        width: fit-content;
-        color: var(--lavendar-breeze);
+      .title {
+        font-size: 3.5rem;
+        font-style: italic;
+        font-weight: 700;
+        color: var(--accent-text);
+        background-color: var(--accent);
+        border-bottom: 5px solid var(--bg-light);
+        border-radius: 0.2em 0.2em 0.27em 0.27em;
+        padding: 0.22em 0.4em;
+        line-height: 1.15;
+        text-align: center;
+        max-width: 900px;
       }
 
-      h1 {
-        background-color: var(--rose-quartz);
-        color: var(--purple-gray);
-      }
-
-      p {
-        margin: 1rem 0;
-        color: var(--pink-puree);
-        font-size: calc(
-          1rem + 1vw
-        ); /* Adjust font size based on viewport width */
+      .author {
+        position: absolute;
+        bottom: 3rem;
+        left: 3rem;
+        font-size: 1.1rem;
+        color: var(--text-light);
       }
     </style>
   </head>
   <body>
-    <div>
-      <h1>{{type}}</h1>
-      <h2>{{postname}}</h2>
-      {{by}}
+    <div class="container">
+      <span class="type">{{type}}</span>
+      <h1 class="title">{{postname}}</h1>
+      <span class="author">by Kieran Klukas</span>
     </div>
   </body>
 </html>

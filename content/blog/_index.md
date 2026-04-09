@@ -1,5 +1,5 @@
 +++
-title = "All my writings"
+title = "index of /blog"
 sort_by = "date"
 template = "blog.html"
 page_template = "blog-page.html"
