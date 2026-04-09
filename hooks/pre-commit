@@ -35,23 +35,38 @@ if [ $found_draft -eq 1 ]; then
   exit 1
 fi
 
-# Second pass: process images
+# Second pass: process images in parallel
+pids=()
+tmpdir=$(mktemp -d)
+
 while read -r file; do
   case "$file" in
     *.jpg|*.jpeg|*.png|*.gif|*.tiff|*.bmp)
-      # Store output of exiftool command
-      cleared_data=$(exiftool -all= --icc_profile:all -tagsfromfile @ -orientation -overwrite_original "$file")
-      if [ $? -ne 0 ]; then
-        echo "Error: exiftool failed to process $file" >&2
-        exit 1
-      fi
-      echo "Cleared EXIF data for $file:" >&2
-      echo "$cleared_data" >&2
-      git add "$file"
+      (
+        cleared_data=$(exiftool -all= --icc_profile:all -tagsfromfile @ -orientation -overwrite_original "$file" 2>&1)
+        if [ $? -ne 0 ]; then
+          echo "Error: exiftool failed to process $file" >&2
+          exit 1
+        fi
+        echo "Cleared EXIF data for $file:" >&2
+        echo "$cleared_data" >&2
+        echo "$file" >> "$tmpdir/processed"
+      ) &
+      pids+=($!)
       ;;
     *)
       ;;
   esac
 done < <(git diff --cached --name-only --diff-filter=ACMR)
 
-exit 0
+failed=0
+for pid in "${pids[@]}"; do
+  wait "$pid" || failed=1
+done
+
+if [ -f "$tmpdir/processed" ]; then
+  git add -- $(cat "$tmpdir/processed")
+fi
+rm -rf "$tmpdir"
+
+exit $failed
