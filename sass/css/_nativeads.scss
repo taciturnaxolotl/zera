@@ -1,0 +1,48 @@
+#ad-note-hidden,
+#ad-note {
+    display: none;
+}
+
+@media (min-height: 30em) {
+    @media (min-width: 75em) {
+        #ad-note {
+            display: block;
+            position: fixed;
+            bottom: 1em;
+            right: 1em;
+            width: 15em;
+            background: var(--bg);
+            border: 1px solid var(--accent);
+            border-bottom: 5px solid var(--bg-light);
+            border-radius: 7px 7px 10px 10px;
+            padding: 0.75em 1em;
+            font-size: 0.85rem;
+            color: var(--text);
+            z-index: 100;
+        }
+
+        @media (prefers-reduced-motion: no-preference) {
+            #ad-note {
+                animation: bubbleIn 0.3s ease-out forwards;
+            }
+        }
+
+        #ad-note a {
+            color: var(--link);
+        }
+
+        #ad-note-content-wrapper {
+            margin: 0;
+        }
+
+        #ad-note u {
+            cursor: pointer;
+            color: var(--text-light);
+            text-decoration: underline;
+        }
+
+        #ad-note u:hover {
+            color: var(--accent);
+        }
+    }
+}
