@@ -2,7 +2,7 @@
 +++
 
 <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 2rem;">
-    <img src="/pfps/dithered-fall.webp" alt="A photo of kieran wearing a black hoodie set against chaotic, mosaic-like background of orange, blue, brown, and black pixels." width="512" height="512" class="u-photo"/>
+    <img src="/pfps/fall-pixelated-dithered.webp" alt="A dithered photo in muted blacks, cremes, and dark indigos of kieran with a hoodie set against a mosaic-like background" width="512" height="512" class="u-photo"/>
     {{ is() }}
 </div>
 
