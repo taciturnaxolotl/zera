@@ -138,7 +138,7 @@ The package manager uses `opkg` under the hood and reads `X-Port`, `X-Launch-Com
 
 #### RadioDaemon
 
-Despite the name, `RadioDaemon` (4.1MB) doesn't manage any radio hardware. It's an NT4 client using WPIlib's `wpinet` that connects back to the DS and reads `/sys/team` for the team number. It has `StartDSClient` methods and WebSocket support, but contains zero WiFi/radio configuration strings. My best guess is that it monitors the FRC field radio's link quality (connected via eth0 on the competition field) and publishes that data to the DS over NT4. The actual WiFi AP is handled entirely by `hostapd` and `dnsmasq` directly.
+Thad House (WPILib dev) confirmed that `RadioDaemon`, `ExpansionHubDaemon`, and `PowerDistributionDaemon` are all [open source](https://github.com/wpilibsuite/scservices). The RadioDaemon is meant to talk to the HTTP server on the FRC field radio and relay link quality info back to the DS over NT4 - but it hasn't actually been written yet, which explains why the binary has NT4 plumbing but zero radio-specific strings. It's a stub. The actual WiFi AP is handled entirely by `hostapd` and `dnsmasq` directly.
 
 #### Robot Code Runner
 
