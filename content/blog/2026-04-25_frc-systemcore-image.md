@@ -165,10 +165,15 @@ The `robot.service` runs as the `systemcore` user (UID 105) with real-time prior
 
 ### Odds and Ends
 
-The image ships with a VS Code server on port 4900 and a `ttyd` web terminal on port 4901. On the discovery side, the SystemCore advertises itself via mDNS as both `_SystemCore._tcp` and the legacy NI services (`_ni._tcp`, `_ni-rt._tcp`). It also uses the roboRIO hostname pattern `roboRIO-{team}-FRC` alongside `SystemCore-{team}-FIRST`. This dual-personality approach means existing DS software that's looking for roboRIO services will still find it, which is an interesting backward compatibility move.
+The image ships with a VS Code server on port 4900 and a `ttyd` web terminal on port 4901. On the discovery side, the SystemCore advertises itself via mDNS as both `_SystemCore._tcp` and the legacy NI services (`_ni._tcp`, `_ni-rt._tcp`). It currently uses the roboRIO hostname pattern `roboRIO-{team}-FRC` alongside `SystemCore-{team}-FIRST`. This was done as a backwards compatibilty move during the beta period but will be removed in the full release in 2027.
 
 One other oddity is the `xone-*` kernel modules - Xbox controller drivers for the wireless dongle, gamepad, chatpad, and headset. In normal FRC the flow is controllers -> DS -> robot, so having Xbox drivers on the robot side seems pointless. These are out-of-tree modules that someone deliberately added to the Buildroot config, but my guess is they're leftover from Limelight's general-purpose image config rather than something the SystemCore actually uses. Still, it raises the question of whether they're planning some kind of direct-attach mode for FTC maybe?.
 
 Finally, the hostname is just `robot` and `/etc/os-release` identifies as `limelightos_systemcore_beta` with a git-hash version string. The whole userspace is owned by UID 105 / GID 113 (`systemcore`).
 
 I will update this post if I find more interesting things over the next few months and I have some interesting ideas in the pipeline for testing with this :eyes:
+
+#### Errata
+
+- 2026-04-25 16:50 - Added clarification from Thad House on radio daemon not being written yet
+- 2026-04-25 16:55 - Added clarification that dual hostnames will be removed for production release
