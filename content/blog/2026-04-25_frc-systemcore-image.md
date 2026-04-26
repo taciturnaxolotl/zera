@@ -1,5 +1,5 @@
 +++
-title = "Reverse engineering the FRC systemcore image"
+title = "Reverse engineering the FRC SystemCore image"
 date = 2026-04-25
 slug = "frc-systemcore-image"
 description = "looks quite interesting 👀"
@@ -8,13 +8,13 @@ description = "looks quite interesting 👀"
 tags = ["frc", "reverse engineering"] 
 +++
 
-FIRST announced the systemcore several months ago now and the beta software started rolling out recently and becoming way more polished so with the release of the [new driver station](https://github.com/wpilibsuite/FirstDriverStation-Public) I decided it was time to dig into the firmware image and see what I could find!
+FIRST announced the SystemCore several months ago now and the beta software started rolling out recently and becoming way more polished so with the release of the [new driver station](https://github.com/wpilibsuite/FirstDriverStation-Public) I decided it was time to dig into the firmware image and see what I could find!
 
 <!-- more -->
 
-![the systemcore in all its glory](https://l4.dunkirk.sh/i/mGIuJH5L1I-o.webp){caption="they really did a great job of making it look nice and polished"}
+![the SystemCore in all its glory](https://l4.dunkirk.sh/i/mGIuJH5L1I-o.webp){caption="they really did a great job of making it look nice and polished"}
 
-The systemcore is based on an Raspberry Pi Compute Module 5 and as a result the image is just a zipped .img file that extracts to 10 GB in size (the size of the emmc) but considering that the original zip file is only 1.8 GB there is likely quite a bit of empty / wasted space. It is interesting that they didn't choose to go the auto expanding route but I'm guessing they did this for ease of use.
+The SystemCore is based on a Raspberry Pi Compute Module 5 with a 16 GB eMMC (which formats to about 14.5 GB). The firmware image extracts to 10 GB but this only covers the partition layout, not the full eMMC -- the remaining space is unpartitioned. Considering that the original zip file is only 1.8 GB there is likely quite a bit of empty / wasted space within the partitions. It is interesting that they didn't choose to go the auto expanding route but I'm guessing they did this for ease of use.
 
 | Partition | Type         | Start LBA  | Sectors    | Size  | Description                   |
 | --------- | ------------ | ---------- | ---------- | ----- | ----------------------------- |
@@ -130,7 +130,7 @@ The diagnostics process is the web configuration API. It handles:
 - `GET/POST /api/wifi` - configure SSID, password, WPA (rewrites `hostapd.conf`, restarts the AP)
 - `GET/POST /api/network` - configure eth0 networking (rewrites `dhcpcd.conf`)
 - `GET /api/health` - health check
-- `GET /api/oshash` - OS version hash (curious whether this will get used to validate the systemcore image on the FMS?)
+- `GET /api/oshash` - OS version hash (curious whether this will get used to validate the SystemCore image on the FMS?)
 
 The update manager handles the A/B partition scheme. It receives a partition image, DD-extracts it to the inactive rootfs partition, then mounts the boot partition read-write and updates `autoboot.txt`. The reboot uses the Pi's `tryboot` mechanism - `sudo reboot "0 tryboot"` - which boots into the new partition once, and only commits it as the default after validation. If it fails, you just power cycle and it falls back. Classic A/B update pattern, well executed.
 
@@ -163,6 +163,10 @@ RestartSec=3
 
 The `robot.service` runs as the `systemcore` user (UID 105) with real-time priority 50. It waits up to 15 seconds for all five CAN interfaces to come up before starting user code. The `robotCommand` script itself isn't in the image - it's created at runtime by the package manager when user code is deployed. The `ConditionPathExists=/home/systemcore/robotCommand` directive means the service won't even attempt to start until code has been deployed, which is a nice touch.
 
+### Smart IO
+
+The SystemCore integrates an RP2350 microcontroller for Smart IO - the successor to the Raspberry Pi Pico's PIO (Programmable IO). Unlike a standalone Pico, this RP2350 has no flash attached; instead, the CM5 loads its firmware into RAM over a serial interface at boot time. The corresponding Linux kernel modules handle this loading sequence, pushing the UF2-style firmware blob from the `picoflasherprocess` (which carries an embedded `fw.uf2` at 127 KB) into the RP2350's RAM before the IO daemon starts. The `iodaemon` then communicates with the RP2350 over USB (via libusb) to drive the status LEDs, relay CAN bus info, and handle GPIO.
+
 ### Odds and Ends
 
 The image ships with a VS Code server on port 4900 and a `ttyd` web terminal on port 4901. On the discovery side, the SystemCore advertises itself via mDNS as both `_SystemCore._tcp` and the legacy NI services (`_ni._tcp`, `_ni-rt._tcp`). It currently uses the roboRIO hostname pattern `roboRIO-{team}-FRC` alongside `SystemCore-{team}-FIRST`. This was done as a backwards compatibilty move during the beta period but will be removed in the full release in 2027.
@@ -177,3 +181,4 @@ I will update this post if I find more interesting things over the next few mont
 
 - 2026-04-25 16:50 - Added clarification from Thad House on radio daemon not being written yet
 - 2026-04-25 16:55 - Added clarification that dual hostnames will be removed for production release
+- 2026-04-25 21:25 - Fixed eMMC size (16 GB physical, ~14.5 GB formatted; 10 GB is image partitions only), added RP2350 Smart IO section, corrected SystemCore capitalization
