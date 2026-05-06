@@ -2,7 +2,7 @@
 +++
 
 <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 2rem;">
-    <img src="/pfps/fall-pixelated-dithered.webp" alt="A dithered photo in muted blacks, cremes, and dark indigos of kieran with a hoodie set against a mosaic-like background" width="512" height="512" class="u-photo"/>
+    <img src="/pfps/cyber-games.webp" alt="A photo of kieran with a dark navy shirt with an ip address and yellow cyber stinger looking at a laptop screen" width="512" height="512" class="u-photo"/>
     {{ is() }}
 </div>
 

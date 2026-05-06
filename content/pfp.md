@@ -6,6 +6,10 @@ All my profile pictures over the years
 
 # 2026
 
+![A photo of kieran with a dark navy shirt with an ip address and yellow cyber stinger looking at a laptop screen](/pfps/cyber-games.webp)
+
+April 21st 2026 to May 5th 2026
+
 ![A dithered photo in muted blacks, cremes, and dark indigos of kieran with a hoodie set against a mosaic-like background](/pfps/fall-pixelated-dithered.webp)
 
 March 2nd 2026 to April 21st 2026
