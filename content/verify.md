@@ -2,11 +2,11 @@
 title = "slash verify"
 +++
 
-Inspired by [@Molly White](https://www.mollywhite.net/verify/) and [@Rob Knight](https://rknight.me/verify) this page serves as verification of my various accounts.
+Inspired by [@Molly White](https://www.mollywhite.net/verify/) and [@Rob Knight](https://rknight.me/verify) this page serves as verification of the authenticity my various accounts.
 
 # domains / email
 
-I personally own and control this domain ([dunkirk.sh](https://dunkirk.sh)) as well as [kieranklukas.com](https://kieranklukas.com) and maintain email addresses on both domains. I have a redirect from [kieran.klukas.net](https://kieran.klukas.net) to dunkirk.sh that is also maintained.
+I personally own and operate this domain ([dunkirk.sh](https://dunkirk.sh)) as well as [kieranklukas.com](https://kieranklukas.com) and maintain email addresses on both domains. I have a redirect from [kieran.klukas.net](https://kieran.klukas.net) to dunkirk.sh that is also maintained.
 
 If you want to contact me, via email to `kieran@dunkirk.sh` would be the most likely to get a response. Any other platforms are likely to be checked 6 months later but if you alert me via email that you sent a message there then I would be happy to continue the conversation on that platform.
 
@@ -17,7 +17,6 @@ If you want to contact me, via email to `kieran@dunkirk.sh` would be the most li
 - Bluesky: [@dunkirk.sh](https://bsky.app/profile/dunkirk.sh)
 - Youtube: [@kieran.rambles](https://www.youtube.com/@kieran.rambles)
 - Matrix: [@sclacker:matrix.org](https://matrix.to/#/@sclacker:matrix.org)
-- Germ: [][https://ger.mx/A1761xs0K74HsnR-ZQy0ptaJOKQD3q93e-ZPAZK9hHzl#did:plc:krxbvxvis5skq7jj6eot23ul]
 - Signal: `verox.89`
 
 # keys
