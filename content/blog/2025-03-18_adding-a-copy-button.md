@@ -6,6 +6,9 @@ description = "continuing the chain :)"
 
 [taxonomies]
 tags = ["accessibility"]
+
+[extra]
+standard_site_uri = "at://did:plc:krxbvxvis5skq7jj6eot23ul/site.standard.document/3mnmzfn62qk25"
 +++
 
 It took me a little over a month but I finally continued the chain of adding copy code buttons to your code blocks. It started with Salma Alam-Naylor’s [post](https://whitep4nth3r.com/blog/how-to-build-a-copy-code-snippet-button/) which I saw on Hacker News but then [David Bushell](https://dbushell.com/2025/02/14/copy-code-button/) also posted on it and [Ragman](https://www.ragman.net/musings/copy_code/) made a bluesky post (sky? bloop? atproto bloop? honestly not sure what a more interesting name would be) and it's been saved in my mind since then that I should add it.

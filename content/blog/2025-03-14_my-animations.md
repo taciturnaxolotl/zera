@@ -6,6 +6,9 @@ description = "finally collected in one place 🎉"
 
 [taxonomies]
 tags = ["tool", "fancy", "physics"]
+
+[extra]
+standard_site_uri = "at://did:plc:krxbvxvis5skq7jj6eot23ul/site.standard.document/3mnmzfnalsc25"
 +++
 
 The other day I realized that I never made a page to collect all of my animation projects in one place. I've made quite a few of them over the years and untill now they have just been sitting in a giant folder on my nas. Now they are all in a nice clean collection here 🎉

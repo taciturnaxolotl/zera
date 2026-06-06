@@ -24,6 +24,12 @@ await Bun.write(".zola-build/config.toml",
 );
 
 await Bun.$`bun run scripts/preprocess.ts .zola-build/content`.quiet();
+
+// Sync standard.site records and inject URIs into frontmatter before build
+if (existsSync('.env')) {
+	await Bun.$`bun run scripts/standard-site.ts`.quiet();
+}
+
 await Bun.$`cd .zola-build && zola build --force --output-dir ../public`;
 await Bun.$`rm -rf .zola-build`.quiet();
 

@@ -8,6 +8,7 @@ description = "How I write / leme check if that broke anything page"
 tags = ["meta"]
 
 [extra]
+standard_site_uri = "at://did:plc:krxbvxvis5skq7jj6eot23ul/site.standard.document/3mnmzfmajgk25"
 has_toc = true
 +++
 

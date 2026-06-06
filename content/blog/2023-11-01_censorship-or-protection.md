@@ -6,6 +6,9 @@ description = "An essay on the new wave of  “online safety bills”"
 
 [taxonomies]
 tags = ["essays", "archival"]
+
+[extra]
+standard_site_uri = "at://did:plc:krxbvxvis5skq7jj6eot23ul/site.standard.document/3mnmzflwoy225"
 +++
 
 <!-- more -->

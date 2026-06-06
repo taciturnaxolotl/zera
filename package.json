@@ -6,9 +6,12 @@
     "serve": "bun run scripts/dev.ts",
     "build": "rm -rf .zola-build && bun run scripts/build.ts",
     "preprocess": "bun run scripts/preprocess.ts",
-    "gen-og": "bun run scripts/genOG.ts"
+    "gen-og": "bun run scripts/genOG.ts",
+    "standard-site": "bun run scripts/standard-site.ts"
   },
   "dependencies": {
+    "@atcute/bluesky": "^4.0.6",
+    "@atcute/client": "^5.0.0",
     "@types/cli-progress": "^3.11.6",
     "cli-progress": "^3.12.0",
     "dotenv": "^16.4.7",
@@ -20,4 +23,3 @@
     "puppeteer": "^23.6.0"
   }
 }
-

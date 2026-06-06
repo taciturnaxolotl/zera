@@ -6,6 +6,9 @@ description = "looks quite interesting 👀"
 
 [taxonomies]
 tags = ["frc", "reverse engineering"] 
+
+[extra]
+standard_site_uri = "at://did:plc:krxbvxvis5skq7jj6eot23ul/site.standard.document/3mnmzfnuoes25"
 +++
 
 FIRST announced the SystemCore several months ago now and the beta software started rolling out recently and becoming way more polished so with the release of the [new driver station](https://github.com/wpilibsuite/FirstDriverStation-Public) I decided it was time to dig into the firmware image and see what I could find!
