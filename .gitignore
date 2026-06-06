@@ -4,3 +4,4 @@ node_modules
 .env
 .crush
 .DS_Store
+.standard-site-records.json

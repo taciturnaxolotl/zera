@@ -8,6 +8,7 @@ description = "Interactive calculator for the 2026 FRC game REBUILT"
 tags = ["frc", "robotics", "calculator"]
 
 [extra]
+standard_site_uri = "at://did:plc:krxbvxvis5skq7jj6eot23ul/site.standard.document/3mnmzfnl7nc25"
 has_toc = false
 +++
 

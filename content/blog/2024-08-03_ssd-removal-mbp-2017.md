@@ -6,6 +6,9 @@ description = "Removal of the SSD of the MacBook Pro 2017 (functions keys)"
 
 [taxonomies]
 tags = ["tutorial", "teardown", "archival"]
+
+[extra]
+standard_site_uri = "at://did:plc:krxbvxvis5skq7jj6eot23ul/site.standard.document/3mnmzfm64bs25"
 +++
 
 Hi! I've had a MacBook Pro 2017 for about a year now, and I got it used; it's been great so far until one day after updating it just refused to turn on I'm not entirely sure why this happened, but I replaced the battery and that didn't solve the issue so yeah ^_^  

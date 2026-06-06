@@ -63,7 +63,11 @@ default(value=true) %} {% if twitter_card != false %}
 <link rel="manifest" href="/site.webmanifest">
 <meta name="theme-color" content="#272631">
 <meta name="color-scheme" content="dark">
-{% endblock metatags %} {% if config.generate_feeds %} {% block
+{% endblock metatags %}
+{% if page.extra.standard_site_uri %}
+<link rel="site.standard.document" href="{{ page.extra.standard_site_uri }}" />
+{% endif %}
+{% if config.generate_feeds %} {% block
 feed%}
 <link rel="alternate" type="application/atom+xml" title="Kieran Klukas' Atom feed" href="{{
 get_url(path=" atom.xml", trailing_slash=false) }}">
@@ -121,6 +125,7 @@ base64=true) %}
 
 <link rel="me" href="https://social.dino.icu/@taciturnaxoltol" />
 <link rel="me" href="https://github.com/taciturnaxolotl" />
+<link rel="site.standard.publication" href="at://did:plc:krxbvxvis5skq7jj6eot23ul/site.standard.publication/3mnmzflmnos25" />
 <link rel="me" href="https://bsky.app/profile/dunkirk.sh" />
 <link rel="me" href="https://www.youtube.com/@kieran.rambles" />
 <link rel="me" href="https://keyoxide.org/aspe:keyoxide.org:QMHCMT55EODYTEBQ5C7QOAFN6A" />

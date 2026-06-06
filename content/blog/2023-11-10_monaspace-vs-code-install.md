@@ -6,6 +6,9 @@ description = "How to install the Github Next team's Monaspace font in VSCode"
 
 [taxonomies]
 tags = ["tutorial", "archival"]
+
+[extra]
+standard_site_uri = "at://did:plc:krxbvxvis5skq7jj6eot23ul/site.standard.document/3mnmzflz44s25"
 +++
 
 To install the Monaspace font on macOS (or windows or linux) with VS Code and enable multifont syntax highlighting with the [CSS JS Loader extension](https://marketplace.visualstudio.com/items?itemName=be5invis.vscode-custom-css), you can follow these steps:

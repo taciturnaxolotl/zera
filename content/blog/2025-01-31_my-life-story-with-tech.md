@@ -6,6 +6,9 @@ description = "I was applying for a college cybersecurity camp and wrote this ab
 
 [taxonomies]
 tags = ["yap fest", "biography"]
+
+[extra]
+standard_site_uri = "at://did:plc:krxbvxvis5skq7jj6eot23ul/site.standard.document/3mnmzfmr7mc25"
 +++
 
 I was applying for a Cybersecurity college camp for this summer and realized this is honestly a pretty good summary of my life in tech so far (till i'm 16) and that I should probably make it a blog post soooo here it is!

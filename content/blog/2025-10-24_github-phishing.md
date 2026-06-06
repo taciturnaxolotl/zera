@@ -6,6 +6,9 @@ description = "the creators certainly didn't execute this very well"
 
 [taxonomies]
 tags = ["phishing"]
+
+[extra]
+standard_site_uri = "at://did:plc:krxbvxvis5skq7jj6eot23ul/site.standard.document/3mnmzfngfds25"
 +++
 
 I received an email yesterday at `19:45 EST` titled `[yccombinator/-notification] Y-Combinator W2026 | $15M Y-Combinator & GitHub (Issue #126)`. From a quick glance it was easy to tell that it was a phising email funneling people to `https://y-comblnator.com/apply`. They did at least try to disguise the link but then there is a ton of whitespace and you can see that they tagged 32 github users including mine.

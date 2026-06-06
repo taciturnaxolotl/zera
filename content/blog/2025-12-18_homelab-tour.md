@@ -6,6 +6,9 @@ description = "what lives in my homelab in 2025"
 
 [taxonomies]
 tags = ["homelab"] 
+
+[extra]
+standard_site_uri = "at://did:plc:krxbvxvis5skq7jj6eot23ul/site.standard.document/3mnmzfnisik25"
 +++
 
 Well this is a post I somehow have procrastinated on. I originally got the idea to write this up for the [LUP holiday homelab special](https://linuxunplugged.com/646) but before I knew it the submission due date was upon me and I hadn't started so here goes a speedrun tour of my lab.
