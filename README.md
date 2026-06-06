@@ -11,8 +11,7 @@
 	<img src="https://raw.githubusercontent.com/taciturnaxolotl/carriage/main/.github/images/line-break-thin.svg" />
 </p>
 
-![screenshot of the website](https://raw.githubusercontent.com/taciturnaxolotl/zera/refs/heads/main/.github/images/preview.webp)
-
+![screenshot of the website](https://l4.dunkirk.sh/i/X1lrst_wqAhu.webp)
 
 <p align="center">
 	<img src="https://raw.githubusercontent.com/taciturnaxolotl/carriage/main/.github/images/line-break-thin.svg" />
@@ -23,21 +22,26 @@
 - The whole website can be statically rendered in `~93ms`
 - Deployed via cloudflare pages with a total push to deploy time of `~20s`
 - blazing fast privacy preserving view counter with [abacus](https://jasoncameron.dev/abacus/)
+
 ```html
 <script>
-    function cb(res) {
-        const fmt = new Intl.NumberFormat('en', { notation: 'compact' });
-        const elements = document.querySelectorAll("[id='visits']");
-        elements.forEach(el => {
-            el.innerText = fmt.format(res.value);
-            el.title = res.value + " visits";
-        });
-    }
+  function cb(res) {
+    const fmt = new Intl.NumberFormat("en", { notation: "compact" });
+    const elements = document.querySelectorAll("[id='visits']");
+    elements.forEach((el) => {
+      el.innerText = fmt.format(res.value);
+      el.title = res.value + " visits";
+    });
+  }
 </script>
-<script async src="https://abacus.jasoncameron.dev/hit/namespace/counter?callback=cb"></script>
+<script
+  async
+  src="https://abacus.jasoncameron.dev/hit/namespace/counter?callback=cb"
+></script>
 ```
+
 - Automatic OG image via a custom script using puppeteer.  
-![og image example](https://raw.githubusercontent.com/taciturnaxolotl/zera/refs/heads/main/static/blog/hilton-tomfoolery/og.png)
+  ![og image example](https://raw.githubusercontent.com/taciturnaxolotl/zera/refs/heads/main/static/blog/hilton-tomfoolery/og.png)
 
 ## Awesome projects that made this possible
 
