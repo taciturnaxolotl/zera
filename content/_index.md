@@ -20,10 +20,9 @@ Erlo! My name is Kieran Klukas i'm {{ age(length=0) }} years old and love cyber,
   let
     kieran = rec {
       name = "Kieran Klukas";
-      pronouns = "he/him";
       aliases = [ "taciturnaxolotl" "krn" ];
       location = "Westerville, Ohio, USA";
-      hobbies = [ "frc" "ctfs" "random side projects"];
+      hobbies = [ "frc" "ctfs" "random side projects" "nix"];
     };
   in
   {
