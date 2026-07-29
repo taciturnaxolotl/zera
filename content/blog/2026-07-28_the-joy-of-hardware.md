@@ -6,6 +6,9 @@ description = "Julia Child has nothing on me"
 
 [taxonomies]
 tags = ["future", "hardware"] 
+
+[extra]
+standard_site_uri = "at://did:plc:krxbvxvis5skq7jj6eot23ul/site.standard.document/3mrs2h2uxhs2j"
 +++
 
 The is a certain joy I get when working on a hardware project. The smell of flux burning, solder meltying, the 3d printer bristtlebotting its way off the table. It's the absolute best feeling.

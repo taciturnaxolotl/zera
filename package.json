@@ -10,16 +10,16 @@
     "standard-site": "bun run scripts/standard-site.ts"
   },
   "dependencies": {
-    "@atcute/bluesky": "^4.0.6",
-    "@atcute/client": "^5.0.0",
+    "@atcute/bluesky": "^4.0.16",
+    "@atcute/client": "^5.1.1",
     "@types/cli-progress": "^3.11.6",
     "cli-progress": "^3.12.0",
-    "dotenv": "^16.4.7",
-    "glob": "^13.0.0",
+    "dotenv": "^16.6.1",
+    "glob": "^13.0.6",
     "sharp": "^0.34.5"
   },
   "devDependencies": {
     "@types/bun": "latest",
-    "puppeteer": "^23.6.0"
+    "puppeteer": "^23.11.1"
   }
 }

@@ -30,8 +30,6 @@ June to September 13th
 
 dynamically updating varient of the starry background one with the cat; the background would change with the time.
 
-{{ bluesky(post="https://bsky.app/profile/serif.blue/post/3lqncouklcc2e") }}
-
 February 27th to June
 
 ![kieran with an orange cast in a polaroid over a pinkish background](/pfps/instsqc-rat-pfp.webp)
