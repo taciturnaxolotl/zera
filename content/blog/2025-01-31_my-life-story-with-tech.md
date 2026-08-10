@@ -1,5 +1,5 @@
 +++
-title = "My life story in tech so far ig 🤷"
+title = "My life story so far"
 date = 2025-01-31
 slug = "my-life-story-with-tech"
 description = "I was applying for a college cybersecurity camp and wrote this absolute monster that amounts to an overview of my life in tech so far (till 16)"
