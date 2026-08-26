@@ -10,7 +10,7 @@
     "standard-site": "bun run scripts/standard-site.ts"
   },
   "dependencies": {
-    "@atcute/bluesky": "^4.0.16",
+    "@atcute/bluesky": "^4.0.20",
     "@atcute/client": "^5.1.1",
     "@types/cli-progress": "^3.11.6",
     "cli-progress": "^3.12.0",
