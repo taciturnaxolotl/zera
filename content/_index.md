@@ -21,7 +21,7 @@ Erlo! My name is Kieran Klukas i'm {{ age(length=0) }} years old and love cyber,
     kieran = rec {
       name = "Kieran Klukas";
       aliases = [ "taciturnaxolotl" "krn" ];
-      location = "AS11776 /24";
+      location = "AS11776/24";
       hobbies = [ "frc" "ctfs" "random side projects" "nix"];
     };
   in
