@@ -8,13 +8,13 @@
 
 # About me
 
-Erlo! My name is Kieran Klukas i'm {{ age(length=0) }} years old and love cyber, anything with micro-controllers, obscure languages, nix :nix:, and yummy food :)
+Erlo! My name is Kieran Klukas i'm {{ age(length=0) }} years old and love cyber, hardware, nix :nix:, and food :)
 
 > flake.nix
 
 ```nix
 {
-  description = "a short bit about me";
+  description = ":waves:";
 
   outputs = { self, ... }:
   let
@@ -22,7 +22,7 @@ Erlo! My name is Kieran Klukas i'm {{ age(length=0) }} years old and love cyber,
       name = "Kieran Klukas";
       aliases = [ "taciturnaxolotl" "krn" ];
       location = "AS11776/24";
-      hobbies = [ "frc" "ctfs" "random side projects" "nix"];
+      hobbies = [ "robotics" "ctfs" "bunny trails" "nix"];
     };
   in
   {
@@ -31,11 +31,11 @@ Erlo! My name is Kieran Klukas i'm {{ age(length=0) }} years old and love cyber,
 }
 ```
 
-this site has page hits (<code id="visits">0</code> and counting) via [abacus](https://jasoncameron.dev/abacus/) but they are completely anonymous and just http requests so no sketchy analytics here!
+this site has anonymous page hits (<code id="visits">0</code> and counting) via [abacus](https://jasoncameron.dev/abacus/)
 
-# Want to talk to me?
+# Methods of contact
 
-I'm open to projects or just random questions! Feel free to reach out with any of the following or anything on [/verify](/verify)
+I love talking to people so if you are curious about something or just want to say hi feel free to reach out over email or anything on [/verify](/verify)
 
 - Email: [kieran@dunkirk.sh](mailto:kieran@dunkirk.sh)
-- If you just want to know when I make a new post then you can subscribe to the [:rss:](rss.xml) feed
+- RSS/Atom: [:rss:](rss.xml) or [:atom-feeds:](atom.xml)
