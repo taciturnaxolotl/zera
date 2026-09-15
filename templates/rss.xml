@@ -5,7 +5,7 @@
   xmlns:dc="http://purl.org/dc/elements/1.1/"
 >
   <channel>
-    <title>{{ config.title | escape_xml }}{% if section.title %} – {{ section.title | escape_xml }}{% endif %}</title>
+    <title>{{ config.title | escape_xml }}{% if section?.title %} – {{ section.title | escape_xml }}{% endif %}</title>
     <link>{% if section %}{{ section.permalink | safe }}{% else %}{{ config.base_url | safe }}{% endif %}</link>
     <description>{{ config.description | default(value="") | escape_xml }}</description>
     <language>{{ lang }}</language>
@@ -24,7 +24,7 @@
       {% if config.extra.author %}
       <dc:creator>{{ config.extra.author | escape_xml }}</dc:creator>
       {% endif %}
-      {% if page.taxonomies.tags %}
+      {% if page.taxonomies?.tags %}
         {% for tag in page.taxonomies.tags %}
       <category>{{ tag | escape_xml }}</category>
         {% endfor %}

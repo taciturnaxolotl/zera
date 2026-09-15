@@ -41,7 +41,7 @@ async function initialSync() {
   await Bun.$`mkdir -p .zola-build`.quiet();
   await Bun.$`cp -r content .zola-build/`.quiet();
   
-  const optionalDirs = ['static', 'templates', 'sass', 'syntaxes'];
+  const optionalDirs = ['static', 'templates', 'sass'];
   for (const dir of optionalDirs) {
     if (existsSync(dir)) {
       await Bun.$`cp -r ${dir} .zola-build/`.quiet();
@@ -85,7 +85,7 @@ async function startServer() {
 
 await startServer();
 
-const watchDirs = ['content', 'templates', 'sass', 'static', 'syntaxes'];
+const watchDirs = ['content', 'templates', 'sass', 'static'];
 
 for (const dir of watchDirs) {
   if (existsSync(dir)) {

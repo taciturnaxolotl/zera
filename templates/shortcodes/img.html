@@ -1,8 +1,0 @@
-<figure {% if class %}class="{{class}}" {% else %}class="center" {% endif %}>
-    <div class="img-container" data-lightbox>
-        <img src="{{id}}" {% if alt %}alt="{{alt}}" {% endif %} />
-    </div>
-    {% if caption %}
-    <figcaption>{{caption | markdown | safe}}</figcaption>
-    {% endif %}
-</figure>

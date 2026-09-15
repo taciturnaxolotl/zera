@@ -1,10 +1,10 @@
-{% if config.extra.header_nav %}
+{% if config.extra?.header_nav %}
 {% if page %}
-{% set active_path = page.path | trim_end_matches(pat="/") %}
+{% set active_path = page.path | trim_end(pat="/") %}
 {% elif section %}
-{% set active_path = section.path | trim_end_matches(pat="/") %}
+{% set active_path = section.path | trim_end(pat="/") %}
 {% elif current_path %}
-{% set active_path = current_path | trim_end_matches(pat="/") %}
+{% set active_path = current_path | trim_end(pat="/") %}
 {% else %}
 {% set active_path = "" %}
 {% endif %}

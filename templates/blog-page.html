@@ -16,7 +16,7 @@
     {% endif %}
     <h1>{{ page.title }}</h1>
 
-    {% if page.toc and page.extra["has_toc"] %}
+    {% if page.toc and page.extra?.has_toc %}
     <h2>Table of contents</h2>
     <ul>
         {% for h2 in page.toc %}
@@ -37,7 +37,7 @@
     <div class="e-content p-name">{{ page.content | safe }}</div>
 
     <p class="tags-data">
-        {% if page.taxonomies.tags %} {% for tag in page.taxonomies.tags %}
+        {% if page.taxonomies?.tags %} {% for tag in page.taxonomies.tags %}
         <a href="/tags/{{ tag | slugify }}" class="p-category text-glow"
             >|{{ tag }}|</a
         >

@@ -12,9 +12,9 @@
   </p>
   <p style="margin-bottom: 0.5rem">
     <span id="status-indicator"></span>
-    <code id="visits">0</code> page visits || {% set hash =
-    get_env(name="CF_PAGES_COMMIT_SHA", default=load_data(path=".git/refs/heads/main", required=false))%}{% if hash is
-    not string %}{% set hash = "unknown" %}{% endif %}<a href=https://tangled.sh/@dunkirk.sh/zera/commit/{{ hash
+    <code id="visits">0</code> page visits || {% set raw_hash =
+    get_env(name="CF_PAGES_COMMIT_SHA", default=load_data(path=".git/refs/heads/main", required=false)) %}{% set hash =
+    raw_hash if raw_hash is string else "unknown" %}<a href=https://tangled.sh/@dunkirk.sh/zera/commit/{{ hash
       }}>zera@{{ hash |
       truncate(length=7, end="")}}</a>
   </p>

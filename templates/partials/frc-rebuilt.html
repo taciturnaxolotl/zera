@@ -1,169 +1,142 @@
 <div id="frc-calculator" class="frc-calculator">
-  <div class="frc-calculator-inner">
-    <div class="calc-section">
-      <h3>Robot Parameters</h3>
-
-    <div class="input-group">
-      <label for="ballCapacity">Ball Capacity:</label>
-      <input type="number" id="ballCapacity" value="8" min="1" max="10">
-      <span class="unit">balls</span>
-    </div>
-
-    <div class="input-group">
-      <label for="reloadTime">Reload Time:</label>
-      <input type="number" id="reloadTime" value="3" min="0" step="0.5">
-      <span class="unit">seconds</span>
-    </div>
-
-    <div class="input-group">
-      <label for="shooterBPS">Shooter BPS (max):</label>
-      <input type="number" id="shooterBPS" value="4" min="0.1" step="0.1">
-      <span class="unit">balls/s</span>
-    </div>
-
-    <div class="input-group">
-      <label for="numRobots">Number of Robots:</label>
-      <input type="number" id="numRobots" value="3" min="1" max="3">
-      <span class="unit">robots</span>
-    </div>
-
-    <div class="input-group">
-      <label for="graceTime">Hub Grace Period:</label>
-      <input type="number" id="graceTime" value="3" min="0" max="10" step="0.5">
-      <span class="unit">seconds</span>
-    </div>
-  </div>
-
-  <div class="calc-section">
-    <h3>Match Strategy</h3>
-
-    <div class="input-group checkbox-group">
-      <input type="checkbox" id="includeAuto" checked>
-      <label for="includeAuto">Include Autonomous Period</label>
-    </div>
-
-    <div class="input-group indent-group" id="autoTimeGroup">
-      <label for="autoShootTime">Auto Shooting Time:</label>
-      <input type="number" id="autoShootTime" value="20" min="0" max="20" step="0.5">
-      <span class="unit">seconds</span>
-    </div>
-
-    <div class="input-group checkbox-group">
-      <input type="checkbox" id="includeEndgame" checked>
-      <label for="includeEndgame">Include Endgame Period</label>
-    </div>
-
-    <div class="input-group indent-group" id="endgameTimeGroup">
-      <label for="endgameShootTime">Endgame Shooting Time:</label>
-      <input type="number" id="endgameShootTime" value="30" min="0" max="30" step="0.5">
-      <span class="unit">seconds</span>
-    </div>
-
-    <div class="input-group checkbox-group">
-      <input type="checkbox" id="wonAuto">
-      <label for="wonAuto">Won Autonomous Period</label>
-    </div>
-  </div>
-
-  <div class="calc-section">
-    <h3>Ranking Point Thresholds</h3>
-
-    <div class="input-group">
-      <label for="energizedThreshold">Energized Threshold:</label>
-      <input type="number" id="energizedThreshold" value="100" min="1" max="500">
-      <span class="unit">fuel</span>
-    </div>
-
-    <div class="input-group">
-      <label for="superchargedThreshold">Supercharged Threshold:</label>
-      <input type="number" id="superchargedThreshold" value="360" min="1" max="1000">
-      <span class="unit">fuel</span>
-    </div>
-  </div>
-
-  <div class="calc-section animation">
-    <h3>Match Simulation</h3>
-
-    <div class="simulation-container">
-      <div class="simulation-header">
-        <div class="sim-stat">
-          <span class="sim-label">Time:</span>
-          <span class="sim-value" id="simTime">0.0s</span>
-        </div>
-        <div class="sim-stat">
-          <span class="sim-label">Balls in Hopper:</span>
-          <span class="sim-value" id="simBalls">0</span>
-        </div>
-        <div class="sim-stat">
-          <span class="sim-label">Total Scored:</span>
-          <span class="sim-value" id="simScored">0</span>
-        </div>
-        <div class="sim-stat">
-          <span class="sim-label">Status:</span>
-          <span class="sim-value" id="simStatus">Ready</span>
-        </div>
-      </div>
-
-      <canvas id="matchCanvas" width="800" height="200"></canvas>
-
-      <div class="timeline-container">
-        <div class="timeline-labels" id="timelineLabels"></div>
-        <input type="range" id="timelineScrubber" min="0" max="168" value="0" step="0.1" class="timeline-scrubber">
-      </div>
-
-      <div class="simulation-controls">
-        <button id="playPauseBtn" class="sim-button">Play</button>
-        <button id="resetBtn" class="sim-button">Reset</button>
-        <div class="speed-controls">
-          <label for="speedSelect">Speed:</label>
-          <select id="speedSelect">
-            <option value="0.5">0.5x</option>
-            <option value="1" selected>1x</option>
-            <option value="2">2x</option>
-            <option value="4">4x</option>
-            <option value="8">8x</option>
-          </select>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="calc-section results">
-    <h3>Results</h3>
-
-    <div class="result-box">
-      <div class="result-label">Total Active Scoring Time:</div>
-      <div class="result-value" id="totalTime">-</div>
-    </div>
-
-    <div class="result-box">
-      <div class="result-label">Effective Cycle Time:</div>
-      <div class="result-value" id="cycleTime">-</div>
-    </div>
-
-    <div class="result-box highlight">
-      <div class="result-label">Alliance BPS for Energized RP:</div>
-      <div class="result-value" id="energizedAllianceBPS">-</div>
-    </div>
-
-    <div class="result-box">
-      <div class="result-label">Per Robot BPS for Energized RP:</div>
-      <div class="result-value" id="energizedRobotBPS">-</div>
-    </div>
-
-    <div class="result-box highlight">
-      <div class="result-label">Alliance BPS for Supercharged RP:</div>
-      <div class="result-value" id="superchargedAllianceBPS">-</div>
-    </div>
-
-    <div class="result-box">
-      <div class="result-label">Per Robot BPS for Supercharged RP:</div>
-      <div class="result-value" id="superchargedRobotBPS">-</div>
-    </div>
-  </div>
-  </div>
+<div class="frc-calculator-inner">
+<div class="calc-section">
+<h3>Robot Parameters</h3>
+<div class="input-group">
+<label for="ballCapacity">Ball Capacity:</label>
+<input type="number" id="ballCapacity" value="8" min="1" max="10">
+<span class="unit">balls</span>
 </div>
-
+<div class="input-group">
+<label for="reloadTime">Reload Time:</label>
+<input type="number" id="reloadTime" value="3" min="0" step="0.5">
+<span class="unit">seconds</span>
+</div>
+<div class="input-group">
+<label for="shooterBPS">Shooter BPS (max):</label>
+<input type="number" id="shooterBPS" value="4" min="0.1" step="0.1">
+<span class="unit">balls/s</span>
+</div>
+<div class="input-group">
+<label for="numRobots">Number of Robots:</label>
+<input type="number" id="numRobots" value="3" min="1" max="3">
+<span class="unit">robots</span>
+</div>
+<div class="input-group">
+<label for="graceTime">Hub Grace Period:</label>
+<input type="number" id="graceTime" value="3" min="0" max="10" step="0.5">
+<span class="unit">seconds</span>
+</div>
+</div>
+<div class="calc-section">
+<h3>Match Strategy</h3>
+<div class="input-group checkbox-group">
+<input type="checkbox" id="includeAuto" checked>
+<label for="includeAuto">Include Autonomous Period</label>
+</div>
+<div class="input-group indent-group" id="autoTimeGroup">
+<label for="autoShootTime">Auto Shooting Time:</label>
+<input type="number" id="autoShootTime" value="20" min="0" max="20" step="0.5">
+<span class="unit">seconds</span>
+</div>
+<div class="input-group checkbox-group">
+<input type="checkbox" id="includeEndgame" checked>
+<label for="includeEndgame">Include Endgame Period</label>
+</div>
+<div class="input-group indent-group" id="endgameTimeGroup">
+<label for="endgameShootTime">Endgame Shooting Time:</label>
+<input type="number" id="endgameShootTime" value="30" min="0" max="30" step="0.5">
+<span class="unit">seconds</span>
+</div>
+<div class="input-group checkbox-group">
+<input type="checkbox" id="wonAuto">
+<label for="wonAuto">Won Autonomous Period</label>
+</div>
+</div>
+<div class="calc-section">
+<h3>Ranking Point Thresholds</h3>
+<div class="input-group">
+<label for="energizedThreshold">Energized Threshold:</label>
+<input type="number" id="energizedThreshold" value="100" min="1" max="500">
+<span class="unit">fuel</span>
+</div>
+<div class="input-group">
+<label for="superchargedThreshold">Supercharged Threshold:</label>
+<input type="number" id="superchargedThreshold" value="360" min="1" max="1000">
+<span class="unit">fuel</span>
+</div>
+</div>
+<div class="calc-section animation">
+<h3>Match Simulation</h3>
+<div class="simulation-container">
+<div class="simulation-header">
+<div class="sim-stat">
+<span class="sim-label">Time:</span>
+<span class="sim-value" id="simTime">0.0s</span>
+</div>
+<div class="sim-stat">
+<span class="sim-label">Balls in Hopper:</span>
+<span class="sim-value" id="simBalls">0</span>
+</div>
+<div class="sim-stat">
+<span class="sim-label">Total Scored:</span>
+<span class="sim-value" id="simScored">0</span>
+</div>
+<div class="sim-stat">
+<span class="sim-label">Status:</span>
+<span class="sim-value" id="simStatus">Ready</span>
+</div>
+</div>
+<canvas id="matchCanvas" width="800" height="200"></canvas>
+<div class="timeline-container">
+<div class="timeline-labels" id="timelineLabels"></div>
+<input type="range" id="timelineScrubber" min="0" max="168" value="0" step="0.1" class="timeline-scrubber">
+</div>
+<div class="simulation-controls">
+<button id="playPauseBtn" class="sim-button">Play</button>
+<button id="resetBtn" class="sim-button">Reset</button>
+<div class="speed-controls">
+<label for="speedSelect">Speed:</label>
+<select id="speedSelect">
+<option value="0.5">0.5x</option>
+<option value="1" selected>1x</option>
+<option value="2">2x</option>
+<option value="4">4x</option>
+<option value="8">8x</option>
+</select>
+</div>
+</div>
+</div>
+</div>
+<div class="calc-section results">
+<h3>Results</h3>
+<div class="result-box">
+<div class="result-label">Total Active Scoring Time:</div>
+<div class="result-value" id="totalTime">-</div>
+</div>
+<div class="result-box">
+<div class="result-label">Effective Cycle Time:</div>
+<div class="result-value" id="cycleTime">-</div>
+</div>
+<div class="result-box highlight">
+<div class="result-label">Alliance BPS for Energized RP:</div>
+<div class="result-value" id="energizedAllianceBPS">-</div>
+</div>
+<div class="result-box">
+<div class="result-label">Per Robot BPS for Energized RP:</div>
+<div class="result-value" id="energizedRobotBPS">-</div>
+</div>
+<div class="result-box highlight">
+<div class="result-label">Alliance BPS for Supercharged RP:</div>
+<div class="result-value" id="superchargedAllianceBPS">-</div>
+</div>
+<div class="result-box">
+<div class="result-label">Per Robot BPS for Supercharged RP:</div>
+<div class="result-value" id="superchargedRobotBPS">-</div>
+</div>
+</div>
+</div>
+</div>
 <style>
 .frc-calculator {
   background-color: var(--accent);
@@ -480,7 +453,6 @@
   cursor: pointer;
 }
 </style>
-
 <script>
 (function() {
   // Wait for DOM to be ready

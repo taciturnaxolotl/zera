@@ -134,17 +134,21 @@ them up, images can be interspersed to help prevent text-wall fatique.
 
 You can also add captions to images:
 
-```terra
-{{/* img(id="https://url.com/image.png" alt="alt text" caption="this can be ommited if you want or added! It's optional :)") */}}
+{% raw %}
+```jinja
+{{ <img id="https://url.com/image.png" alt="alt text" caption="this can be ommited if you want or added! It's optional :)" /> }}
 ```
+{% endraw %}
 
 ![MacBook proprietary blade SSD](https://l4.dunkirk.sh/i/REmc3Tnp43hn.webp){caption="it really was a rather sleek design; shame that apple got rid of it in favor of soldered on storage"}
 
 You can also display multiple images side-by-side using the `imgs` shortcode with comma-separated URLs:
 
-```terra
-{{/* imgs(id="https://url.com/image1.png, https://url.com/image2.png" alt="alt text 1, alt text 2" caption="optional caption for both images") */}}
+{% raw %}
+```jinja
+{{ <imgs id="https://url.com/image1.png, https://url.com/image2.png" alt="alt text 1, alt text 2" caption="optional caption for both images" /> }}
 ```
+{% endraw %}
 
 !![the copyright section](https://l4.dunkirk.sh/i/FPBdusjL9oIZ.webp)[the ssh section](https://l4.dunkirk.sh/i/FCjVs9QyX8jd.webp){caption="side by side images from the remarkable tutorial"}
 
@@ -152,13 +156,13 @@ You can also display multiple images side-by-side using the `imgs` shortcode wit
 
 To embed a video, you use the `youtube(id="", autoplay?=bool)` shortcode e.g.
 
-{{ youtube(id="NodwjZF7uZw") }}
+{{ <youtube id="NodwjZF7uZw" /> }}
 
 ### Bluesky posts
 
 This is handled by a shortcode `bluesky(post="")` and takes the post url as a parameter. These will automatically attach images and videos.
 
-{{ bluesky(post="https://bsky.app/profile/svenninifl.bsky.social/post/3lnkivz3ans2k") }}
+{{ <bluesky post="https://bsky.app/profile/svenninifl.bsky.social/post/3lnkivz3ans2k" /> }}
 
 ## Miscellaneous
 
@@ -201,6 +205,6 @@ Callouts are a great way to draw attention to important information. They come i
 
 ### Custom Title
 
-{% callout(type="info", title="Custom Title Here") %}
+{% <callout type="info" title="Custom Title Here"> %}
 You can also customize the title of any callout by adding a `title` parameter!
-{% end %}
+{% </callout> %}

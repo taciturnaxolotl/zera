@@ -45,6 +45,6 @@ Use this calculator to determine the balls per second (BPS) your robot needs to 
 
 The max bps is only used in the simulation of the match while the results section is doing back propagation to figure out the necessary BPS needed to hit that ranking point no matter how high that is. If one of the results says "N/A" that means that your reload time is too high and eats up enough shooting time its no longer possible to hit that ranking point threshold.
 
-{{ frcRebuilt() }}
+{{ <frc_rebuilt /> }}
 
 Hopefully this can help your team! May your BPS be ever optimal.

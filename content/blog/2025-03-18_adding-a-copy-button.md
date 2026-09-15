@@ -20,6 +20,7 @@ What finally pushed me over the edge was seeing the [Duckquill](https://duckquil
 A quick hash for cache busting and import later it all worked!
 
 > templates/head.html
+{% raw %}
 ```html
 {% set jsHash = get_hash(path="js/copy-button.js", sha_type=256,
 base64=true) %}
@@ -28,6 +29,7 @@ base64=true) %}
   defer
 ></script>
 ```
+{% endraw %}
 
 The one thing I expanded on was the ability to specify a file name / comment for the code block. When js is disabled a markdown `>` blockquote on the line before the code block will create a header tab for the code block. I snipped the header tab idea from [chevyray.dev](https://chevyray.dev) and I grew to quite like it so I didn't want to abandon it over a copy button.
 

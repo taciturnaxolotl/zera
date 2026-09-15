@@ -1,0 +1,156 @@
+{# Reusable components, callable from templates and from markdown content. #}
+
+{% component youtube(id, caption = "", autoplay = false) %}
+<figure class="yt-embed">
+<iframe src="https://www.youtube-nocookie.com/embed/{{id}}{% if autoplay %}?autoplay=1{% endif %}" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+{% if caption %}<figcaption>{{caption}}</figcaption>{% endif %}
+</figure>
+{% endcomponent youtube %}
+
+{% component img(id, alt = "", caption = "", class = "center") %}
+<figure class="{{class}}">
+<div class="img-container" data-lightbox>
+<img src="{{id}}" {% if alt %}alt="{{alt}}" {% endif %} />
+</div>
+{% if caption %}<figcaption>{{caption | markdown | safe}}</figcaption>{% endif %}
+</figure>
+{% endcomponent img %}
+
+{% component imgs(id, alt = "", caption = "", class = "center") %}
+{%- set images = id | split(pat=",") -%}
+{%- set alts = alt | split(pat=",") -%}
+<figure class="{{class}}">
+<div class="img-group" data-images="{{id}}" data-alts="{{alt}}">
+{% for image in images %}{% set this_alt = alts | nth(n=loop.index0) or "" %}
+<div class="img-container" data-lightbox data-lightbox-group="group-{{ id | slugify }}">
+<img src="{{image | trim}}" {% if this_alt %}alt="{{this_alt | trim}}" {% endif %} />
+</div>
+{% endfor %}
+</div>
+{% if caption %}<figcaption>{{caption | markdown | safe}}</figcaption>{% endif %}
+</figure>
+{% endcomponent imgs %}
+
+{% component mark() %}<mark>{{body}}</mark>{% endcomponent mark %}
+
+{% component age(length = 0, comma = false) %}
+{%- set seconds = now(timestamp=true) - 1209254400 -%}
+{%- set years = (seconds / 31536000) | round(method="floor", precision=length) -%}
+{{- (years | int) if length == 0 else years -}}
+{%- if comma %},{% endif -%}
+{% endcomponent age %}
+
+{% component status_bubble() %}{% include "partials/status-bubble.html" %}{% endcomponent status_bubble %}
+
+{% component lens_diagram() %}{% include "partials/lens-diagram.html" %}{% endcomponent lens_diagram %}
+
+{% component frc_rebuilt() %}{% include "partials/frc-rebuilt.html" %}{% endcomponent frc_rebuilt %}
+
+{% component callout(type = "info", title = "") %}
+{%- set type = type | lower -%}
+{%- if type == "warning" or type == "warn" -%}
+  {%- set icon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>' -%}
+  {%- set color = "yellow" -%}
+  {%- set default_title = "Warning" -%}
+{%- elif type == "danger" or type == "error" -%}
+  {%- set icon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>' -%}
+  {%- set color = "red" -%}
+  {%- set default_title = "Danger" -%}
+{%- elif type == "tip" or type == "hint" -%}
+  {%- set icon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"></path><path d="M9 18h6"></path><path d="M10 22h4"></path></svg>' -%}
+  {%- set color = "green" -%}
+  {%- set default_title = "Tip" -%}
+{%- elif type == "note" -%}
+  {%- set icon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"></path><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"></path></svg>' -%}
+  {%- set color = "gray" -%}
+  {%- set default_title = "Note" -%}
+{%- else -%}
+  {%- set icon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>' -%}
+  {%- set color = "blue" -%}
+  {%- set default_title = "Info" -%}
+{%- endif -%}
+<div class="callout callout-{{ color }}">
+<div class="callout-title">
+<span class="callout-icon">{{ icon | safe }}</span>
+<strong>{{ title or default_title }}</strong>
+</div>
+<div class="callout-content">
+{{ body | markdown | safe }}
+</div>
+</div>
+{% endcomponent callout %}
+
+{% component bluesky(post) %}
+{%- set profile_part = post | split(pat="profile/") | last -%}
+{%- set parts = profile_part | split(pat="/") -%}
+{%- set handle = parts[0] -%}
+{%- set post_id = parts[2] -%}
+{%- set api_url = "https://public.api.bsky.app/xrpc/app.bsky.feed.getPostThread?uri=at://" ~ handle ~ "/app.bsky.feed.post/" ~ post_id -%}
+{%- set response = load_data(url=api_url, format="json") -%}
+{% if response?.thread?.post %}
+{%- set post_data = response.thread.post -%}
+{%- set author = post_data.author.displayName -%}
+{%- set handle = post_data.author.handle -%}
+{%- set content = post_data.record.text -%}
+{%- set embed = post_data?.embed -%}
+<blockquote>
+{{ content }}
+{% if embed %}
+{% if embed["$type"] == "app.bsky.embed.video#view" %}
+<video controls poster="{{ embed.thumbnail }}">
+<source src="{{ embed.playlist }}" type="application/x-mpegURL" />
+</video>
+{% elif embed["$type"] == "app.bsky.embed.images#view" %}
+{% if embed.images | length > 3 %}
+<div class="image-gallery gallery-grid">
+{% for image in embed.images %}
+<img src="{{ image.fullsize }}" alt="{{ image.alt }}" loading="lazy" />
+{% endfor %}
+</div>
+{% elif embed.images | length == 2 %}
+<div class="image-gallery side-by-side">
+{% for image in embed.images %}
+<img src="{{ image.fullsize }}" alt="{{ image.alt }}" loading="lazy" />
+{% endfor %}
+</div>
+{% else %}
+<div class="image-gallery">
+{% for image in embed.images %}
+<img src="{{ image.fullsize }}" alt="{{ image.alt }}" loading="lazy" />
+{% endfor %}
+</div>
+{% endif %}
+{% endif %}
+{% endif %}
+</blockquote>
+<p>
+<cite>
+<a href="{{ post }}" target="_blank" rel="noopener"
+><img
+src="{{ post_data.author.avatar }}"
+alt="{{ author }}'s avatar"
+class="avatar"
+/>@{{ handle }}</a
+></cite
+>
+</p>
+{% else %}
+<blockquote>
+<div class="bsky-post">
+<div class="bsky-post-content">"Failed to render Bluesky post"</div>
+<div class="bsky-post-footer">
+<cite
+><img
+src="/img/bluesky-logo.png"
+alt="Bluesky logo"
+class="avatar"
+/>
+<a href="{{ post }}" target="_blank" rel="noopener"
+>View on Bluesky</a
+></cite
+>
+</div>
+</div>
+</blockquote>
+{% endif %}
+{% endcomponent bluesky %}

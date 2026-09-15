@@ -3,12 +3,12 @@
 
 <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 2rem;">
     <img src="/pfps/cyber-games.webp" alt="A photo of kieran with a dark navy shirt with an ip address and yellow cyber stinger looking at a laptop screen" width="512" height="512" class="u-photo"/>
-    {{ is() }}
+    {{ <status_bubble /> }}
 </div>
 
 # About me
 
-Erlo! My name is Kieran Klukas i'm {{ age(length=0) }} years old and love cyber, hardware, nix :nix:, and food :)
+Erlo! My name is Kieran Klukas i'm {{ <age length={0} /> }} years old and love cyber, hardware, nix :nix:, and food :)
 
 > flake.nix
 

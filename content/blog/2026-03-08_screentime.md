@@ -6,6 +6,9 @@ description = "what makes this so secure after all?"
 
 [taxonomies]
 tags = ["reverse engineering", "macos"]
+
+[extra]
+standard_site_uri = "at://did:plc:krxbvxvis5skq7jj6eot23ul/site.standard.document/3mvjf2wbc7c2h"
 +++
 
 As every teenager with screentime limits knows regardless of how generous your limits are there is always an urge to circumvent or break the system. I have been playing with breaking screentime on and off for the last few years but never managed to fully compromise the system. I found workarounds sure, but nothing that ever fully satisfied my curiosity. Well that is untill today (2026.03.08).
@@ -471,7 +474,7 @@ It appears to be using`NSDate` which means **If you advance the system clock for
 
 The lockout state itself _is_ persisted to CoreData via `writeDeviceStateChange:`, so killing ScreenTimeAgent doesn't reset the attempt counter (leading to hilarious screenshots like the following). But the clock attack basically means we can ignore the lockout system.
 
-![4202 screentime pin attempts](https://l4.dunkirk.sh/i/IB7jwClEkhWs.webp)
+![4202 screentime pin attempts](https://l4.dunkirk.sh/i/IB7jwClEkhWs.webp){caption="4202 attempts and counting"}
 
 ### The debug timeout override
 

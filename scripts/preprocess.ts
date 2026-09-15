@@ -42,7 +42,7 @@ function transformCallouts(content: string): string {
                              type.toLowerCase() === 'error' ? 'danger' :
                              type.toLowerCase() === 'hint' ? 'tip' :
                              type.toLowerCase();
-      return `{% callout(type="${normalizedType}") %}\n${cleanBody}\n{% end %}\n`;
+      return `{% <callout type="${normalizedType}"> %}\n${cleanBody}\n{% </callout> %}\n`;
     }
   );
 }
@@ -82,7 +82,7 @@ function transformImages(content: string): string {
         }
       }
       
-      return `{{ imgs(${params.join(', ')}) }}`;
+      return `{{ <imgs ${params.join(' ')} /> }}`;
     }
   );
   
@@ -111,7 +111,7 @@ function transformImages(content: string): string {
         }
       }
       
-      return `{{ img(${params.join(', ')}) }}`;
+      return `{{ <img ${params.join(' ')} /> }}`;
     }
   );
   

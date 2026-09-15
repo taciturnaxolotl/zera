@@ -45,6 +45,7 @@ Next enable font ligatures in the settings.json with following snippet:
 Now enable the custom CSS file within the `settings.json`, modifying the file path for Windows / MacOS / Linux if needed:
 
 > still settings.json
+{% raw %}
 ```json
 "vscode_custom_css.imports": [
     "file:///Users/{{user}}/.vscode/style.css", // for mac (remove if not mac)
@@ -52,6 +53,7 @@ Now enable the custom CSS file within the `settings.json`, modifying the file pa
     "file:///home/{{user}}/.vscode/style.css" // for linux (remove if not windows)
 ],
 ```
+{% endraw %}
 
 ## 3. Create custom CSS file at the path you specified above.
 

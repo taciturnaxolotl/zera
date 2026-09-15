@@ -1,7 +1,6 @@
 {% extends "base.html" %} {% block content %}
 <h1>{{ term.name }}</h1>
-{% if paginator %} {% set pages = paginator.pages %} {% else %} {% set pages =
-term.pages %} {% endif %}
+{% set pages = paginator.pages if paginator else term.pages %}
 <ul>
     {% for page in pages %}
     <li>

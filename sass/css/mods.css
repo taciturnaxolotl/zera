@@ -451,3 +451,7 @@ cite a img.avatar {
   --purple-gray: oklch(25.63% 0.0002 290.76);
   --alice-blue: oklch(95.38% 0.0118 239.91);
 }
+/* Code block background, overriding the generated giallo theme. */
+.z-code {
+  background-color: var(--nightshade-violet);
+}

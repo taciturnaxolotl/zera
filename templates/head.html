@@ -4,28 +4,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="robots" content="index, follow" />
 <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
-{% if page.title %} {% set title = page.title %} {% elif section.title %} {% set
-title = section.title %} {% elif term %} {% set title = term.name %}
-{% elif current_path and "tags" in current_path %} {% set title = "index of /tags"
-%} {% elif config.extra.greeting %} {% set title = config.extra.greeting ~ " :: zera" %} {% endif %} {% if
-page.extra.author %} {% set author = page.extra.author %} {% elif
-section.extra.author %} {% set author = section.extra.author %} {% elif
-config.extra.author %} {% set author = config.extra.author %} {% endif %} {% if
-page.description %} {% set description = page.description | truncate(length=150)
-%} {% elif section.description %} {% set description = section.description |
-truncate(length=150) %} {% elif config.description %} {% set description =
-config.description | truncate(length=150) %} {% endif %} {% if page.extra.image
-%} {% set image = get_url(path=page.extra.image, trailing_slash=false) %} {%
-elif section.extra.image %} {% set image = get_url(path=section.extra.image,
-trailing_slash=false) %} {% elif page.path %} {% set image =
-get_url(path=page.path ~ "og.png", trailing_slash=false) %} {% elif current_path
-%} {% set image = get_url(path=current_path ~ "og.png", trailing_slash=false) %}
-{% else %} {% set image = get_url(path="og.png", trailing_slash=false) %} {%
-endif %} {% if page.permalink %} {% set url = page.permalink %} {% elif
-section.permalink %} {% set url = section.permalink %} {% elif config.base_url
-%} {% set url = config.base_url %} {% endif %} {% if title %} {% if current_url
-and url != current_url %} {% set url = get_url(path=current_path,
-trailing_slash=true) %} {% endif %}
+{%- set tags_title = "index of /tags" if (current_path and "tags" in current_path) else "" -%}
+{%- set greeting_title = (config.extra.greeting ~ " :: zera") if config.extra?.greeting else "" -%}
+{%- set title = page?.title or section?.title or term?.name or tags_title or greeting_title -%}
+{%- set author = page?.extra?.author or section?.extra?.author or config.extra?.author or "" -%}
+{%- set raw_description = page?.description or section?.description or config.description or "" -%}
+{%- set description = (raw_description | truncate(length=150)) if raw_description else "" -%}
+{%- set page_og = (page.path ~ "og.png") if page?.path else "" -%}
+{%- set path_og = (current_path ~ "og.png") if current_path else "" -%}
+{%- set image_path = page?.extra?.image or section?.extra?.image or page_og or path_og or "og.png" -%}
+{%- set image = get_url(path=image_path, trailing_slash=false) -%}
+{%- set url = page?.permalink or section?.permalink or config.base_url -%}
+{%- set url = get_url(path=current_path, trailing_slash=true) if (title and current_url and url != current_url) else url -%}
+{% if title %}
 <title>{{ title }}</title>
 {% endif %} {% block metatags %} {% if title %}
 <meta name="title" content="{{ title }}" />
@@ -64,16 +55,16 @@ default(value=true) %} {% if twitter_card != false %}
 <meta name="theme-color" content="#272631">
 <meta name="color-scheme" content="dark">
 {% endblock metatags %}
-{% if page.extra.standard_site_uri %}
+{% if page?.extra?.standard_site_uri %}
 <link rel="site.standard.document" href="{{ page.extra.standard_site_uri }}" />
 {% endif %}
 {% if config.generate_feeds %} {% block
 feed%}
 <link rel="alternate" type="application/atom+xml" title="Kieran Klukas' Atom feed" href="{{
-get_url(path=" atom.xml", trailing_slash=false) }}">
-<link rel="alternate" type="application/rss+xml" title="Kieran Klukas' RSS feed" href="{{ get_url(path=" rss.xml",
-  trailing_slash=false) }}"> {% endblock feed %} {% endif%} {% block css %} {% set
-cssHash = get_hash(path="css/main.css", sha_type=256, base64=true) %}
+get_url(path="atom.xml", trailing_slash=false) }}">
+<link rel="alternate" type="application/rss+xml" title="Kieran Klukas' RSS feed" href="{{ get_url(path="rss.xml", trailing_slash=false) }}"> {% endblock feed %} {% endif%} {% block css %}
+<link rel="stylesheet" type="text/css" href="{{ get_url(path='giallo.css', trailing_slash=false) | safe }}" />
+{% set cssHash = get_hash(path="css/main.css", sha_type=256, base64=true) %}
 <link rel="stylesheet" type="text/css"
   href="{{ get_url(path='css/main.css?' ~ cssHash, trailing_slash=false) | safe }}" />
 {% endblock css %}
@@ -120,8 +111,9 @@ base64=true) %}
     });
   }
 </script>
+{%- set url_segments = url | split(pat='/') -%}
 <script async
-  src="https://abacus.jasoncameron.dev/hit/dunkirk.sh/counter{%- if url | split(pat='/') | slice(start=3) | join != '' -%}-{{url | split(pat='/') | slice(start=3) | join(sep=' ') | slugify}}{%- endif -%}?callback=cb"></script>
+  src="https://abacus.jasoncameron.dev/hit/dunkirk.sh/counter{%- if url_segments[3:] | join(sep='') != '' -%}-{{url_segments[3:] | join(sep=' ') | slugify}}{%- endif -%}?callback=cb"></script>
 
 <link rel="me" href="https://social.dino.icu/@taciturnaxoltol" />
 <link rel="me" href="https://github.com/taciturnaxolotl" />

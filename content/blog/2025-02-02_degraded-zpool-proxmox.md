@@ -21,7 +21,7 @@ I decided to finally fix the network issues with my proxmox server (old static i
 
 First I had to find the affected disk physically in my case. Because I was stupid I didn't bother to label them but thankfully the serial numbers of the drives are stuck to them with a sticker so that wasn't terrible.
 
-{{ img(id="https://hc-cdn.hel1.your-objectstorage.com/s/v3/a6512def9bbeedbc1315a8ee58c92fbfb9e4d169_0image_from_ios.jpg" alt="chick-fil-a macaroni and cheese with 2 nuggets and some ketchup" caption="(By this point I had spent 30 minutes moaning so I went to lunch)") }}
+{{ <img id="https://hc-cdn.hel1.your-objectstorage.com/s/v3/a6512def9bbeedbc1315a8ee58c92fbfb9e4d169_0image_from_ios.jpg" alt="chick-fil-a macaroni and cheese with 2 nuggets and some ketchup" caption="(By this point I had spent 30 minutes moaning so I went to lunch)" /> }}
 
 Now we can run `lsblk -o +MODEL,SERIAL` to find the serial number of our new drive.
 

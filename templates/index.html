@@ -1,6 +1,5 @@
 {% extends "base.html" %} {% block content %} {{ section.content | safe }} {% if
-config.extra.list_pages %} {% if paginator %} {% set pages = paginator.pages %}
-{% else %} {% set pages = section.pages %} {% endif %}
+config.extra.list_pages %} {% set pages = paginator.pages if paginator else section.pages %}
 
 <ul class="titleList">
     {% for page in pages %}

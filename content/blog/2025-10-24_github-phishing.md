@@ -15,7 +15,7 @@ I received an email yesterday at `19:45 EST` titled `[yccombinator/-notification
 
 <!-- more -->
 
-{{ img(id="https://hc-cdn.hel1.your-objectstorage.com/s/v3/47a842d35a86d6ac16d717b40ee69f2f801ff852_screenshot_2025-09-23_at_21.23.19.png" alt="a screenshot of the email" caption="I've never seen something simultaniously this stupid and (as far as i can tell) novel") }}
+{{ <img id="https://hc-cdn.hel1.your-objectstorage.com/s/v3/47a842d35a86d6ac16d717b40ee69f2f801ff852_screenshot_2025-09-23_at_21.23.19.png" alt="a screenshot of the email" caption="I've never seen something simultaniously this stupid and (as far as i can tell) novel" /> }}
 
 Like most phishing emails I doubt most people would fall for this but if you were moving quickly and not thinking straight maybe you could fall for this?
 

@@ -936,11 +936,11 @@ Replaying either of the requests does nothing except give a new `tid` value but 
 
 ## Wrap up
 
-{{ img(id="https://hc-cdn.hel1.your-objectstorage.com/s/v3/4e9bfb28c266eb29cea1568cedd3573be2ba1f97_1bluetooth-scan.png" alt="screenshot of bluetooth scan" caption="The bluetooth scan of (what i believe is) the lift") }}
+{{ <img id="https://hc-cdn.hel1.your-objectstorage.com/s/v3/4e9bfb28c266eb29cea1568cedd3573be2ba1f97_1bluetooth-scan.png" alt="screenshot of bluetooth scan" caption="The bluetooth scan of (what i believe is) the lift" /> }}
 
 I tried running a Bluetooth scan to see if I could find the locks, but nothing popped out as being a likely culprit. I did however find an interesting set of 3 Bluetooth devices named "clearsky smart fleet" which upon research seems to be scissor lifts / construction equipment made by a company called [JLG](https://smartfleet.jlg.com/) which is quite interesting. That would make sense, however, as I saw several scissor lifts outside the hotel on my way in.  
 
-{{ img(id="https://hc-cdn.hel1.your-objectstorage.com/s/v3/993ad810e42289ad3aaefa4093ede271a4ee1d12_0img_2781.jpg" alt="image of JLG lift" caption="The same (probably) JLG lift in the wild!") }}
+{{ <img id="https://hc-cdn.hel1.your-objectstorage.com/s/v3/993ad810e42289ad3aaefa4093ede271a4ee1d12_0img_2781.jpg" alt="image of JLG lift" caption="The same (probably) JLG lift in the wild!" /> }}
 
 By the time I'm writing this it's 6:41, and I need to eat breakfast, so I'll probably finish this post in the car this afternoon. Overall this was a fascinating experiment and while I sadly did fail at unlocking doors from my laptop I do feel more confident with reverse engineering app requests now! The next step would probably be to grab the app bundle and try to decompile it looking for the URLs we saw, but I don't have a mac on me, and I've never done that before. Next post?
 

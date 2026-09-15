@@ -1,8 +1,7 @@
 {% extends "base.html" %} {% block content %}
 <h1>{{ section.title }}</h1>
 
-{{ section.content | safe }} {% if paginator %} {% set pages = paginator.pages
-%} {% else %} {% set pages = section.pages %} {% endif %}
+{{ section.content | safe }} {% set pages = paginator.pages if paginator else section.pages %}
 
 <ul class="title-list">
     {% for page in pages %}
