@@ -1,0 +1,242 @@
+/*
+ * Print styles.
+ *
+ * the philosphy behind these styles is stripping out dynamic content like
+ * footers and making everything mostly black and white with links and images
+ * retaining color
+ */
+
+@media print {
+
+  /* Light palate */
+  :root,
+  ::backdrop {
+    color-scheme: light;
+    --bg: #ffffff;
+    --bg-light: #f3f3f3;
+    --text: #111111;
+    --text-light: #333333;
+    --text-dark: #000000;
+    --accent: #3a2f6b;
+    --accent-dark: #2a2250;
+    --accent-text: #000000;
+    --link: #1a3a8f;
+    --link-visited: #5b2a7a;
+    --border: #999999;
+    --selection: transparent;
+    --code-ink: #1c1c1c;
+  }
+
+  @page {
+    margin: 2cm;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  body {
+    display: block;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 12pt;
+  }
+
+  body>* {
+    grid-column: auto;
+  }
+
+  main {
+    max-width: none;
+  }
+
+  /* extranious non needed things to print */
+  header,
+  footer,
+  #header-container,
+  #nav-bar,
+  #now-playing,
+  #ad-note,
+  #ad-note-hidden,
+  #lightbox,
+  #theme-toggle-label,
+  .badge-row,
+  .pre-container .header,
+  i.icon,
+  iframe {
+    display: none !important;
+  }
+
+  /* Keep video captions even though we kill the video embed. */
+  .yt-embed figcaption {
+    margin-top: 0;
+  }
+
+  /* drop the copy button wrapper */
+  .pre-container {
+    background: transparent !important;
+    padding: 0 !important;
+    border: none !important;
+    border-radius: 0 !important;
+  }
+
+  pre,
+  pre.z-code,
+  .pre-container pre {
+    max-height: none !important;
+    overflow: visible !important;
+    white-space: pre-wrap !important;
+    overflow-wrap: anywhere;
+    font-size: 9pt !important;
+    line-height: 1.4;
+    margin: 0 !important;
+    padding: 0.6em !important;
+    background: var(--bg) !important;
+    border: 1px solid var(--border) !important;
+    border-radius: 3px !important;
+  }
+
+  /* The inner <code> is a second framed panel that gets nuked */
+  pre code,
+  .pre-container pre code,
+  pre.z-code code {
+    display: block;
+    max-height: none !important;
+    overflow: visible !important;
+    background: transparent !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+    border-radius: 0 !important;
+  }
+
+  /* remove code block syntax highlighting */
+  .z-code,
+  .z-code span,
+  pre code,
+  pre code span,
+  .giallo-ln,
+  .z-1,
+  .z-2,
+  .z-3,
+  .z-4,
+  .z-5,
+  .z-6,
+  .z-7,
+  .z-8,
+  .z-9,
+  .z-10,
+  .z-11,
+  .z-12,
+  .z-13,
+  .z-14,
+  .z-15,
+  .z-16 {
+    color: var(--code-ink) !important;
+    background: transparent !important;
+  }
+
+  .z-hl {
+    background: #ececec !important;
+  }
+
+  /* invert inline code colors */
+  p code,
+  li code,
+  div code,
+  td code,
+  th code {
+    color: var(--code-ink) !important;
+    background: var(--bg-light) !important;
+    border: 1px solid #d0d0d0;
+  }
+
+  /* Accent-background chips lose their fill when backgrounds are dropped,
+     leaving light text floating on white. Neutralize them to bordered ink. */
+  blockquote:has(+ pre),
+  blockquote:has(+ pre) p,
+  .bubble,
+  .bubble a {
+    background: transparent !important;
+    color: var(--text) !important;
+  }
+
+  /* drop header accent chips */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    background: transparent !important;
+    color: var(--text-dark) !important;
+    border-bottom: none !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+    width: auto !important;
+  }
+
+  .bubble {
+    border: 1px solid var(--border);
+  }
+
+  a {
+    color: var(--link);
+  }
+
+  /* just indent quotes */
+  blockquote {
+    margin: 0.5rem 1.5rem !important;
+    padding: 0.1rem 0 !important;
+    border-inline-start: none !important;
+  }
+
+  /* fix callut accents */
+  .callout-blue,
+  .callout-blue .callout-icon {
+    border-color: #1d4ed8 !important;
+    color: #1d4ed8 !important;
+  }
+
+  .callout-yellow,
+  .callout-yellow .callout-icon {
+    border-color: #a16207 !important;
+    color: #a16207 !important;
+  }
+
+  .callout-red,
+  .callout-red .callout-icon {
+    border-color: #b42318 !important;
+    color: #b42318 !important;
+  }
+
+  .callout-green,
+  .callout-green .callout-icon {
+    border-color: #15803d !important;
+    color: #15803d !important;
+  }
+
+  /* avoid splitting across pages */
+  pre,
+  figure,
+  blockquote,
+  table,
+  .img-container,
+  .image-gallery img,
+  .gallery-grid,
+  .side-by-side {
+    break-inside: avoid;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    break-after: avoid;
+  }
+
+  img {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+}
